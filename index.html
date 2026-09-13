@@ -1,0 +1,4243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Ticket Master</title>
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --blue:#1769ff;
+  --blue-dark:#0b55db;
+  --bg:#f5f7fb;
+  --card:#fff;
+  --text:#111827;
+  --muted:#6b7280;
+  --line:#e5e7eb;
+  --green:#16a34a;
+  --red:#dc2626;
+  --orange:#f59e0b;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  max-width:480px;
+  margin:auto;
+  min-height:100vh;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+.app{
+  min-height:100vh;
+  padding-bottom:80px;
+}
+
+/* AUTH */
+
+.auth-screen{
+  min-height:100vh;
+  padding:30px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(circle at top right,#326fff 0,#1769ff 25%,#07142e 75%);
+}
+
+.auth-box{
+  width:100%;
+  background:#fff;
+  border-radius:25px;
+  padding:25px 21px;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
+
+.auth-logo{
+  text-align:center;
+  font-size:28px;
+  font-weight:950;
+  letter-spacing:-1.5px;
+  margin-bottom:7px;
+}
+
+.auth-logo span{
+  color:var(--blue);
+}
+
+.auth-subtitle{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:25px;
+}
+
+.auth-tabs{
+  display:flex;
+  background:#f1f3f6;
+  border-radius:11px;
+  padding:4px;
+  margin-bottom:20px;
+}
+
+.auth-tab{
+  flex:1;
+  padding:10px;
+  border-radius:8px;
+  background:none;
+  font-size:13px;
+  font-weight:800;
+  color:var(--muted);
+}
+
+.auth-tab.active{
+  background:#fff;
+  color:var(--blue);
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+
+.auth-field{
+  margin-bottom:14px;
+}
+
+.auth-field label{
+  display:block;
+  font-size:11px;
+  color:var(--muted);
+  font-weight:800;
+  margin-bottom:6px;
+}
+
+.auth-field input{
+  width:100%;
+  height:48px;
+  border:1px solid #dfe3e8;
+  border-radius:11px;
+  padding:0 13px;
+  outline:none;
+}
+
+.auth-field input:focus{
+  border-color:var(--blue);
+}
+
+.auth-submit{
+  width:100%;
+  height:48px;
+  background:var(--blue);
+  color:#fff;
+  border-radius:11px;
+  font-weight:850;
+  margin-top:4px;
+}
+
+.auth-note{
+  text-align:center;
+  color:#9ca3af;
+  font-size:10px;
+  margin-top:18px;
+  line-height:1.5;
+}
+
+/* HEADER */
+
+.header{
+  background:#fff;
+  position:sticky;
+  top:0;
+  z-index:50;
+  border-bottom:1px solid var(--line);
+}
+
+.header-inner{
+  padding:14px 16px 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:23px;
+  font-weight:950;
+  letter-spacing:-1px;
+}
+
+.logo span{
+  color:var(--blue);
+}
+
+.header-icons{
+  display:flex;
+  gap:8px;
+}
+
+.icon-btn{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:#f1f4f8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+}
+
+.search-wrap{
+  padding:0 16px 14px;
+}
+
+.search-box{
+  position:relative;
+}
+
+.search{
+  width:100%;
+  height:45px;
+  border:0;
+  border-radius:12px;
+  background:#f0f2f5;
+  padding:0 15px 0 42px;
+  outline:none;
+  font-size:15px;
+}
+
+.search-icon{
+  position:absolute;
+  left:15px;
+  top:11px;
+  font-size:18px;
+}
+
+/* CONTENT */
+
+.page{
+  padding:18px 16px;
+}
+
+.page-title{
+  font-size:27px;
+  font-weight:900;
+  letter-spacing:-.6px;
+  margin-bottom:5px;
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:18px;
+}
+
+/* CATEGORIES */
+
+.categories{
+  display:flex;
+  gap:9px;
+  overflow-x:auto;
+  padding-bottom:5px;
+  margin-bottom:20px;
+}
+
+.categories::-webkit-scrollbar{
+  display:none;
+}
+
+.cat{
+  white-space:nowrap;
+  padding:9px 15px;
+  border-radius:30px;
+  background:#fff;
+  border:1px solid var(--line);
+  font-size:13px;
+  font-weight:750;
+}
+
+.cat.active{
+  background:var(--blue);
+  color:#fff;
+  border-color:var(--blue);
+}
+
+/* HERO */
+
+.hero{
+  min-height:260px;
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
+  color:#fff;
+  margin-bottom:25px;
+  background-size:cover;
+  background-position:center;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.8),
+    rgba(0,0,0,.08)
+  );
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  padding:23px;
+  min-height:260px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+
+.hero-tag{
+  background:rgba(255,255,255,.18);
+  width:max-content;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:850;
+  margin-bottom:9px;
+}
+
+.hero h2{
+  font-size:30px;
+  line-height:1;
+  margin-bottom:8px;
+}
+
+.hero p{
+  font-size:13px;
+  opacity:.9;
+  margin-bottom:15px;
+}
+
+.hero button{
+  width:max-content;
+  background:#fff;
+  color:#111827;
+  padding:11px 17px;
+  border-radius:10px;
+  font-weight:850;
+}
+
+/* SECTION */
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:24px 0 12px;
+}
+
+.section-head h3{
+  font-size:19px;
+}
+
+.section-head button{
+  background:none;
+  color:var(--blue);
+  font-weight:750;
+  font-size:13px;
+}
+
+/* EVENT CARD */
+
+.events{
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+}
+
+.event-card{
+  background:#fff;
+  border-radius:17px;
+  overflow:hidden;
+  border:1px solid #edf0f4;
+  box-shadow:0 3px 12px rgba(15,23,42,.04);
+}
+
+.event-image{
+  width:100%;
+  height:150px;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+}
+
+.event-image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.6),
+    transparent 55%
+  );
+}
+
+.event-category{
+  position:absolute;
+  z-index:2;
+  left:11px;
+  top:11px;
+  background:rgba(0,0,0,.55);
+  color:#fff;
+  border-radius:20px;
+  padding:5px 9px;
+  font-size:9px;
+  font-weight:850;
+}
+
+.event-artist{
+  position:absolute;
+  z-index:2;
+  bottom:11px;
+  left:13px;
+  color:#fff;
+  font-size:20px;
+  font-weight:900;
+}
+
+.event-info{
+  padding:13px;
+}
+
+.event-info h4{
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.event-info p{
+  color:var(--muted);
+  font-size:12px;
+  margin:3px 0;
+}
+
+.event-date{
+  color:var(--blue)!important;
+  font-weight:850;
+}
+
+.event-actions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:10px;
+}
+
+.price{
+  font-size:12px;
+  font-weight:850;
+}
+
+.small-btn{
+  background:var(--blue);
+  color:#fff;
+  padding:8px 12px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:850;
+}
+
+/* DETAIL */
+
+.detail-image{
+  height:270px;
+  border-radius:20px;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:16px;
+}
+
+.detail-image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.85),
+    transparent 65%
+  );
+}
+
+.detail-image-content{
+  position:absolute;
+  z-index:2;
+  left:20px;
+  right:20px;
+  bottom:20px;
+  color:#fff;
+}
+
+.detail-image-content h1{
+  font-size:31px;
+  line-height:1;
+  margin-bottom:6px;
+}
+
+.detail-image-content p{
+  font-size:13px;
+  opacity:.9;
+}
+
+.info-box{
+  background:#fff;
+  border-radius:16px;
+  padding:15px;
+  margin-bottom:12px;
+}
+
+.info-row{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:13px;
+}
+
+.info-row:last-child{
+  margin-bottom:0;
+}
+
+.info-icon{
+  width:38px;
+  height:38px;
+  border-radius:10px;
+  background:#edf4ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.info-row strong{
+  font-size:13px;
+}
+
+.info-row span{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:2px;
+}
+
+/* MAP */
+
+.map-card{
+  background:#fff;
+  border-radius:20px;
+  padding:16px;
+  overflow:hidden;
+}
+
+.stage{
+  width:75%;
+  margin:5px auto 25px;
+  height:38px;
+  border-radius:50% 50% 10px 10px;
+  background:#111827;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:850;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.section-label{
+  text-align:center;
+  font-size:10px;
+  color:#9ca3af;
+  font-weight:850;
+  margin:13px 0 7px;
+}
+
+.seat-row{
+  display:flex;
+  justify-content:center;
+  gap:4px;
+  margin:4px 0;
+}
+
+.seat{
+  width:20px;
+  height:20px;
+  border-radius:5px 5px 7px 7px;
+  background:#36c76f;
+  font-size:7px;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.seat.sold{
+  background:#d1d5db;
+  cursor:not-allowed;
+}
+
+.seat.resale{
+  background:#f59e0b;
+}
+
+.seat.selected{
+  background:var(--blue);
+  transform:scale(1.18);
+  box-shadow:0 3px 8px rgba(23,105,255,.35);
+}
+
+.legend{
+  display:flex;
+  justify-content:center;
+  gap:13px;
+  margin-top:17px;
+  font-size:10px;
+  color:var(--muted);
+}
+
+.legend-item{
+  display:flex;
+  gap:4px;
+  align-items:center;
+}
+
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:3px;
+}
+
+/* BUY BAR */
+
+.buy-bar{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:480px;
+  background:#fff;
+  border-top:1px solid var(--line);
+  padding:12px 16px;
+  z-index:60;
+  display:none;
+}
+
+.buy-bar.show{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.total strong{
+  display:block;
+  font-size:18px;
+}
+
+.total span{
+  font-size:11px;
+  color:var(--muted);
+}
+
+/* BUTTONS */
+
+.primary{
+  background:var(--blue);
+  color:#fff;
+  padding:12px 19px;
+  border-radius:11px;
+  font-weight:850;
+}
+
+.secondary{
+  background:#eef2f7;
+  color:#111827;
+  padding:12px 18px;
+  border-radius:11px;
+  font-weight:800;
+}
+
+/* TICKETS */
+
+.ticket{
+  background:#fff;
+  border-radius:19px;
+  overflow:hidden;
+  margin-bottom:16px;
+  box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.ticket-top{
+  height:125px;
+  padding:17px;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  color:#fff;
+}
+
+.ticket-top::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.75),
+    transparent
+  );
+}
+
+.ticket-top-content{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+
+.ticket-top h3{
+  font-size:19px;
+  margin-bottom:4px;
+}
+
+.ticket-top p{
+  opacity:.9;
+  font-size:12px;
+}
+
+.ticket-body{
+  padding:16px;
+}
+
+.ticket-details{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.ticket-detail small{
+  display:block;
+  color:#9ca3af;
+  font-size:9px;
+  text-transform:uppercase;
+  font-weight:850;
+  margin-bottom:3px;
+}
+
+.ticket-detail strong{
+  font-size:13px;
+}
+
+.ticket-code{
+  margin-top:18px;
+  border-top:1px dashed #d1d5db;
+  padding-top:17px;
+  text-align:center;
+}
+
+.qr{
+  margin:0 auto 10px;
+  width:125px;
+  height:125px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #111 0 4px,
+      #fff 4px 8px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 5px,
+      #111 5px 7px,
+      transparent 7px 10px
+    );
+  border:8px solid #fff;
+  box-shadow:0 0 0 1px #ddd;
+}
+
+/* NAV */
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  max-width:480px;
+  width:100%;
+  height:70px;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);
+  border-top:1px solid var(--line);
+  z-index:55;
+  display:flex;
+  justify-content:space-around;
+}
+
+.nav-btn{
+  flex:1;
+  background:none;
+  color:#7b8494;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  font-size:10px;
+  font-weight:750;
+}
+
+.nav-btn span{
+  font-size:21px;
+}
+
+.nav-btn.active{
+  color:var(--blue);
+}
+
+/* PROFILE */
+
+.profile-card{
+  background:#fff;
+  border-radius:19px;
+  padding:20px;
+  text-align:center;
+  margin-bottom:15px;
+}
+
+.avatar{
+  width:76px;
+  height:76px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#1769ff,#6d9cff);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+  font-size:25px;
+  font-weight:900;
+}
+
+.profile-card h2{
+  margin-top:10px;
+  font-size:21px;
+}
+
+.profile-card p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:3px;
+}
+
+.setting{
+  background:#fff;
+  padding:16px;
+  border-bottom:1px solid #f0f1f3;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.setting:first-child{
+  border-radius:15px 15px 0 0;
+}
+
+.setting:last-child{
+  border-radius:0 0 15px 15px;
+  border:0;
+}
+
+.setting-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.setting-icon{
+  width:35px;
+  height:35px;
+  background:#eef3ff;
+  border-radius:9px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ORDERS */
+
+.order{
+  background:#fff;
+  border-radius:16px;
+  padding:15px;
+  margin-bottom:12px;
+}
+
+.order-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+}
+
+.status{
+  font-size:10px;
+  padding:5px 8px;
+  border-radius:20px;
+  background:#dcfce7;
+  color:#15803d;
+  font-weight:850;
+  white-space:nowrap;
+}
+
+.order p{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+
+/* MARKETPLACE */
+
+.resale-card{
+  background:#fff;
+  border-radius:16px;
+  padding:15px;
+  margin-bottom:12px;
+}
+
+.resale-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.resale-card h4{
+  font-size:15px;
+}
+
+.resale-card p{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+.resale-price{
+  font-size:18px;
+  font-weight:900;
+  color:var(--blue);
+}
+
+/* EMPTY */
+
+.empty{
+  text-align:center;
+  padding:50px 20px;
+  color:var(--muted);
+}
+
+.empty-icon{
+  font-size:45px;
+  margin-bottom:10px;
+}
+
+/* MODAL */
+
+.modal-bg{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:100;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+.modal-bg.open{
+  display:flex;
+}
+
+.modal{
+  background:#fff;
+  width:100%;
+  max-width:480px;
+  border-radius:23px 23px 0 0;
+  padding:20px;
+  max-height:88vh;
+  overflow:auto;
+}
+
+.modal-handle{
+  width:45px;
+  height:5px;
+  background:#d1d5db;
+  border-radius:10px;
+  margin:0 auto 17px;
+}
+
+.modal h2{
+  margin-bottom:14px;
+}
+
+.form{
+  margin-bottom:13px;
+}
+
+.form label{
+  display:block;
+  font-size:11px;
+  color:var(--muted);
+  font-weight:750;
+  margin-bottom:5px;
+}
+
+.form input{
+  width:100%;
+  height:45px;
+  border:1px solid #dfe3e9;
+  border-radius:10px;
+  padding:0 12px;
+  outline:none;
+}
+
+.full-btn{
+  width:100%;
+  height:46px;
+  border-radius:11px;
+  background:var(--blue);
+  color:#fff;
+  font-weight:850;
+  margin-top:5px;
+}
+
+.close-btn{
+  width:100%;
+  height:43px;
+  border-radius:11px;
+  background:#eef2f7;
+  margin-top:8px;
+  font-weight:800;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:85px;
+  transform:translateX(-50%) translateY(20px);
+  background:#111827;
+  color:#fff;
+  padding:11px 15px;
+  border-radius:10px;
+  font-size:12px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:200;
+  max-width:90%;
+  text-align:center;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* HIDDEN */
+
+.hidden{
+  display:none!important;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= AUTH ================= -->
+
+<div id="authScreen" class="auth-screen">
+
+  <div class="auth-box">
+
+    <div class="auth-logo">
+      Ticket <span>Master</span>
+    </div>
+
+    <div class="auth-subtitle">
+      Discover live events and manage your tickets
+    </div>
+
+    <div class="auth-tabs">
+
+      <button
+        id="loginTab"
+        class="auth-tab active"
+        onclick="switchAuth('login')">
+
+        Login
+
+      </button>
+
+      <button
+        id="signupTab"
+        class="auth-tab"
+        onclick="switchAuth('signup')">
+
+        Sign up
+
+      </button>
+
+    </div>
+
+
+    <div id="authForm"></div>
+
+
+    <div class="auth-note">
+      Independent ticketing application.<br>
+      Your account is stored locally in this browser.
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= APP ================= -->
+
+<div id="app" class="app hidden">
+
+<header class="header">
+
+  <div class="header-inner">
+
+    <div class="logo">
+      Ticket <span>Master</span>
+    </div>
+
+    <div class="header-icons">
+
+      <button
+        class="icon-btn"
+        onclick="showPage('favorites')">
+
+        ♡
+
+      </button>
+
+      <button
+        class="icon-btn"
+        onclick="showToast('Notifications are up to date')">
+
+        🔔
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="search-wrap">
+
+    <div class="search-box">
+
+      <span class="search-icon">
+        ⌕
+      </span>
+
+      <input
+        id="searchInput"
+        class="search"
+        placeholder="Search artists, events or venues"
+        oninput="searchEvents(this.value)">
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main id="main"></main>
+
+
+<nav class="bottom-nav">
+
+  <button
+    class="nav-btn active"
+    id="nav-home"
+    onclick="showPage('home')">
+
+    <span>⌂</span>
+    Home
+
+  </button>
+
+
+  <button
+    class="nav-btn"
+    id="nav-events"
+    onclick="showPage('events')">
+
+    <span>🎫</span>
+    Events
+
+  </button>
+
+
+  <button
+    class="nav-btn"
+    id="nav-tickets"
+    onclick="showPage('tickets')">
+
+    <span>▣</span>
+    Tickets
+
+  </button>
+
+
+  <button
+    class="nav-btn"
+    id="nav-orders"
+    onclick="showPage('orders')">
+
+    <span>▤</span>
+    Orders
+
+  </button>
+
+
+  <button
+    class="nav-btn"
+    id="nav-profile"
+    onclick="showPage('profile')">
+
+    <span>●</span>
+    Profile
+
+  </button>
+
+</nav>
+
+</div>
+
+
+<!-- BUY BAR -->
+
+<div id="buyBar" class="buy-bar">
+
+  <div class="total">
+
+    <strong id="selectedTotal">
+      $0
+    </strong>
+
+    <span id="selectedCount">
+      0 tickets selected
+    </span>
+
+  </div>
+
+  <button
+    class="primary"
+    onclick="openCheckout()">
+
+    Continue
+
+  </button>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div id="modalBg" class="modal-bg">
+
+  <div class="modal">
+
+    <div class="modal-handle"></div>
+
+    <div id="modalContent"></div>
+
+  </div>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+
+/* =========================================================
+   EVENT DATA
+========================================================= */
+
+const events = [
+
+{
+ id:1,
+ artist:"Bruno Mars",
+ title:"Bruno Mars Live",
+ date:"Friday, February 19, 2027",
+ time:"5:00 PM",
+ venue:"Marvel Stadium",
+ city:"Melbourne, VIC",
+ category:"Concerts",
+ price:105,
+ image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1000&q=85"
+},
+
+{
+ id:2,
+ artist:"BIGBANG",
+ title:"BIGBANG World Tour",
+ date:"Saturday, October 24, 2026",
+ time:"7:30 PM",
+ venue:"Rod Laver Arena",
+ city:"Melbourne, VIC",
+ category:"Concerts",
+ price:120,
+ image:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=85"
+},
+
+{
+ id:3,
+ artist:"The Weeknd",
+ title:"After Hours Til Dawn",
+ date:"Saturday, November 7, 2026",
+ time:"7:30 PM",
+ venue:"Accor Stadium",
+ city:"Sydney, NSW",
+ category:"Concerts",
+ price:99,
+ image:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1000&q=85"
+},
+
+{
+ id:4,
+ artist:"Coldplay",
+ title:"Music Of The Spheres",
+ date:"Sunday, November 15, 2026",
+ time:"7:00 PM",
+ venue:"Marvel Stadium",
+ city:"Melbourne, VIC",
+ category:"Concerts",
+ price:105,
+ image:"https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1000&q=85"
+},
+
+{
+ id:5,
+ artist:"Beyoncé",
+ title:"Renaissance World Tour",
+ date:"Saturday, December 5, 2026",
+ time:"8:00 PM",
+ venue:"Accor Stadium",
+ city:"Sydney, NSW",
+ category:"Concerts",
+ price:145,
+ image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1000&q=85"
+},
+
+{
+ id:6,
+ artist:"Taylor Swift",
+ title:"The Eras Experience",
+ date:"Friday, January 15, 2027",
+ time:"7:30 PM",
+ venue:"MCG",
+ city:"Melbourne, VIC",
+ category:"Concerts",
+ price:160,
+ image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1000&q=85"
+},
+
+{
+ id:7,
+ artist:"Drake",
+ title:"Drake Live",
+ date:"Saturday, February 13, 2027",
+ time:"8:00 PM",
+ venue:"Qudos Bank Arena",
+ city:"Sydney, NSW",
+ category:"Concerts",
+ price:110,
+ image:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1000&q=85"
+},
+
+{
+ id:8,
+ artist:"BLACKPINK",
+ title:"BLACKPINK World Tour",
+ date:"Sunday, March 7, 2027",
+ time:"7:30 PM",
+ venue:"Rod Laver Arena",
+ city:"Melbourne, VIC",
+ category:"Concerts",
+ price:125,
+ image:"https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=1000&q=85"
+},
+
+{
+ id:9,
+ artist:"Adele",
+ title:"Adele Live",
+ date:"Saturday, April 10, 2027",
+ time:"8:00 PM",
+ venue:"Rod Laver Arena",
+ city:"Melbourne, VIC",
+ category:"Concerts",
+ price:135,
+ image:"https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1000&q=85"
+},
+
+{
+ id:10,
+ artist:"Ed Sheeran",
+ title:"Mathematics Tour",
+ date:"Saturday, May 1, 2027",
+ time:"7:30 PM",
+ venue:"MCG",
+ city:"Melbourne, VIC",
+ category:"Concerts",
+ price:95,
+ image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1000&q=85"
+},
+
+{
+ id:11,
+ artist:"Lady Gaga",
+ title:"Mayhem Ball",
+ date:"Friday, May 21, 2027",
+ time:"8:00 PM",
+ venue:"Qudos Bank Arena",
+ city:"Sydney, NSW",
+ category:"Concerts",
+ price:130,
+ image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1000&q=85"
+},
+
+{
+ id:12,
+ artist:"Rihanna",
+ title:"Rihanna Live",
+ date:"Saturday, June 12, 2027",
+ time:"8:00 PM",
+ venue:"Marvel Stadium",
+ city:"Melbourne, VIC",
+ category:"Concerts",
+ price:150,
+ image:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=85"
+},
+
+{
+ id:13,
+ artist:"Melbourne United",
+ title:"Melbourne United",
+ date:"Sunday, July 4, 2027",
+ time:"5:00 PM",
+ venue:"John Cain Arena",
+ city:"Melbourne, VIC",
+ category:"Sports",
+ price:45,
+ image:"https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1000&q=85"
+},
+
+{
+ id:14,
+ artist:"Comedy Night",
+ title:"Comedy All Stars",
+ date:"Friday, July 16, 2027",
+ time:"7:30 PM",
+ venue:"Forum Melbourne",
+ city:"Melbourne, VIC",
+ category:"Comedy",
+ price:39,
+ image:"https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&w=1000&q=85"
+}
+
+];
+
+
+/* =========================================================
+   ACCOUNT
+========================================================= */
+
+let currentUser =
+  JSON.parse(
+    localStorage.getItem("tm_current_user") || "null"
+  );
+
+
+let users =
+  JSON.parse(
+    localStorage.getItem("tm_users") || "[]"
+  );
+
+
+function saveUsers(){
+
+  localStorage.setItem(
+    "tm_users",
+    JSON.stringify(users)
+  );
+
+}
+
+
+function saveCurrentUser(){
+
+  if(currentUser){
+
+    localStorage.setItem(
+      "tm_current_user",
+      JSON.stringify(currentUser)
+    );
+
+  }else{
+
+    localStorage.removeItem("tm_current_user");
+
+  }
+
+}
+
+
+function initials(name){
+
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0,2)
+    .map(x=>x[0].toUpperCase())
+    .join("");
+
+}
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+function switchAuth(type){
+
+  document
+    .getElementById("loginTab")
+    .classList.toggle(
+      "active",
+      type==="login"
+    );
+
+  document
+    .getElementById("signupTab")
+    .classList.toggle(
+      "active",
+      type==="signup"
+    );
+
+
+  if(type==="login"){
+
+    document.getElementById("authForm").innerHTML = `
+
+      <div class="auth-field">
+
+        <label>
+          EMAIL
+        </label>
+
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="you@example.com">
+
+      </div>
+
+
+      <div class="auth-field">
+
+        <label>
+          PASSWORD
+        </label>
+
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Password">
+
+      </div>
+
+
+      <button
+        class="auth-submit"
+        onclick="login()">
+
+        Log in
+
+      </button>
+
+    `;
+
+  }else{
+
+    document.getElementById("authForm").innerHTML = `
+
+      <div class="auth-field">
+
+        <label>
+          FULL NAME
+        </label>
+
+        <input
+          id="signupName"
+          placeholder="Your full name">
+
+      </div>
+
+
+      <div class="auth-field">
+
+        <label>
+          EMAIL
+        </label>
+
+        <input
+          id="signupEmail"
+          type="email"
+          placeholder="you@example.com">
+
+      </div>
+
+
+      <div class="auth-field">
+
+        <label>
+          PASSWORD
+        </label>
+
+        <input
+          id="signupPassword"
+          type="password"
+          placeholder="Create a password">
+
+      </div>
+
+
+      <div class="auth-field">
+
+        <label>
+          CONFIRM PASSWORD
+        </label>
+
+        <input
+          id="signupConfirm"
+          type="password"
+          placeholder="Repeat password">
+
+      </div>
+
+
+      <button
+        class="auth-submit"
+        onclick="signup()">
+
+        Create account
+
+      </button>
+
+    `;
+
+  }
+
+}
+
+
+function signup(){
+
+  const name =
+    document.getElementById("signupName")
+      .value.trim();
+
+  const email =
+    document.getElementById("signupEmail")
+      .value.trim()
+      .toLowerCase();
+
+  const password =
+    document.getElementById("signupPassword")
+      .value;
+
+  const confirm =
+    document.getElementById("signupConfirm")
+      .value;
+
+
+  if(!name || !email || !password){
+
+    alert("Please complete all fields.");
+    return;
+
+  }
+
+
+  if(password !== confirm){
+
+    alert("Passwords do not match.");
+    return;
+
+  }
+
+
+  if(password.length < 6){
+
+    alert("Password must be at least 6 characters.");
+    return;
+
+  }
+
+
+  if(users.some(u=>u.email===email)){
+
+    alert("An account with this email already exists.");
+    return;
+
+  }
+
+
+  const user = {
+
+    id:"USR-"+Date.now(),
+
+    name:name,
+
+    email:email,
+
+    password:password
+
+  };
+
+
+  users.push(user);
+
+  saveUsers();
+
+
+  currentUser = {
+
+    id:user.id,
+
+    name:user.name,
+
+    email:user.email
+
+  };
+
+
+  saveCurrentUser();
+
+  launchApp();
+
+}
+
+
+function login(){
+
+  const email =
+    document.getElementById("loginEmail")
+      .value.trim()
+      .toLowerCase();
+
+  const password =
+    document.getElementById("loginPassword")
+      .value;
+
+
+  const user =
+    users.find(
+      u=>u.email===email &&
+         u.password===password
+    );
+
+
+  if(!user){
+
+    alert("Incorrect email or password.");
+    return;
+
+  }
+
+
+  currentUser = {
+
+    id:user.id,
+
+    name:user.name,
+
+    email:user.email
+
+  };
+
+
+  saveCurrentUser();
+
+  launchApp();
+
+}
+
+
+function logout(){
+
+  currentUser=null;
+
+  saveCurrentUser();
+
+  document
+    .getElementById("app")
+    .classList.add("hidden");
+
+  document
+    .getElementById("authScreen")
+    .classList.remove("hidden");
+
+  switchAuth("login");
+
+}
+
+
+/* =========================================================
+   APP DATA
+========================================================= */
+
+let currentEvent=null;
+let selectedSeats=[];
+let activeCategory="All";
+
+
+let favorites =
+  JSON.parse(
+    localStorage.getItem("tm_favorites") || "[]"
+  );
+
+let tickets =
+  JSON.parse(
+    localStorage.getItem("tm_tickets") || "[]"
+  );
+
+let orders =
+  JSON.parse(
+    localStorage.getItem("tm_orders") || "[]"
+  );
+
+let transfers =
+  JSON.parse(
+    localStorage.getItem("tm_transfers") || "[]"
+  );
+
+let resale =
+  JSON.parse(
+    localStorage.getItem("tm_resale") || "[]"
+  );
+
+
+function saveData(){
+
+  localStorage.setItem(
+    "tm_favorites",
+    JSON.stringify(favorites)
+  );
+
+  localStorage.setItem(
+    "tm_tickets",
+    JSON.stringify(tickets)
+  );
+
+  localStorage.setItem(
+    "tm_orders",
+    JSON.stringify(orders)
+  );
+
+  localStorage.setItem(
+    "tm_transfers",
+    JSON.stringify(transfers)
+  );
+
+  localStorage.setItem(
+    "tm_resale",
+    JSON.stringify(resale)
+  );
+
+}
+
+
+function money(value){
+
+  return "$"+Number(value).toFixed(2);
+
+}
+
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent=message;
+
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },2500);
+
+}
+
+
+function openModal(html){
+
+  document
+    .getElementById("modalContent")
+    .innerHTML=html;
+
+  document
+    .getElementById("modalBg")
+    .classList.add("open");
+
+}
+
+
+function closeModal(){
+
+  document
+    .getElementById("modalBg")
+    .classList.remove("open");
+
+}
+
+
+/* =========================================================
+   LAUNCH
+========================================================= */
+
+function launchApp(){
+
+  document
+    .getElementById("authScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("app")
+    .classList.remove("hidden");
+
+  showPage("home");
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function showPage(page){
+
+  document
+    .getElementById("buyBar")
+    .classList.remove("show");
+
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn=>btn.classList.remove("active"));
+
+
+  const nav =
+    document.getElementById("nav-"+page);
+
+  if(nav){
+    nav.classList.add("active");
+  }
+
+
+  if(page==="home")
+    renderHome();
+
+  if(page==="events")
+    renderEvents();
+
+  if(page==="tickets")
+    renderTickets();
+
+  if(page==="orders")
+    renderOrders();
+
+  if(page==="profile")
+    renderProfile();
+
+  if(page==="favorites")
+    renderFavorites();
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+function renderHome(){
+
+  const featured=events[0];
+
+  document.getElementById("main").innerHTML=`
+
+    <div class="page">
+
+      <div class="categories">
+
+        ${[
+          "All",
+          "Concerts",
+          "Sports",
+          "Comedy",
+          "Family",
+          "Theater"
+        ].map(cat=>`
+
+          <button
+            class="cat ${activeCategory===cat?"active":""}"
+            onclick="setCategory('${cat}')">
+
+            ${cat}
+
+          </button>
+
+        `).join("")}
+
+      </div>
+
+
+      <div
+        class="hero"
+        style="
+          background-image:url('${featured.image}')
+        ">
+
+        <div class="hero-content">
+
+          <div class="hero-tag">
+            FEATURED EVENT
+          </div>
+
+          <h2>
+            ${featured.artist}
+          </h2>
+
+          <p>
+            ${featured.title}
+          </p>
+
+          <button
+            onclick="openEvent(${featured.id})">
+
+            View tickets
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="section-head">
+
+        <h3>
+          Popular events
+        </h3>
+
+        <button onclick="showPage('events')">
+          See all
+        </button>
+
+      </div>
+
+
+      <div class="events">
+
+        ${eventCards(filteredEvents().slice(0,6))}
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function setCategory(category){
+
+  activeCategory=category;
+
+  renderHome();
+
+}
+
+
+function filteredEvents(){
+
+  if(activeCategory==="All")
+    return events;
+
+  return events.filter(
+    e=>e.category===activeCategory
+  );
+
+}
+
+
+/* =========================================================
+   EVENT CARDS
+========================================================= */
+
+function eventCards(list){
+
+  if(!list.length){
+
+    return `
+
+      <div class="empty">
+
+        <div class="empty-icon">
+          🔎
+        </div>
+
+        No events found.
+
+      </div>
+
+    `;
+
+  }
+
+
+  return list.map(event=>`
+
+    <div
+      class="event-card"
+      onclick="openEvent(${event.id})">
+
+      <div
+        class="event-image"
+        style="
+          background-image:url('${event.image}')
+        ">
+
+        <div class="event-category">
+          ${event.category.toUpperCase()}
+        </div>
+
+        <div class="event-artist">
+          ${event.artist}
+        </div>
+
+      </div>
+
+
+      <div class="event-info">
+
+        <h4>
+          ${event.title}
+        </h4>
+
+        <p class="event-date">
+          ${event.date}
+        </p>
+
+        <p>
+          ${event.time}
+        </p>
+
+        <p>
+          ${event.venue}
+        </p>
+
+
+        <div class="event-actions">
+
+          <span class="price">
+            From ${money(event.price)}
+          </span>
+
+          <button
+            class="small-btn"
+            onclick="
+              event.stopPropagation();
+              openEvent(${event.id})
+            ">
+
+            Tickets
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+function renderEvents(){
+
+  document.getElementById("main").innerHTML=`
+
+    <div class="page">
+
+      <div class="page-title">
+        Events
+      </div>
+
+      <div class="subtitle">
+        Find your next live experience.
+      </div>
+
+
+      <div class="categories">
+
+        ${[
+          "All",
+          "Concerts",
+          "Sports",
+          "Comedy",
+          "Family",
+          "Theater"
+        ].map(cat=>`
+
+          <button
+            class="cat ${activeCategory===cat?"active":""}"
+            onclick="
+              activeCategory='${cat}';
+              renderEvents()
+            ">
+
+            ${cat}
+
+          </button>
+
+        `).join("")}
+
+      </div>
+
+
+      <div class="events">
+
+        ${eventCards(filteredEvents())}
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function searchEvents(query){
+
+  query=query.toLowerCase().trim();
+
+
+  if(!query){
+
+    showPage("home");
+    return;
+
+  }
+
+
+  const results=events.filter(event=>
+
+    event.title.toLowerCase().includes(query) ||
+
+    event.artist.toLowerCase().includes(query) ||
+
+    event.venue.toLowerCase().includes(query) ||
+
+    event.city.toLowerCase().includes(query)
+
+  );
+
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn=>btn.classList.remove("active"));
+
+
+  document.getElementById("main").innerHTML=`
+
+    <div class="page">
+
+      <div class="page-title">
+        Search
+      </div>
+
+      <div class="subtitle">
+        Results for "${query}"
+      </div>
+
+      <div class="events">
+        ${eventCards(results)}
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   EVENT DETAIL
+========================================================= */
+
+function openEvent(id){
+
+  currentEvent=
+    events.find(e=>e.id===id);
+
+  selectedSeats=[];
+
+
+  const favorite=
+    favorites.includes(id);
+
+
+  document.getElementById("main").innerHTML=`
+
+    <div class="page">
+
+      <button
+        class="secondary"
+        onclick="showPage('events')">
+
+        ← Back
+
+      </button>
+
+
+      <div style="height:12px"></div>
+
+
+      <div
+        class="detail-image"
+        style="
+          background-image:url('${currentEvent.image}')
+        ">
+
+        <div class="detail-image-content">
+
+          <div class="hero-tag">
+            ${currentEvent.category}
+          </div>
+
+          <h1>
+            ${currentEvent.artist}
+          </h1>
+
+          <p>
+            ${currentEvent.title}
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="info-box">
+
+        <div class="info-row">
+
+          <div class="info-icon">
+            📅
+          </div>
+
+          <div>
+
+            <strong>
+              ${currentEvent.date}
+            </strong>
+
+            <span>
+              ${currentEvent.time}
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+          <div class="info-icon">
+            📍
+          </div>
+
+          <div>
+
+            <strong>
+              ${currentEvent.venue}
+            </strong>
+
+            <span>
+              ${currentEvent.city}
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+          <div class="info-icon">
+            🎫
+          </div>
+
+          <div>
+
+            <strong>
+              Tickets from ${money(currentEvent.price)}
+            </strong>
+
+            <span>
+              Prices vary by section and seat.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin:20px 0 10px">
+
+        <h3>
+          Choose your seats
+        </h3>
+
+        <button
+          class="secondary"
+          onclick="toggleFavorite(${currentEvent.id})">
+
+          ${favorite?"♥ Saved":"♡ Save"}
+
+        </button>
+
+      </div>
+
+
+      <div class="map-card">
+
+        <div class="stage">
+          STAGE
+        </div>
+
+        ${generateSeatMap()}
+
+
+        <div class="legend">
+
+          <div class="legend-item">
+            <div
+              class="dot"
+              style="background:#36c76f">
+            </div>
+            Available
+          </div>
+
+          <div class="legend-item">
+            <div
+              class="dot"
+              style="background:#f59e0b">
+            </div>
+            Resale
+          </div>
+
+          <div class="legend-item">
+            <div
+              class="dot"
+              style="background:#d1d5db">
+            </div>
+            Sold
+          </div>
+
+        </div>
+
+      </div>
+
+      <div style="height:25px"></div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   SEATS
+========================================================= */
+
+function generateSeatMap(){
+
+  let html="";
+
+  const sections=[
+    {
+      name:"VIP",
+      rows:2,
+      seats:10
+    },
+    {
+      name:"PREMIUM",
+      rows:3,
+      seats:12
+    },
+    {
+      name:"STANDARD",
+      rows:5,
+      seats:14
+    }
+  ];
+
+
+  let seatNumber=1;
+
+
+  sections.forEach(section=>{
+
+    html+=`
+
+      <div class="section-label">
+        ${section.name}
+      </div>
+
+    `;
+
+
+    for(let r=1;r<=section.rows;r++){
+
+      html+=`<div class="seat-row">`;
+
+
+      for(let s=1;s<=section.seats;s++){
+
+        const id=
+          `${section.name}-${r}-${s}`;
+
+        const random=
+          (seatNumber*17)%23;
+
+        let state="";
+
+
+        if(random<4)
+          state="sold";
+
+        else if(random<7)
+          state="resale";
+
+
+        const price=
+          currentEvent.price+
+          (
+            section.name==="VIP"
+            ?80
+            :section.name==="PREMIUM"
+            ?40
+            :0
+          );
+
+
+        html+=`
+
+          <div
+
+            class="seat ${state}"
+
+            id="seat-${id}"
+
+            data-section="${section.name}"
+
+            data-row="${r}"
+
+            data-seat="${s}"
+
+            data-price="${price}"
+
+            onclick="
+              ${state==="sold"
+                ? ""
+                : `selectSeat('${id}')`
+              }
+            ">
+
+            ${s}
+
+          </div>
+
+        `;
+
+
+        seatNumber++;
+
+      }
+
+
+      html+=`</div>`;
+
+    }
+
+  });
+
+
+  return html;
+
+}
+
+
+/* =========================================================
+   SELECT SEAT
+========================================================= */
+
+function selectSeat(id){
+
+  const element=
+    document.getElementById("seat-"+id);
+
+
+  if(!element)
+    return;
+
+
+  const index=
+    selectedSeats.findIndex(
+      seat=>seat.id===id
+    );
+
+
+  if(index>=0){
+
+    selectedSeats.splice(index,1);
+
+    element.classList.remove("selected");
+
+  }else{
+
+    const seat={
+
+      id:id,
+
+      section:
+        element.dataset.section,
+
+      row:
+        element.dataset.row,
+
+      number:
+        element.dataset.seat,
+
+      price:
+        Number(element.dataset.price),
+
+      resale:
+        element.classList.contains("resale")
+
+    };
+
+
+    selectedSeats.push(seat);
+
+    element.classList.add("selected");
+
+  }
+
+
+  updateBuyBar();
+
+}
+
+
+function updateBuyBar(){
+
+  const bar=
+    document.getElementById("buyBar");
+
+
+  if(!selectedSeats.length){
+
+    bar.classList.remove("show");
+
+    return;
+
+  }
+
+
+  const total=
+    selectedSeats.reduce(
+      (sum,s)=>sum+s.price,
+      0
+    );
+
+
+  document.getElementById("selectedTotal")
+    .textContent=money(total);
+
+
+  document.getElementById("selectedCount")
+    .textContent=
+      `${selectedSeats.length} ticket${selectedSeats.length===1?"":"s"} selected`;
+
+
+  bar.classList.add("show");
+
+}
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+function toggleFavorite(id){
+
+  if(favorites.includes(id)){
+
+    favorites=
+      favorites.filter(x=>x!==id);
+
+    showToast("Removed from favorites");
+
+  }else{
+
+    favorites.push(id);
+
+    showToast("Added to favorites");
+
+  }
+
+
+  saveData();
+
+  openEvent(id);
+
+}
+
+
+function renderFavorites(){
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn=>btn.classList.remove("active"));
+
+
+  const list=
+    events.filter(
+      e=>favorites.includes(e.id)
+    );
+
+
+  document.getElementById("main").innerHTML=`
+
+    <div class="page">
+
+      <div class="page-title">
+        Favorites
+      </div>
+
+      <div class="subtitle">
+        Events you've saved.
+      </div>
+
+
+      <div class="events">
+
+        ${
+          list.length
+          ? eventCards(list)
+          : `
+            <div class="empty">
+
+              <div class="empty-icon">
+                ♡
+              </div>
+
+              <h3>
+                No favorites yet
+              </h3>
+
+              <p>
+                Save events to find them here.
+              </p>
+
+            </div>
+          `
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+function openCheckout(){
+
+  if(!selectedSeats.length){
+
+    showToast("Select at least one seat");
+
+    return;
+
+  }
+
+
+  const total=
+    selectedSeats.reduce(
+      (sum,s)=>sum+s.price,
+      0
+    );
+
+
+  openModal(`
+
+    <h2>
+      Checkout
+    </h2>
+
+
+    <div class="info-box">
+
+      <strong>
+        ${currentEvent.title}
+      </strong>
+
+      <p style="
+        color:#6b7280;
+        font-size:12px;
+        margin-top:5px">
+
+        ${currentEvent.date}<br>
+        ${currentEvent.venue}
+
+      </p>
+
+
+      <div style="margin-top:12px">
+
+        ${selectedSeats.map(seat=>`
+
+          <div style="
+            display:flex;
+            justify-content:space-between;
+            font-size:12px;
+            margin:5px 0">
+
+            <span>
+              ${seat.section}
+              · Row ${seat.row}
+              · Seat ${seat.number}
+            </span>
+
+            <strong>
+              ${money(seat.price)}
+            </strong>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+    </div>
+
+
+    <div class="form">
+
+      <label>
+        CARDHOLDER NAME
+      </label>
+
+      <input
+        id="cardName"
+        value="${currentUser?.name || ""}"
+        placeholder="Your name">
+
+    </div>
+
+
+    <div class="form">
+
+      <label>
+        CARD NUMBER
+      </label>
+
+      <input
+        id="cardNumber"
+        placeholder="4242 4242 4242 4242"
+        maxlength="19">
+
+    </div>
+
+
+    <div style="
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px">
+
+      <div class="form">
+
+        <label>
+          EXPIRY
+        </label>
+
+        <input
+          id="expiry"
+          placeholder="MM/YY">
+
+      </div>
+
+
+      <div class="form">
+
+        <label>
+          CVC
+        </label>
+
+        <input
+          id="cvc"
+          placeholder="123"
+          maxlength="3">
+
+      </div>
+
+    </div>
+
+
+    <div style="
+      display:flex;
+      justify-content:space-between;
+      padding:14px 0;
+      border-top:1px solid #eee">
+
+      <strong>
+        Total
+      </strong>
+
+      <strong>
+        ${money(total)}
+      </strong>
+
+    </div>
+
+
+    <button
+      class="full-btn"
+      onclick="completePurchase()">
+
+      Complete purchase
+
+    </button>
+
+
+    <button
+      class="close-btn"
+      onclick="closeModal()">
+
+      Cancel
+
+    </button>
+
+  `);
+
+}
+
+
+/* =========================================================
+   PURCHASE
+========================================================= */
+
+function completePurchase(){
+
+  const name=
+    document.getElementById("cardName")
+      .value.trim();
+
+  const card=
+    document.getElementById("cardNumber")
+      .value.trim();
+
+
+  if(!name || !card){
+
+    showToast(
+      "Please complete the payment details"
+    );
+
+    return;
+
+  }
+
+
+  const orderId=
+    "TM-"+Date.now().toString().slice(-8);
+
+
+  const newTickets=
+    selectedSeats.map((seat,index)=>({
+
+      id:
+        "TKT-"+
+        Date.now().toString().slice(-7)+
+        "-"+
+        (index+1),
+
+      orderId:orderId,
+
+      userId:currentUser.id,
+
+      eventId:currentEvent.id,
+
+      event:currentEvent.title,
+
+      artist:currentEvent.artist,
+
+      image:currentEvent.image,
+
+      date:currentEvent.date,
+
+      time:currentEvent.time,
+
+      venue:currentEvent.venue,
+
+      city:currentEvent.city,
+
+      section:seat.section,
+
+      row:seat.row,
+
+      seat:seat.number,
+
+      price:seat.price,
+
+      status:"active",
+
+      owner:currentUser.name
+
+    }));
+
+
+  const total=
+    newTickets.reduce(
+      (sum,t)=>sum+t.price,
+      0
+    );
+
+
+  tickets.push(...newTickets);
+
+
+  orders.unshift({
+
+    id:orderId,
+
+    userId:currentUser.id,
+
+    event:currentEvent.title,
+
+    image:currentEvent.image,
+
+    date:currentEvent.date,
+
+    venue:currentEvent.venue,
+
+    tickets:newTickets.length,
+
+    total:total,
+
+    status:"Confirmed",
+
+    created:new Date().toLocaleDateString()
+
+  });
+
+
+  saveData();
+
+  closeModal();
+
+  selectedSeats=[];
+
+  document
+    .getElementById("buyBar")
+    .classList.remove("show");
+
+
+  showToast("Purchase completed");
+
+
+  setTimeout(()=>{
+    showPage("tickets");
+  },500);
+
+}
+
+
+/* =========================================================
+   TICKETS
+========================================================= */
+
+function renderTickets(){
+
+  const myTickets=
+    tickets.filter(
+      t=>t.userId===currentUser.id
+    );
+
+
+  document.getElementById("main").innerHTML=`
+
+    <div class="page">
+
+      <div class="page-title">
+        My Tickets
+      </div>
+
+      <div class="subtitle">
+        Your purchased tickets.
+      </div>
+
+
+      ${
+        myTickets.length
+        ?
+        myTickets.map(ticketCard).join("")
+        :
+        `
+          <div class="empty">
+
+            <div class="empty-icon">
+              🎫
+            </div>
+
+            <h3>
+              No tickets yet
+            </h3>
+
+            <p>
+              Your tickets will appear here after purchase.
+            </p>
+
+            <br>
+
+            <button
+              class="primary"
+              onclick="showPage('events')">
+
+              Browse events
+
+            </button>
+
+          </div>
+        `
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+function ticketCard(ticket){
+
+  return `
+
+    <div class="ticket">
+
+      <div
+        class="ticket-top"
+        style="
+          background-image:url('${ticket.image}')
+        ">
+
+        <div class="ticket-top-content">
+
+          <h3>
+            ${ticket.artist}
+          </h3>
+
+          <p>
+            ${ticket.event}
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="ticket-body">
+
+        <div class="ticket-details">
+
+          <div class="ticket-detail">
+
+            <small>
+              Date
+            </small>
+
+            <strong>
+              ${ticket.date}
+            </strong>
+
+          </div>
+
+
+          <div class="ticket-detail">
+
+            <small>
+              Time
+            </small>
+
+            <strong>
+              ${ticket.time}
+            </strong>
+
+          </div>
+
+
+          <div class="ticket-detail">
+
+            <small>
+              Venue
+            </small>
+
+            <strong>
+              ${ticket.venue}
+            </strong>
+
+          </div>
+
+
+          <div class="ticket-detail">
+
+            <small>
+              Seat
+            </small>
+
+            <strong>
+              ${ticket.section}
+              · Row ${ticket.row}
+              · ${ticket.seat}
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="ticket-code">
+
+          <div class="qr"></div>
+
+          <small>
+            ${ticket.id}
+          </small>
+
+        </div>
+
+
+        <div style="
+          display:flex;
+          gap:8px;
+          margin-top:15px">
+
+          <button
+            class="primary"
+            style="flex:1"
+            onclick="
+              transferTicket('${ticket.id}')
+            ">
+
+            Transfer
+
+          </button>
+
+
+          <button
+            class="secondary"
+            style="flex:1"
+            onclick="
+              listForResale('${ticket.id}')
+            ">
+
+            Resale
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   TRANSFER
+========================================================= */
+
+function transferTicket(id){
+
+  const ticket=
+    tickets.find(t=>t.id===id);
+
+
+  if(!ticket)
+    return;
+
+
+  openModal(`
+
+    <h2>
+      Transfer ticket
+    </h2>
+
+    <p style="
+      color:#6b7280;
+      font-size:13px;
+      margin-bottom:15px">
+
+      Send this ticket to another person.
+
+    </p>
+
+
+    <div class="info-box">
+
+      <strong>
+        ${ticket.event}
+      </strong>
+
+      <p style="
+        color:#6b7280;
+        font-size:12px;
+        margin-top:5px">
+
+        ${ticket.section}
+        · Row ${ticket.row}
+        · Seat ${ticket.seat}
+
+      </p>
+
+    </div>
+
+
+    <div class="form">
+
+      <label>
+        RECIPIENT NAME
+      </label>
+
+      <input
+        id="transferName"
+        placeholder="Recipient name">
+
+    </div>
+
+
+    <div class="form">
+
+      <label>
+        RECIPIENT EMAIL
+      </label>
+
+      <input
+        id="transferEmail"
+        type="email"
+        placeholder="name@example.com">
+
+    </div>
+
+
+    <button
+      class="full-btn"
+      onclick="
+        completeTransfer('${id}')
+      ">
+
+      Send transfer
+
+    </button>
+
+
+    <button
+      class="close-btn"
+      onclick="closeModal()">
+
+      Cancel
+
+    </button>
+
+  `);
+
+}
+
+
+function completeTransfer(id){
+
+  const name=
+    document.getElementById("transferName")
+      .value.trim();
+
+  const email=
+    document.getElementById("transferEmail")
+      .value.trim();
+
+
+  if(!name || !email){
+
+    showToast(
+      "Enter the recipient details"
+    );
+
+    return;
+
+  }
+
+
+  const ticket=
+    tickets.find(t=>t.id===id);
+
+
+  if(!ticket)
+    return;
+
+
+  ticket.status="transferred";
+
+  ticket.transferredTo=name;
+
+
+  transfers.unshift({
+
+    id:"TR-"+Date.now(),
+
+    userId:currentUser.id,
+
+    ticketId:id,
+
+    recipient:name,
+
+    email:email,
+
+    event:ticket.event,
+
+    date:new Date().toLocaleDateString(),
+
+    status:"Pending"
+
+  });
+
+
+  saveData();
+
+  closeModal();
+
+  showToast("Transfer sent");
+
+
+  setTimeout(()=>{
+    showPage("tickets");
+  },500);
+
+}
+
+
+/* =========================================================
+   RESALE
+========================================================= */
+
+function listForResale(id){
+
+  const ticket=
+    tickets.find(t=>t.id===id);
+
+
+  if(!ticket)
+    return;
+
+
+  openModal(`
+
+    <h2>
+      List ticket for resale
+    </h2>
+
+
+    <div class="info-box">
+
+      <strong>
+        ${ticket.event}
+      </strong>
+
+      <p style="
+        color:#6b7280;
+        font-size:12px;
+        margin-top:5px">
+
+        ${ticket.section}
+        · Row ${ticket.row}
+        · Seat ${ticket.seat}
+
+      </p>
+
+    </div>
+
+
+    <div class="form">
+
+      <label>
+        ASKING PRICE
+      </label>
+
+      <input
+        id="resalePrice"
+        type="number"
+        value="${ticket.price}">
+
+    </div>
+
+
+    <button
+      class="full-btn"
+      onclick="
+        completeResale('${id}')
+      ">
+
+      List ticket
+
+    </button>
+
+
+    <button
+      class="close-btn"
+      onclick="closeModal()">
+
+      Cancel
+
+    </button>
+
+  `);
+
+}
+
+
+function completeResale(id){
+
+  const ticket=
+    tickets.find(t=>t.id===id);
+
+
+  const price=
+    Number(
+      document.getElementById("resalePrice").value
+    );
+
+
+  if(!price || price<=0){
+
+    showToast(
+      "Enter a valid price"
+    );
+
+    return;
+
+  }
+
+
+  ticket.status="listed";
+
+
+  resale.push({
+
+    id:"RS-"+Date.now(),
+
+    ticketId:id,
+
+    userId:currentUser.id,
+
+    event:ticket.event,
+
+    artist:ticket.artist,
+
+    image:ticket.image,
+
+    venue:ticket.venue,
+
+    date:ticket.date,
+
+    section:ticket.section,
+
+    row:ticket.row,
+
+    seat:ticket.seat,
+
+    price:price,
+
+    seller:currentUser.name
+
+  });
+
+
+  saveData();
+
+  closeModal();
+
+  showToast("Ticket listed for resale");
+
+  showMarketplace();
+
+}
+
+
+/* =========================================================
+   MARKETPLACE
+========================================================= */
+
+function showMarketplace(){
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn=>btn.classList.remove("active"));
+
+
+  document.getElementById("main").innerHTML=`
+
+    <div class="page">
+
+      <div class="page-title">
+        Marketplace
+      </div>
+
+      <div class="subtitle">
+        Tickets listed for resale.
+      </div>
+
+
+      ${
+        resale.length
+        ?
+        resale.map(item=>`
+
+          <div class="resale-card">
+
+            <div
+              style="
+                width:100%;
+                height:130px;
+                border-radius:12px;
+                background:url('${item.image}')
+                center/cover;
+                margin-bottom:12px">
+
+            </div>
+
+
+            <div class="resale-head">
+
+              <div>
+
+                <h4>
+                  ${item.artist}
+                </h4>
+
+                <p>
+                  ${item.event}
+                </p>
+
+                <p>
+                  ${item.venue}
+                </p>
+
+                <p>
+                  ${item.section}
+                  · Row ${item.row}
+                  · Seat ${item.seat}
+                </p>
+
+              </div>
+
+
+              <div class="resale-price">
+                ${money(item.price)}
+              </div>
+
+            </div>
+
+
+            <button
+              class="full-btn"
+              onclick="
+                showToast(
+                  'Marketplace payment requires a connected payment provider'
+                )
+              ">
+
+              Buy ticket
+
+            </button>
+
+          </div>
+
+        `).join("")
+        :
+        `
+          <div class="empty">
+
+            <div class="empty-icon">
+              🛍️
+            </div>
+
+            <h3>
+              No resale listings
+            </h3>
+
+          </div>
+        `
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   ORDERS
+========================================================= */
+
+function renderOrders(){
+
+  const myOrders=
+    orders.filter(
+      o=>o.userId===currentUser.id
+    );
+
+
+  document.getElementById("main").innerHTML=`
+
+    <div class="page">
+
+      <div class="page-title">
+        Orders
+      </div>
+
+      <div class="subtitle">
+        Your purchase history.
+      </div>
+
+
+      ${
+        myOrders.length
+        ?
+        myOrders.map(order=>`
+
+          <div class="order">
+
+            <div
+              style="
+                height:100px;
+                border-radius:10px;
+                background:url('${order.image}')
+                center/cover;
+                margin-bottom:12px">
+
+            </div>
+
+
+            <div class="order-head">
+
+              <strong>
+                ${order.event}
+              </strong>
+
+              <span class="status">
+                ${order.status}
+              </span>
+
+            </div>
+
+            <p>
+              ${order.date}
+            </p>
+
+            <p>
+              ${order.venue}
+            </p>
+
+            <p>
+              ${order.tickets} ticket(s)
+            </p>
+
+            <p>
+              Order ${order.id}
+            </p>
+
+
+            <div style="
+              text-align:right;
+              margin-top:10px;
+              font-weight:900">
+
+              ${money(order.total)}
+
+            </div>
+
+          </div>
+
+        `).join("")
+        :
+        `
+          <div class="empty">
+
+            <div class="empty-icon">
+              🧾
+            </div>
+
+            <h3>
+              No orders yet
+            </h3>
+
+          </div>
+        `
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function renderProfile(){
+
+  const name=
+    currentUser?.name || "User";
+
+
+  document.getElementById("main").innerHTML=`
+
+    <div class="page">
+
+      <div class="profile-card">
+
+        <div class="avatar">
+
+          ${initials(name)}
+
+        </div>
+
+
+        <h2>
+          ${name}
+        </h2>
+
+
+        <p>
+          ${currentUser.email}
+        </p>
+
+      </div>
+
+
+      <div style="
+        background:#fff;
+        border-radius:15px;
+        overflow:hidden;
+        margin-bottom:15px">
+
+        <div
+          class="setting"
+          onclick="showPage('tickets')">
+
+          <div class="setting-left">
+
+            <div class="setting-icon">
+              🎫
+            </div>
+
+            <strong>
+              My Tickets
+            </strong>
+
+          </div>
+
+          <span>›</span>
+
+        </div>
+
+
+        <div
+          class="setting"
+          onclick="showMarketplace()">
+
+          <div class="setting-left">
+
+            <div class="setting-icon">
+              🛍️
+            </div>
+
+            <strong>
+              Marketplace
+            </strong>
+
+          </div>
+
+          <span>›</span>
+
+        </div>
+
+
+        <div
+          class="setting"
+          onclick="showTransfers()">
+
+          <div class="setting-left">
+
+            <div class="setting-icon">
+              ↗
+            </div>
+
+            <strong>
+              Transfers
+            </strong>
+
+          </div>
+
+          <span>›</span>
+
+        </div>
+
+
+        <div
+          class="setting"
+          onclick="showPage('favorites')">
+
+          <div class="setting-left">
+
+            <div class="setting-icon">
+              ♥
+            </div>
+
+            <strong>
+              Favorites
+            </strong>
+
+          </div>
+
+          <span>›</span>
+
+        </div>
+
+      </div>
+
+
+      <div style="
+        background:#fff;
+        border-radius:15px;
+        overflow:hidden">
+
+        <div
+          class="setting"
+          onclick="
+            showToast(
+              'Payment methods require a connected payment provider'
+            )
+          ">
+
+          <div class="setting-left">
+
+            <div class="setting-icon">
+              💳
+            </div>
+
+            <strong>
+              Payment methods
+            </strong>
+
+          </div>
+
+          <span>›</span>
+
+        </div>
+
+
+        <div
+          class="setting"
+          onclick="
+            showToast(
+              'Mobile wallet integration ready'
+            )
+          ">
+
+          <div class="setting-left">
+
+            <div class="setting-icon">
+              📱
+            </div>
+
+            <strong>
+              Mobile wallet
+            </strong>
+
+          </div>
+
+          <span>›</span>
+
+        </div>
+
+
+        <div
+          class="setting"
+          onclick="
+            showToast(
+              'Notifications enabled'
+            )
+          ">
+
+          <div class="setting-left">
+
+            <div class="setting-icon">
+              🔔
+            </div>
+
+            <strong>
+              Notifications
+            </strong>
+
+          </div>
+
+          <span>›</span>
+
+        </div>
+
+
+        <div
+          class="setting"
+          onclick="logout()">
+
+          <div class="setting-left">
+
+            <div class="setting-icon">
+              🚪
+            </div>
+
+            <strong>
+              Log out
+            </strong>
+
+          </div>
+
+          <span>›</span>
+
+        </div>
+
+      </div>
+
+
+      <div style="
+        text-align:center;
+        color:#9ca3af;
+        font-size:10px;
+        margin:25px 0">
+
+        Ticket Master<br>
+        Independent ticketing application
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   TRANSFERS
+========================================================= */
+
+function showTransfers(){
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn=>btn.classList.remove("active"));
+
+
+  const myTransfers=
+    transfers.filter(
+      t=>t.userId===currentUser.id
+    );
+
+
+  document.getElementById("main").innerHTML=`
+
+    <div class="page">
+
+      <div class="page-title">
+        Transfers
+      </div>
+
+      <div class="subtitle">
+        Tickets you've sent to others.
+      </div>
+
+
+      ${
+        myTransfers.length
+        ?
+        myTransfers.map(t=>`
+
+          <div class="order">
+
+            <div class="order-head">
+
+              <strong>
+                ${t.event}
+              </strong>
+
+              <span class="status">
+                ${t.status}
+              </span>
+
+            </div>
+
+            <p>
+              Recipient: ${t.recipient}
+            </p>
+
+            <p>
+              ${t.email}
+            </p>
+
+            <p>
+              Ticket: ${t.ticketId}
+            </p>
+
+            <p>
+              Sent: ${t.date}
+            </p>
+
+          </div>
+
+        `).join("")
+        :
+        `
+          <div class="empty">
+
+            <div class="empty-icon">
+              ↗️
+            </div>
+
+            <h3>
+              No transfers
+            </h3>
+
+            <p>
+              Tickets you transfer will appear here.
+            </p>
+
+          </div>
+        `
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+if(currentUser){
+
+  launchApp();
+
+}else{
+
+  switchAuth("login");
+
+}
+
+</script>
+
+</body>
+</html>
