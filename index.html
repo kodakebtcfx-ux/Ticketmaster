@@ -29,12 +29,6 @@
 
 :root{
 
-  /*
-    Native Apple/iOS typography stack.
-    SF Pro is automatically used on Apple devices when
-    available through the system.
-  */
-
   --font-ui:
     -apple-system,
     BlinkMacSystemFont,
@@ -81,11 +75,6 @@
 
 }
 
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
@@ -124,7 +113,6 @@ select,
 textarea{
 
   font:inherit;
-
   font-family:var(--font-ui);
 
 }
@@ -167,7 +155,6 @@ button{
 .auth-box{
 
   width:100%;
-
   max-width:430px;
 
   background:#fff;
@@ -203,7 +190,6 @@ button{
   font-family:var(--font-display);
 
   font-size:28px;
-
   line-height:1.08;
 
   letter-spacing:var(--tracking-heading);
@@ -221,7 +207,6 @@ button{
   color:var(--text-secondary);
 
   font-size:14px;
-
   line-height:20px;
 
   font-weight:var(--font-normal);
@@ -259,7 +244,6 @@ button{
   color:var(--text-secondary);
 
   font-size:14px;
-
   line-height:20px;
 
   font-weight:var(--font-semibold);
@@ -280,9 +264,7 @@ button{
 }
 
 .form-group{
-
   margin-bottom:15px;
-
 }
 
 .form-group label{
@@ -290,7 +272,6 @@ button{
   display:block;
 
   font-size:13px;
-
   line-height:18px;
 
   font-weight:var(--font-semibold);
@@ -321,7 +302,6 @@ button{
   color:var(--text);
 
   font-size:15px;
-
   line-height:21px;
 
   font-weight:var(--font-normal);
@@ -340,9 +320,7 @@ button{
 
 .form-group input::placeholder,
 .form-group textarea::placeholder{
-
   color:#98a2b3;
-
 }
 
 .form-group input:focus,
@@ -366,7 +344,6 @@ button{
   color:#fff;
 
   font-size:15px;
-
   line-height:20px;
 
   font-weight:var(--font-bold);
@@ -381,6 +358,14 @@ button{
 
 }
 
+.primary-btn:disabled{
+
+  opacity:.6;
+
+  cursor:not-allowed;
+
+}
+
 .primary-btn:active{
   transform:scale(.99);
 }
@@ -392,7 +377,6 @@ button{
   text-align:center;
 
   font-size:13px;
-
   line-height:18px;
 
   margin-top:12px;
@@ -562,13 +546,11 @@ button{
 .hero h1{
 
   position:relative;
-
   z-index:1;
 
   font-family:var(--font-display);
 
   font-size:30px;
-
   line-height:34px;
 
   letter-spacing:-.035em;
@@ -582,7 +564,6 @@ button{
 .hero p{
 
   position:relative;
-
   z-index:1;
 
   margin:0 0 18px;
@@ -590,7 +571,6 @@ button{
   opacity:.92;
 
   font-size:14px;
-
   line-height:21px;
 
   font-weight:var(--font-normal);
@@ -632,7 +612,6 @@ button{
 .search input{
 
   border:0;
-
   outline:0;
 
   width:100%;
@@ -644,7 +623,6 @@ button{
   color:var(--text);
 
   font-size:15px;
-
   line-height:20px;
 
   font-weight:var(--font-normal);
@@ -677,7 +655,6 @@ button{
   font-family:var(--font-display);
 
   font-size:20px;
-
   line-height:25px;
 
   letter-spacing:-.025em;
@@ -691,13 +668,11 @@ button{
 .section-heading button{
 
   border:0;
-
   background:none;
 
   color:var(--blue);
 
   font-size:14px;
-
   line-height:20px;
 
   font-weight:var(--font-semibold);
@@ -795,7 +770,6 @@ button{
   color:var(--blue);
 
   font-size:10px;
-
   line-height:13px;
 
   font-weight:var(--font-bold);
@@ -813,7 +787,6 @@ button{
   font-family:var(--font-display);
 
   font-size:15px;
-
   line-height:19px;
 
   letter-spacing:-.015em;
@@ -835,7 +808,6 @@ button{
   color:var(--text-secondary);
 
   font-size:11px;
-
   line-height:16px;
 
   font-weight:var(--font-normal);
@@ -847,7 +819,6 @@ button{
   margin-top:9px;
 
   font-size:14px;
-
   line-height:18px;
 
   font-weight:var(--font-bold);
@@ -892,7 +863,6 @@ button{
   padding:9px 14px;
 
   font-size:13px;
-
   line-height:18px;
 
   font-weight:var(--font-semibold);
@@ -919,7 +889,6 @@ button{
 .back-btn{
 
   border:0;
-
   background:none;
 
   padding:0;
@@ -927,7 +896,6 @@ button{
   color:var(--blue);
 
   font-size:14px;
-
   line-height:20px;
 
   font-weight:var(--font-semibold);
@@ -966,7 +934,6 @@ button{
   font-family:var(--font-display);
 
   font-size:28px;
-
   line-height:32px;
 
   letter-spacing:-.035em;
@@ -1010,7 +977,6 @@ button{
   font-family:var(--font-display);
 
   font-size:17px;
-
   line-height:22px;
 
   letter-spacing:-.02em;
@@ -1037,7 +1003,6 @@ button{
   padding:10px;
 
   font-size:11px;
-
   line-height:14px;
 
   font-weight:var(--font-bold);
@@ -1051,9 +1016,7 @@ button{
 }
 
 .seat-section{
-
   margin-bottom:22px;
-
 }
 
 .seat-section-title{
@@ -1071,7 +1034,6 @@ button{
 .seat-section-title strong{
 
   font-size:14px;
-
   line-height:19px;
 
   font-weight:var(--font-bold);
@@ -1085,7 +1047,6 @@ button{
   color:var(--text-secondary);
 
   font-size:12px;
-
   line-height:16px;
 
   font-weight:var(--font-medium);
@@ -1111,7 +1072,6 @@ button{
 .row-label{
 
   width:25px;
-
   flex:0 0 25px;
 
   text-align:center;
@@ -1119,7 +1079,6 @@ button{
   color:var(--text-secondary);
 
   font-size:10px;
-
   line-height:13px;
 
   font-weight:var(--font-bold);
@@ -1138,7 +1097,6 @@ button{
   border:0;
 
   font-size:8px;
-
   line-height:10px;
 
   font-weight:var(--font-bold);
@@ -1194,7 +1152,6 @@ button{
   margin:18px 0;
 
   font-size:11px;
-
   line-height:15px;
 
   font-weight:var(--font-normal);
@@ -1276,7 +1233,6 @@ button{
   display:block;
 
   font-size:16px;
-
   line-height:21px;
 
   font-weight:var(--font-bold);
@@ -1290,7 +1246,6 @@ button{
   color:var(--text-secondary);
 
   font-size:11px;
-
   line-height:15px;
 
   font-weight:var(--font-normal);
@@ -1310,7 +1265,6 @@ button{
   border-radius:12px;
 
   font-size:14px;
-
   line-height:18px;
 
   font-weight:var(--font-bold);
@@ -1333,7 +1287,6 @@ button{
   color:var(--text-secondary);
 
   font-size:14px;
-
   line-height:21px;
 
 }
@@ -1343,7 +1296,6 @@ button{
   color:var(--text);
 
   font-size:15px;
-
   line-height:20px;
 
   font-weight:var(--font-bold);
@@ -1353,7 +1305,6 @@ button{
 .empty p{
 
   font-size:13px;
-
   line-height:19px;
 
 }
@@ -1416,7 +1367,6 @@ button{
   font-family:var(--font-display);
 
   font-size:16px;
-
   line-height:20px;
 
   letter-spacing:-.02em;
@@ -1432,7 +1382,6 @@ button{
   color:var(--text-secondary);
 
   font-size:12px;
-
   line-height:17px;
 
   font-weight:var(--font-normal);
@@ -1452,7 +1401,6 @@ button{
   font-family:var(--font-mono);
 
   font-size:12px;
-
   line-height:16px;
 
   font-weight:700;
@@ -1486,7 +1434,6 @@ button{
   border-radius:10px;
 
   font-size:13px;
-
   line-height:18px;
 
   font-weight:var(--font-semibold);
@@ -1532,7 +1479,6 @@ button{
   margin:auto;
 
   font-size:27px;
-
   line-height:32px;
 
   font-weight:var(--font-heavy);
@@ -1548,7 +1494,6 @@ button{
   margin:12px 0 4px;
 
   font-size:21px;
-
   line-height:26px;
 
   letter-spacing:-.025em;
@@ -1564,7 +1509,6 @@ button{
   color:var(--text-secondary);
 
   font-size:13px;
-
   line-height:18px;
 
   font-weight:var(--font-normal);
@@ -1592,7 +1536,6 @@ button{
   text-align:left;
 
   font-size:14px;
-
   line-height:20px;
 
   font-weight:var(--font-semibold);
@@ -1669,7 +1612,6 @@ button{
   gap:3px;
 
   font-size:10px;
-
   line-height:13px;
 
   font-weight:var(--font-semibold);
@@ -1681,7 +1623,6 @@ button{
 .nav-icon{
 
   font-size:20px;
-
   line-height:22px;
 
   font-weight:var(--font-normal);
@@ -1750,7 +1691,6 @@ button{
   font-family:var(--font-display);
 
   font-size:20px;
-
   line-height:25px;
 
   letter-spacing:-.025em;
@@ -1771,7 +1711,6 @@ button{
   background:#f2f4f7;
 
   font-size:20px;
-
   line-height:20px;
 
 }
@@ -1787,7 +1726,6 @@ button{
   padding:12px;
 
   font-size:11px;
-
   line-height:17px;
 
   font-weight:var(--font-normal);
@@ -1807,7 +1745,6 @@ button{
   border-top:1px solid var(--border);
 
   font-size:15px;
-
   line-height:20px;
 
   font-weight:var(--font-bold);
@@ -1838,7 +1775,6 @@ button{
   border-radius:12px;
 
   font-size:12px;
-
   line-height:17px;
 
   font-weight:var(--font-medium);
@@ -1874,7 +1810,6 @@ button{
   color:var(--text-secondary);
 
   font-size:13px;
-
   line-height:18px;
 
 }
@@ -1928,7 +1863,6 @@ button{
   font-family:var(--font-display);
 
   font-size:15px;
-
   line-height:20px;
 
   letter-spacing:-.015em;
@@ -1944,7 +1878,6 @@ button{
   color:var(--text-secondary);
 
   font-size:12px;
-
   line-height:19px;
 
   font-weight:var(--font-normal);
@@ -1962,7 +1895,6 @@ button{
   display:block;
 
   font-size:13px;
-
   line-height:18px;
 
   font-weight:var(--font-semibold);
@@ -1991,7 +1923,6 @@ button{
   color:var(--text);
 
   font-size:15px;
-
   line-height:21px;
 
 }
@@ -2023,7 +1954,6 @@ button{
   color:var(--text-tertiary);
 
   font-size:11px;
-
   line-height:15px;
 
   margin-top:5px;
@@ -2049,7 +1979,6 @@ button{
   color:var(--text-secondary);
 
   font-size:11px;
-
   line-height:15px;
 
   font-weight:var(--font-bold);
@@ -2067,7 +1996,6 @@ button{
   color:var(--text);
 
   font-size:13px;
-
   line-height:20px;
 
   font-weight:var(--font-normal);
@@ -2102,7 +2030,6 @@ button{
   justify-content:center;
 
   font-size:13px;
-
   line-height:17px;
 
   font-weight:var(--font-bold);
@@ -2126,7 +2053,6 @@ button{
   margin-top:9px;
 
   font-size:14px;
-
   line-height:19px;
 
   font-weight:var(--font-bold);
@@ -2287,6 +2213,7 @@ button{
       </div>
 
       <button
+        id="signupButton"
         class="primary-btn"
         type="submit">
 
@@ -2798,11 +2725,56 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
   "sb_publishable_3CH58RzUC3Vu1y08B_5T3Q_vXk3Uyv_";
 
+
+/* =========================================================
+   SUPABASE CLIENT
+   UPDATED FOR EMAIL CONFIRMATION
+========================================================= */
+
 const db =
   window.supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_KEY
+    SUPABASE_KEY,
+    {
+      auth:{
+        persistSession:true,
+        autoRefreshToken:true,
+        detectSessionInUrl:true
+      }
+    }
   );
+
+
+/* =========================================================
+   AUTH REDIRECT URL
+========================================================= */
+
+function getAuthRedirectUrl(){
+
+  const url =
+    new URL(
+      window.location.href
+    );
+
+  /*
+    Remove query parameters and hash.
+
+    This keeps the exact GitHub Pages path,
+    including repository paths such as:
+
+    https://username.github.io/repository/
+
+    instead of accidentally redirecting to
+    the wrong page.
+  */
+
+  url.search = "";
+  url.hash = "";
+
+  return url.toString();
+
+}
+
 
 let currentUser = null;
 let currentPage = "home";
@@ -3162,131 +3134,318 @@ function switchAuth(type){
 }
 
 
+/* =========================================================
+   LOGIN
+========================================================= */
+
 async function handleLogin(event){
 
   event.preventDefault();
 
   const email =
-    document.getElementById("loginEmail").value.trim();
+    document
+      .getElementById("loginEmail")
+      .value
+      .trim()
+      .toLowerCase();
 
   const password =
-    document.getElementById("loginPassword").value;
+    document.getElementById(
+      "loginPassword"
+    ).value;
 
   const message =
-    document.getElementById("authMessage");
+    document.getElementById(
+      "authMessage"
+    );
 
-  message.style.color = "#d92d20";
+  message.style.color =
+    "#d92d20";
 
-  message.textContent = "Signing in...";
+  message.textContent =
+    "Signing in...";
 
-  const result =
-    await db.auth.signInWithPassword({
-      email,
-      password
-    });
+  try{
 
-  if(result.error){
+    const result =
+      await db.auth.signInWithPassword({
+        email,
+        password
+      });
+
+    if(result.error){
+
+      message.textContent =
+        result.error.message;
+
+      return;
+
+    }
+
+    currentUser =
+      result.data.user;
+
+    message.textContent = "";
+
+    await launchApp();
+
+  }catch(error){
+
+    console.error(
+      "Login error:",
+      error
+    );
 
     message.textContent =
-      result.error.message;
-
-    return;
+      error.message ||
+      "Unable to sign in.";
 
   }
 
-  currentUser =
-    result.data.user;
-
-  message.textContent = "";
-
-  await launchApp();
-
 }
 
+
+/* =========================================================
+   SIGNUP — UPDATED EMAIL CONFIRMATION
+========================================================= */
 
 async function handleSignup(event){
 
   event.preventDefault();
 
   const name =
-    document.getElementById("signupName").value.trim();
+    document
+      .getElementById("signupName")
+      .value
+      .trim();
 
   const email =
-    document.getElementById("signupEmail").value.trim();
+    document
+      .getElementById("signupEmail")
+      .value
+      .trim()
+      .toLowerCase();
 
   const password =
-    document.getElementById("signupPassword").value;
+    document.getElementById(
+      "signupPassword"
+    ).value;
 
   const message =
-    document.getElementById("authMessage");
+    document.getElementById(
+      "authMessage"
+    );
 
-  message.style.color = "#d92d20";
+  const button =
+    document.getElementById(
+      "signupButton"
+    );
+
+  message.style.color =
+    "#d92d20";
+
+  if(name.length < 2){
+
+    message.textContent =
+      "Please enter your full name.";
+
+    return;
+
+  }
+
+  if(password.length < 6){
+
+    message.textContent =
+      "Password must be at least 6 characters.";
+
+    return;
+
+  }
+
+  const redirectUrl =
+    getAuthRedirectUrl();
 
   message.textContent =
     "Creating account...";
 
-  const result =
-    await db.auth.signUp({
+  button.disabled = true;
 
-      email,
+  button.textContent =
+    "Creating account...";
 
-      password,
+  try{
 
-      options:{
-        data:{
-          full_name:name,
-          name:name
+    const result =
+      await db.auth.signUp({
+
+        email,
+
+        password,
+
+        options:{
+
+          /*
+            IMPORTANT:
+            Supabase will place this URL inside
+            the confirmation flow.
+
+            The URL is automatically taken from
+            the page where the user is currently
+            using the app.
+          */
+
+          emailRedirectTo:
+            redirectUrl,
+
+          data:{
+
+            full_name:
+              name,
+
+            name:
+              name
+
+          }
+
         }
-      }
 
-    });
+      });
 
-  if(result.error){
+
+    if(result.error){
+
+      console.error(
+        "Signup error:",
+        result.error
+      );
+
+      message.style.color =
+        "#d92d20";
+
+      message.textContent =
+        result.error.message;
+
+      return;
+
+    }
+
+
+    /*
+      Supabase normally returns:
+
+      user + null session
+
+      when email confirmation is required.
+    */
+
+    if(
+      result.data?.user &&
+      !result.data?.session
+    ){
+
+      message.style.color =
+        "#027a48";
+
+      message.textContent =
+        "Account created! We sent a confirmation email to " +
+        email +
+        ". Open that email and tap the confirmation link.";
+
+      return;
+
+    }
+
+
+    /*
+      If email confirmation is disabled
+      and Supabase gives us a session
+      immediately, open the application.
+    */
+
+    if(result.data?.session){
+
+      currentUser =
+        result.data.user;
+
+      message.textContent = "";
+
+      await launchApp();
+
+      return;
+
+    }
+
+
+    message.style.color =
+      "#027a48";
 
     message.textContent =
-      result.error.message;
+      "Account created. Please check your email to continue.";
 
-    return;
+  }catch(error){
 
-  }
+    console.error(
+      "Unexpected signup error:",
+      error
+    );
 
-  if(!result.data.session){
-
-    message.style.color = "#027a48";
+    message.style.color =
+      "#d92d20";
 
     message.textContent =
-      "Account created. Check your email to confirm your account.";
+      error.message ||
+      "Unable to create your account.";
 
-    return;
+  }finally{
+
+    button.disabled = false;
+
+    button.textContent =
+      "Create account";
 
   }
-
-  currentUser =
-    result.data.user;
-
-  await launchApp();
 
 }
 
 
+/* =========================================================
+   CURRENT USER
+========================================================= */
+
 async function loadCurrentUser(){
 
-  const result =
-    await db.auth.getSession();
+  try{
 
-  if(result.error){
+    const result =
+      await db.auth.getSession();
+
+    if(result.error){
+
+      console.error(
+        "Session error:",
+        result.error
+      );
+
+      currentUser = null;
+
+      return;
+
+    }
+
+    currentUser =
+      result.data.session?.user ||
+      null;
+
+  }catch(error){
 
     console.error(
-      "Session error:",
-      result.error
+      "Session loading error:",
+      error
     );
 
-    return;
+    currentUser = null;
 
   }
-
-  currentUser =
-    result.data.session?.user || null;
 
 }
 
@@ -3298,13 +3457,10 @@ async function logout(){
   currentUser = null;
 
   tickets = [];
-
   orders = [];
-
   favorites = [];
 
   currentEvent = null;
-
   selectedSeats = [];
 
   transferTicketData = null;
@@ -3321,6 +3477,10 @@ async function logout(){
 
 }
 
+
+/* =========================================================
+   FAVORITES
+========================================================= */
 
 async function loadFavorites(){
 
@@ -3481,6 +3641,10 @@ async function toggleFavorite(id){
 }
 
 
+/* =========================================================
+   ORDERS
+========================================================= */
+
 async function loadOrders(){
 
   if(!currentUser){
@@ -3572,6 +3736,10 @@ async function loadOrders(){
 
 }
 
+
+/* =========================================================
+   TICKETS
+========================================================= */
 
 async function loadTickets(){
 
@@ -3722,6 +3890,10 @@ async function loadTickets(){
 
 }
 
+
+/* =========================================================
+   EVENT SEATS
+========================================================= */
 
 async function loadEventSeatData(event){
 
@@ -3881,6 +4053,10 @@ function isSeatSold(
 }
 
 
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
 function showPage(page){
 
   currentPage = page;
@@ -3939,6 +4115,10 @@ function renderCurrentPage(){
 
 }
 
+
+/* =========================================================
+   EVENT CARD
+========================================================= */
 
 function eventCard(event){
 
@@ -4003,6 +4183,10 @@ function eventCard(event){
 
 }
 
+
+/* =========================================================
+   HOME
+========================================================= */
 
 function renderHome(){
 
@@ -4312,6 +4496,10 @@ function filterEventPage(value){
 }
 
 
+/* =========================================================
+   FAVORITES PAGE
+========================================================= */
+
 function renderFavorites(){
 
   const main =
@@ -4386,6 +4574,10 @@ function renderFavorites(){
 
 }
 
+
+/* =========================================================
+   EVENT DETAIL
+========================================================= */
 
 async function openEvent(id){
 
@@ -4910,6 +5102,10 @@ function renderBuyBar(){
 
 }
 
+
+/* =========================================================
+   CHECKOUT
+========================================================= */
 
 function openCheckout(){
 
@@ -5453,6 +5649,10 @@ async function completePurchase(){
 }
 
 
+/* =========================================================
+   TICKETS
+========================================================= */
+
 function renderTickets(){
 
   const main =
@@ -5759,7 +5959,7 @@ function closeTicketModal(){
 
 
 /* =========================================================
-   TRANSFER FLOW
+   TRANSFER
 ========================================================= */
 
 function transferTicket(ticketId){
@@ -6668,35 +6868,55 @@ async function launchApp(){
 }
 
 
+/* =========================================================
+   AUTH STATE — UPDATED
+========================================================= */
+
 db.auth.onAuthStateChange(
-  async (
-    event,
-    session
-  ) => {
+  (event, session) => {
 
     currentUser =
       session?.user || null;
+
+    /*
+      Do not perform the longer Supabase
+      loading operations directly inside
+      onAuthStateChange.
+
+      A zero-delay timeout lets the
+      auth callback finish first.
+    */
 
     if(
       event === "SIGNED_IN" &&
       currentUser
     ){
 
-      if(
-        document
-          .getElementById(
-            "app"
-          )
-          .classList.contains(
-            "hidden"
-          )
-      ){
+      setTimeout(
+        async () => {
 
-        await launchApp();
+          const app =
+            document.getElementById(
+              "app"
+            );
 
-      }
+          if(
+            app &&
+            app.classList.contains(
+              "hidden"
+            )
+          ){
+
+            await launchApp();
+
+          }
+
+        },
+        0
+      );
 
     }
+
 
     if(event === "SIGNED_OUT"){
 
@@ -6716,9 +6936,18 @@ db.auth.onAuthStateChange(
 );
 
 
+/* =========================================================
+   INIT
+========================================================= */
+
 async function init(){
 
   setupPaymentFormatting();
+
+  /*
+    Only old local demo caches are removed.
+    Supabase authentication remains untouched.
+  */
 
   localStorage.removeItem(
     "tm_tickets"
