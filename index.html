@@ -22,17 +22,96 @@
       href="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png">
 
 <style>
+
+/* =========================================================
+   TICKET MASTER — MODERN IOS-STYLE TYPOGRAPHY SYSTEM
+========================================================= */
+
+:root{
+
+  /*
+    Native Apple/iOS typography stack.
+    SF Pro is automatically used on Apple devices when
+    available through the system.
+  */
+
+  --font-ui:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "SF Pro Display",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  --font-display:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  --font-mono:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+
+  --blue:#087cff;
+  --blue-dark:#0054c7;
+
+  --text:#101828;
+  --text-secondary:#667085;
+  --text-tertiary:#98a2b3;
+
+  --border:#eaecf0;
+
+  --font-normal:400;
+  --font-medium:500;
+  --font-semibold:600;
+  --font-bold:700;
+  --font-heavy:800;
+
+  --tracking-tight:-0.025em;
+  --tracking-heading:-0.03em;
+
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+html,
+body{
+
   margin:0;
   padding:0;
+
   background:#f5f7fb;
-  color:#101828;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;
+
+  color:var(--text);
+
+  font-family:var(--font-ui);
+
+  font-size:16px;
+
+  font-weight:var(--font-normal);
+
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+
+  text-rendering:optimizeLegibility;
+
 }
 
 body{
@@ -43,7 +122,11 @@ button,
 input,
 select,
 textarea{
+
   font:inherit;
+
+  font-family:var(--font-ui);
+
 }
 
 button{
@@ -54,115 +137,248 @@ button{
   display:none!important;
 }
 
+
+/* =========================================================
+   AUTH
+========================================================= */
+
 .auth-screen{
+
   min-height:100vh;
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   padding:22px;
+
   background:
-    radial-gradient(circle at top right,#d9ebff 0,#eef6ff 32%,#f7f9fc 70%);
+    radial-gradient(
+      circle at top right,
+      #d9ebff 0,
+      #eef6ff 32%,
+      #f7f9fc 70%
+    );
+
 }
 
 .auth-box{
+
   width:100%;
+
   max-width:430px;
+
   background:#fff;
+
   border-radius:28px;
+
   padding:28px 22px 24px;
-  box-shadow:0 20px 60px rgba(15,23,42,.12);
+
+  box-shadow:
+    0 20px 60px rgba(15,23,42,.12);
+
 }
 
 .auth-logo{
+
   width:72px;
   height:72px;
+
   border-radius:20px;
+
   object-fit:cover;
+
   display:block;
+
   margin:0 auto 18px;
+
 }
 
 .auth-title{
+
   text-align:center;
-  font-size:27px;
-  font-weight:800;
+
+  font-family:var(--font-display);
+
+  font-size:28px;
+
+  line-height:1.08;
+
+  letter-spacing:var(--tracking-heading);
+
+  font-weight:var(--font-heavy);
+
   margin:0;
+
 }
 
 .auth-subtitle{
+
   text-align:center;
-  color:#667085;
+
+  color:var(--text-secondary);
+
   font-size:14px;
+
+  line-height:20px;
+
+  font-weight:var(--font-normal);
+
   margin:8px 0 24px;
+
 }
 
 .auth-tabs{
+
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   background:#f1f4f8;
+
   border-radius:13px;
+
   padding:4px;
+
   margin-bottom:20px;
+
 }
 
 .auth-tab{
+
   border:0;
+
   background:transparent;
+
   padding:11px;
+
   border-radius:10px;
-  color:#667085;
-  font-weight:700;
+
+  color:var(--text-secondary);
+
+  font-size:14px;
+
+  line-height:20px;
+
+  font-weight:var(--font-semibold);
+
+  letter-spacing:-.01em;
+
 }
 
 .auth-tab.active{
+
   background:#fff;
-  color:#087cff;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
+
+  color:var(--blue);
+
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.06);
+
 }
 
 .form-group{
+
   margin-bottom:15px;
+
 }
 
 .form-group label{
+
   display:block;
+
   font-size:13px;
-  font-weight:700;
+
+  line-height:18px;
+
+  font-weight:var(--font-semibold);
+
+  letter-spacing:-.005em;
+
   margin-bottom:7px;
+
   color:#344054;
+
 }
 
 .form-group input,
 .form-group textarea{
+
   width:100%;
+
   border:1px solid #d0d5dd;
+
   border-radius:12px;
+
   padding:13px 14px;
+
   outline:none;
+
   background:#fff;
+
+  color:var(--text);
+
+  font-size:15px;
+
+  line-height:21px;
+
+  font-weight:var(--font-normal);
+
 }
 
 .form-group textarea{
+
   min-height:90px;
+
   resize:vertical;
+
   line-height:1.5;
+
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+
+  color:#98a2b3;
+
 }
 
 .form-group input:focus,
 .form-group textarea:focus{
-  border-color:#087cff;
-  box-shadow:0 0 0 3px rgba(8,124,255,.12);
+
+  border-color:var(--blue);
+
+  box-shadow:
+    0 0 0 3px rgba(8,124,255,.12);
+
 }
 
 .primary-btn{
+
   width:100%;
+
   border:0;
-  background:#087cff;
+
+  background:var(--blue);
+
   color:#fff;
-  font-weight:800;
+
+  font-size:15px;
+
+  line-height:20px;
+
+  font-weight:var(--font-bold);
+
+  letter-spacing:-.01em;
+
   border-radius:13px;
+
   padding:14px;
+
   margin-top:4px;
+
 }
 
 .primary-btn:active{
@@ -170,183 +386,398 @@ button{
 }
 
 .auth-message{
+
   min-height:20px;
+
   text-align:center;
+
   font-size:13px;
+
+  line-height:18px;
+
   margin-top:12px;
+
   color:#d92d20;
+
 }
 
+
+/* =========================================================
+   APP HEADER
+========================================================= */
+
 .app{
+
   min-height:100vh;
+
   padding-bottom:86px;
+
 }
 
 .header{
+
   position:sticky;
+
   top:0;
+
   z-index:20;
+
   background:rgba(255,255,255,.94);
+
   backdrop-filter:blur(16px);
-  border-bottom:1px solid #eaecf0;
+
+  -webkit-backdrop-filter:blur(16px);
+
+  border-bottom:1px solid var(--border);
+
 }
 
 .header-inner{
+
   max-width:900px;
+
   margin:auto;
+
   padding:14px 16px;
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
 }
 
 .brand{
+
   display:flex;
+
   align-items:center;
+
   gap:10px;
-  font-weight:900;
+
+  font-family:var(--font-display);
+
+  font-weight:var(--font-heavy);
+
   font-size:20px;
+
+  line-height:24px;
+
+  letter-spacing:-.035em;
+
 }
 
 .brand img{
+
   width:36px;
   height:36px;
+
   border-radius:10px;
+
   object-fit:cover;
+
 }
 
 .header-user{
+
   width:38px;
   height:38px;
+
   border-radius:50%;
+
   border:0;
+
   background:#e8f2ff;
-  color:#087cff;
-  font-weight:800;
+
+  color:var(--blue);
+
+  font-size:13px;
+
+  font-weight:var(--font-bold);
+
 }
+
+
+/* =========================================================
+   PAGES
+========================================================= */
 
 .page{
+
   max-width:900px;
+
   margin:auto;
+
   padding:18px 16px;
+
 }
 
+
+/* =========================================================
+   HERO
+========================================================= */
+
 .hero{
-  background:linear-gradient(135deg,#087cff,#0054c7);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue),
+      var(--blue-dark)
+    );
+
   border-radius:24px;
+
   padding:25px 20px;
+
   color:white;
+
   margin-bottom:20px;
+
   overflow:hidden;
+
   position:relative;
+
 }
 
 .hero:after{
+
   content:"";
+
   position:absolute;
+
   width:190px;
   height:190px;
+
   right:-60px;
   top:-70px;
+
   border-radius:50%;
+
   background:rgba(255,255,255,.10);
+
 }
 
 .hero h1{
+
   position:relative;
+
   z-index:1;
+
+  font-family:var(--font-display);
+
   font-size:30px;
+
+  line-height:34px;
+
+  letter-spacing:-.035em;
+
+  font-weight:var(--font-heavy);
+
   margin:0 0 8px;
+
 }
 
 .hero p{
+
   position:relative;
+
   z-index:1;
+
   margin:0 0 18px;
-  opacity:.9;
-  line-height:1.5;
+
+  opacity:.92;
+
+  font-size:14px;
+
+  line-height:21px;
+
+  font-weight:var(--font-normal);
+
+  letter-spacing:-.005em;
+
+  max-width:560px;
+
 }
 
 .search{
+
   display:flex;
+
   align-items:center;
+
   gap:9px;
+
   background:#fff;
+
   border-radius:13px;
+
   padding:3px 12px;
+
   position:relative;
+
   z-index:2;
+
 }
 
 .search span{
-  color:#667085;
+
+  color:var(--text-secondary);
+
+  font-size:18px;
+
 }
 
 .search input{
+
   border:0;
+
   outline:0;
+
   width:100%;
+
   padding:11px 0;
+
   background:transparent;
+
+  color:var(--text);
+
+  font-size:15px;
+
+  line-height:20px;
+
+  font-weight:var(--font-normal);
+
 }
 
+.search input::placeholder{
+  color:#98a2b3;
+}
+
+
+/* =========================================================
+   SECTION HEADINGS
+========================================================= */
+
 .section-heading{
+
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
+
   margin:22px 0 12px;
+
 }
 
 .section-heading h2{
+
+  font-family:var(--font-display);
+
   font-size:20px;
+
+  line-height:25px;
+
+  letter-spacing:-.025em;
+
+  font-weight:var(--font-bold);
+
   margin:0;
+
 }
 
 .section-heading button{
+
   border:0;
+
   background:none;
-  color:#087cff;
-  font-weight:700;
+
+  color:var(--blue);
+
+  font-size:14px;
+
+  line-height:20px;
+
+  font-weight:var(--font-semibold);
+
+  letter-spacing:-.01em;
+
 }
 
+
+/* =========================================================
+   EVENT CARDS
+========================================================= */
+
 .event-grid{
+
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
   gap:13px;
+
 }
 
 .event-card{
+
   background:#fff;
+
   border-radius:17px;
+
   overflow:hidden;
-  border:1px solid #eaecf0;
-  box-shadow:0 4px 16px rgba(16,24,40,.04);
+
+  border:1px solid var(--border);
+
+  box-shadow:
+    0 4px 16px rgba(16,24,40,.04);
+
 }
 
 .event-image-wrap{
+
   height:145px;
+
   position:relative;
+
   background:#e5e7eb;
+
 }
 
 .event-image{
+
   width:100%;
   height:100%;
+
   object-fit:cover;
+
   display:block;
+
 }
 
 .favorite-btn{
+
   position:absolute;
+
   top:9px;
   right:9px;
+
   width:34px;
   height:34px;
+
   border:0;
+
   border-radius:50%;
+
   background:rgba(255,255,255,.92);
+
   color:#344054;
+
   font-size:18px;
+
 }
 
 .favorite-btn.active{
@@ -358,41 +789,88 @@ button{
 }
 
 .event-category{
+
   display:inline-block;
-  color:#087cff;
+
+  color:var(--blue);
+
   font-size:10px;
-  font-weight:800;
+
+  line-height:13px;
+
+  font-weight:var(--font-bold);
+
   text-transform:uppercase;
-  letter-spacing:.05em;
+
+  letter-spacing:.055em;
+
   margin-bottom:5px;
+
 }
 
 .event-title{
+
+  font-family:var(--font-display);
+
   font-size:15px;
-  font-weight:800;
+
+  line-height:19px;
+
+  letter-spacing:-.015em;
+
+  font-weight:var(--font-bold);
+
   margin-bottom:6px;
+
   white-space:nowrap;
+
   overflow:hidden;
+
   text-overflow:ellipsis;
+
 }
 
 .event-meta{
-  color:#667085;
+
+  color:var(--text-secondary);
+
   font-size:11px;
-  line-height:1.5;
+
+  line-height:16px;
+
+  font-weight:var(--font-normal);
+
 }
 
 .event-price{
+
   margin-top:9px;
-  font-weight:800;
+
   font-size:14px;
+
+  line-height:18px;
+
+  font-weight:var(--font-bold);
+
+  letter-spacing:-.01em;
+
 }
 
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
 .filter-row{
+
   display:flex;
+
   gap:8px;
+
   overflow-x:auto;
+
   padding-bottom:5px;
+
 }
 
 .filter-row::-webkit-scrollbar{
@@ -400,129 +878,275 @@ button{
 }
 
 .filter-btn{
+
   flex:0 0 auto;
+
   border:1px solid #d0d5dd;
+
   background:#fff;
+
   color:#475467;
+
   border-radius:30px;
+
   padding:9px 14px;
+
   font-size:13px;
-  font-weight:700;
+
+  line-height:18px;
+
+  font-weight:var(--font-semibold);
+
+  letter-spacing:-.005em;
+
 }
 
 .filter-btn.active{
-  background:#087cff;
+
+  background:var(--blue);
+
   color:#fff;
-  border-color:#087cff;
+
+  border-color:var(--blue);
+
 }
 
+
+/* =========================================================
+   DETAIL PAGE
+========================================================= */
+
 .back-btn{
+
   border:0;
+
   background:none;
+
   padding:0;
-  color:#087cff;
-  font-weight:800;
+
+  color:var(--blue);
+
+  font-size:14px;
+
+  line-height:20px;
+
+  font-weight:var(--font-semibold);
+
+  letter-spacing:-.01em;
+
   margin-bottom:14px;
+
 }
 
 .detail-hero{
+
   border-radius:22px;
+
   overflow:hidden;
+
   height:240px;
+
   background:#ddd;
+
   margin-bottom:18px;
+
 }
 
 .detail-hero img{
+
   width:100%;
   height:100%;
+
   object-fit:cover;
+
 }
 
 .detail-title{
+
+  font-family:var(--font-display);
+
   font-size:28px;
+
+  line-height:32px;
+
+  letter-spacing:-.035em;
+
+  font-weight:var(--font-heavy);
+
   margin:0 0 7px;
+
 }
 
 .detail-meta{
-  color:#667085;
-  line-height:1.7;
+
+  color:var(--text-secondary);
+
+  line-height:22px;
+
   font-size:14px;
+
+  font-weight:var(--font-normal);
+
 }
 
 .info-card{
+
   background:#fff;
-  border:1px solid #eaecf0;
+
+  border:1px solid var(--border);
+
   border-radius:18px;
+
   padding:16px;
+
   margin-top:16px;
+
 }
 
 .info-card h3{
+
   margin:0 0 12px;
+
+  font-family:var(--font-display);
+
   font-size:17px;
+
+  line-height:22px;
+
+  letter-spacing:-.02em;
+
+  font-weight:var(--font-bold);
+
 }
 
+
+/* =========================================================
+   SEATS
+========================================================= */
+
 .stage{
+
   background:#111827;
+
   color:#fff;
+
   border-radius:8px 8px 40px 40px;
+
   text-align:center;
+
   padding:10px;
+
   font-size:11px;
-  font-weight:800;
+
+  line-height:14px;
+
+  font-weight:var(--font-bold);
+
+  letter-spacing:.04em;
+
   margin:15px auto 22px;
+
   max-width:250px;
+
 }
 
 .seat-section{
+
   margin-bottom:22px;
+
 }
 
 .seat-section-title{
+
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
+
   margin-bottom:8px;
+
 }
 
 .seat-section-title strong{
+
   font-size:14px;
+
+  line-height:19px;
+
+  font-weight:var(--font-bold);
+
+  letter-spacing:-.01em;
+
 }
 
 .seat-section-title span{
-  color:#667085;
+
+  color:var(--text-secondary);
+
   font-size:12px;
+
+  line-height:16px;
+
+  font-weight:var(--font-medium);
+
 }
 
 .seat-row{
+
   display:flex;
+
   align-items:center;
+
   gap:5px;
+
   margin:5px 0;
+
   overflow-x:auto;
+
   padding-bottom:2px;
+
 }
 
 .row-label{
+
   width:25px;
+
   flex:0 0 25px;
+
   text-align:center;
-  color:#667085;
+
+  color:var(--text-secondary);
+
   font-size:10px;
-  font-weight:800;
+
+  line-height:13px;
+
+  font-weight:var(--font-bold);
+
 }
 
 .seat{
+
   flex:0 0 25px;
+
   width:25px;
   height:25px;
+
   border-radius:7px 7px 5px 5px;
+
   border:0;
+
   font-size:8px;
-  font-weight:800;
+
+  line-height:10px;
+
+  font-weight:var(--font-bold);
+
   background:#dbeafe;
+
   color:#075bb8;
+
 }
 
 .seat.available:hover{
@@ -530,46 +1154,78 @@ button{
 }
 
 .seat.sold{
+
   background:#e4e7ec;
+
   color:#98a2b3;
+
 }
 
 .seat.selected{
-  background:#087cff;
+
+  background:var(--blue);
+
   color:#fff;
-  box-shadow:0 0 0 2px #fff,0 0 0 4px #087cff;
+
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 0 4px var(--blue);
+
 }
 
 .seat-owned{
+
   background:#f04438!important;
+
   color:#fff!important;
+
 }
 
 .seat-legend{
+
   display:flex;
+
   justify-content:center;
+
   flex-wrap:wrap;
+
   gap:13px;
+
   margin:18px 0;
+
   font-size:11px;
-  color:#667085;
+
+  line-height:15px;
+
+  font-weight:var(--font-normal);
+
+  color:var(--text-secondary);
+
 }
 
 .legend-item{
+
   display:flex;
+
   align-items:center;
+
   gap:5px;
+
 }
 
 .legend-dot{
+
   width:12px;
   height:12px;
+
   border-radius:4px;
+
   background:#dbeafe;
+
 }
 
 .legend-dot.selected{
-  background:#087cff;
+  background:var(--blue);
 }
 
 .legend-dot.sold{
@@ -580,71 +1236,173 @@ button{
   background:#f04438;
 }
 
+
+/* =========================================================
+   BUY BAR
+========================================================= */
+
 .buy-bar{
+
   position:fixed;
+
   bottom:70px;
+
   left:50%;
+
   transform:translateX(-50%);
+
   width:min(900px,100%);
+
   background:#fff;
-  border-top:1px solid #eaecf0;
+
+  border-top:1px solid var(--border);
+
   padding:10px 15px;
+
   z-index:15;
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
   gap:10px;
+
 }
 
 .buy-summary strong{
+
   display:block;
+
   font-size:16px;
+
+  line-height:21px;
+
+  font-weight:var(--font-bold);
+
+  letter-spacing:-.015em;
+
 }
 
 .buy-summary span{
-  color:#667085;
+
+  color:var(--text-secondary);
+
   font-size:11px;
+
+  line-height:15px;
+
+  font-weight:var(--font-normal);
+
 }
 
 .buy-btn{
+
   border:0;
-  background:#087cff;
+
+  background:var(--blue);
+
   color:#fff;
+
   padding:12px 18px;
+
   border-radius:12px;
-  font-weight:800;
+
+  font-size:14px;
+
+  line-height:18px;
+
+  font-weight:var(--font-bold);
+
+  letter-spacing:-.01em;
+
 }
 
+
+/* =========================================================
+   EMPTY STATES
+========================================================= */
+
 .empty{
+
   text-align:center;
+
   padding:55px 20px;
-  color:#667085;
+
+  color:var(--text-secondary);
+
+  font-size:14px;
+
+  line-height:21px;
+
+}
+
+.empty strong{
+
+  color:var(--text);
+
+  font-size:15px;
+
+  line-height:20px;
+
+  font-weight:var(--font-bold);
+
+}
+
+.empty p{
+
+  font-size:13px;
+
+  line-height:19px;
+
 }
 
 .empty-icon{
+
   font-size:42px;
+
   margin-bottom:10px;
+
 }
+
+
+/* =========================================================
+   TICKETS / ORDERS
+========================================================= */
 
 .ticket-card,
 .order-card{
+
   background:#fff;
-  border:1px solid #eaecf0;
+
+  border:1px solid var(--border);
+
   border-radius:18px;
+
   padding:15px;
+
   margin-bottom:12px;
+
 }
 
 .ticket-top{
+
   display:flex;
+
   gap:12px;
+
 }
 
 .ticket-image{
+
   width:75px;
   height:75px;
+
   border-radius:12px;
+
   object-fit:cover;
+
 }
 
 .ticket-content{
@@ -652,353 +1410,739 @@ button{
 }
 
 .ticket-content h3{
+
   margin:0 0 5px;
+
+  font-family:var(--font-display);
+
   font-size:16px;
+
+  line-height:20px;
+
+  letter-spacing:-.02em;
+
+  font-weight:var(--font-bold);
+
 }
 
 .ticket-content p{
+
   margin:2px 0;
-  color:#667085;
+
+  color:var(--text-secondary);
+
   font-size:12px;
+
+  line-height:17px;
+
+  font-weight:var(--font-normal);
+
 }
 
 .ticket-code{
+
   background:#f2f4f7;
+
   border-radius:9px;
+
   padding:9px;
+
   margin-top:12px;
+
+  font-family:var(--font-mono);
+
   font-size:12px;
-  font-weight:800;
+
+  line-height:16px;
+
+  font-weight:700;
+
   letter-spacing:.05em;
+
 }
 
 .ticket-actions{
+
   display:flex;
+
   gap:8px;
+
   margin-top:12px;
+
 }
 
 .secondary-btn{
+
   flex:1;
+
   border:1px solid #d0d5dd;
+
   background:#fff;
+
   color:#344054;
+
   padding:10px;
+
   border-radius:10px;
-  font-weight:700;
+
+  font-size:13px;
+
+  line-height:18px;
+
+  font-weight:var(--font-semibold);
+
 }
 
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
 .profile-card{
+
   background:#fff;
+
   border-radius:22px;
-  border:1px solid #eaecf0;
+
+  border:1px solid var(--border);
+
   padding:20px;
+
   text-align:center;
+
 }
 
 .avatar{
+
   width:75px;
   height:75px;
+
   border-radius:50%;
-  background:#087cff;
+
+  background:var(--blue);
+
   color:#fff;
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   margin:auto;
+
   font-size:27px;
-  font-weight:900;
+
+  line-height:32px;
+
+  font-weight:var(--font-heavy);
+
+  letter-spacing:-.025em;
+
 }
 
 .profile-card h2{
+
+  font-family:var(--font-display);
+
   margin:12px 0 4px;
+
+  font-size:21px;
+
+  line-height:26px;
+
+  letter-spacing:-.025em;
+
+  font-weight:var(--font-bold);
+
 }
 
 .profile-card p{
+
   margin:0;
-  color:#667085;
+
+  color:var(--text-secondary);
+
   font-size:13px;
+
+  line-height:18px;
+
+  font-weight:var(--font-normal);
+
 }
 
 .profile-actions{
+
   margin-top:20px;
+
 }
 
 .profile-action{
+
   width:100%;
+
   border:0;
+
   background:#fff;
-  border-bottom:1px solid #eaecf0;
+
+  border-bottom:1px solid var(--border);
+
   padding:16px 5px;
+
   text-align:left;
-  font-weight:700;
+
+  font-size:14px;
+
+  line-height:20px;
+
+  font-weight:var(--font-semibold);
+
+  letter-spacing:-.005em;
+
+  color:#344054;
+
 }
 
 .profile-action:last-child{
   color:#d92d20;
 }
 
+
+/* =========================================================
+   BOTTOM NAVIGATION
+========================================================= */
+
 .bottom-nav{
+
   position:fixed;
+
   bottom:0;
+
   left:0;
   right:0;
+
   height:70px;
+
   background:rgba(255,255,255,.96);
+
   backdrop-filter:blur(15px);
-  border-top:1px solid #eaecf0;
+
+  -webkit-backdrop-filter:blur(15px);
+
+  border-top:1px solid var(--border);
+
   display:flex;
+
   justify-content:center;
+
   z-index:30;
+
 }
 
 .bottom-nav-inner{
+
   width:min(900px,100%);
+
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+
+  grid-template-columns:
+    repeat(5,1fr);
+
 }
 
 .nav-btn{
+
   border:0;
+
   background:none;
+
   color:#98a2b3;
+
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
+
   justify-content:center;
+
   gap:3px;
+
   font-size:10px;
-  font-weight:700;
+
+  line-height:13px;
+
+  font-weight:var(--font-semibold);
+
+  letter-spacing:-.005em;
+
 }
 
 .nav-icon{
+
   font-size:20px;
+
+  line-height:22px;
+
+  font-weight:var(--font-normal);
+
 }
 
 .nav-btn.active{
-  color:#087cff;
+  color:var(--blue);
 }
 
+
+/* =========================================================
+   MODALS
+========================================================= */
+
 .modal{
+
   position:fixed;
+
   inset:0;
+
   z-index:100;
+
   background:rgba(16,24,40,.58);
+
   display:flex;
+
   align-items:flex-end;
+
   justify-content:center;
+
 }
 
 .modal-box{
+
   width:min(600px,100%);
+
   max-height:92vh;
+
   overflow:auto;
+
   background:#fff;
+
   border-radius:24px 24px 0 0;
+
   padding:20px;
+
 }
 
 .modal-header{
+
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
+
   margin-bottom:17px;
+
 }
 
 .modal-header h2{
+
   margin:0;
+
+  font-family:var(--font-display);
+
   font-size:20px;
+
+  line-height:25px;
+
+  letter-spacing:-.025em;
+
+  font-weight:var(--font-bold);
+
 }
 
 .close-btn{
+
   width:35px;
   height:35px;
+
   border:0;
+
   border-radius:50%;
+
   background:#f2f4f7;
+
+  font-size:20px;
+
+  line-height:20px;
+
 }
 
 .payment-note{
+
   background:#eff8ff;
+
   color:#175cd3;
+
   border-radius:12px;
+
   padding:12px;
+
   font-size:11px;
-  line-height:1.5;
+
+  line-height:17px;
+
+  font-weight:var(--font-normal);
+
   margin:12px 0;
+
 }
 
 .total-row{
+
   display:flex;
+
   justify-content:space-between;
+
   padding:14px 0;
-  border-top:1px solid #eaecf0;
-  font-weight:800;
+
+  border-top:1px solid var(--border);
+
+  font-size:15px;
+
+  line-height:20px;
+
+  font-weight:var(--font-bold);
+
 }
 
+
+/* =========================================================
+   TOAST / LOADING
+========================================================= */
+
 .toast{
+
   position:fixed;
+
   left:50%;
+
   bottom:90px;
+
   transform:translate(-50%,20px);
+
   background:#101828;
+
   color:#fff;
+
   padding:11px 16px;
+
   border-radius:12px;
+
   font-size:12px;
+
+  line-height:17px;
+
+  font-weight:var(--font-medium);
+
   z-index:200;
+
   opacity:0;
+
   pointer-events:none;
+
   transition:.25s;
+
   max-width:90%;
+
   text-align:center;
+
 }
 
 .toast.show{
+
   opacity:1;
+
   transform:translate(-50%,0);
+
 }
 
 .loading{
+
   padding:50px 20px;
+
   text-align:center;
-  color:#667085;
+
+  color:var(--text-secondary);
+
+  font-size:13px;
+
+  line-height:18px;
+
 }
 
 .spinner{
+
   width:32px;
   height:32px;
+
   border:3px solid #dbeafe;
-  border-top-color:#087cff;
+
+  border-top-color:var(--blue);
+
   border-radius:50%;
+
   animation:spin .8s linear infinite;
+
   margin:0 auto 12px;
+
 }
 
 @keyframes spin{
-  to{transform:rotate(360deg)}
+
+  to{
+    transform:rotate(360deg)
+  }
+
 }
 
-/* Transfer */
+
+/* =========================================================
+   TRANSFER
+========================================================= */
 
 .transfer-summary{
+
   background:#f5f7fb;
-  border:1px solid #eaecf0;
+
+  border:1px solid var(--border);
+
   border-radius:14px;
+
   padding:14px;
+
   margin-bottom:18px;
+
 }
 
 .transfer-summary-title{
+
+  font-family:var(--font-display);
+
   font-size:15px;
-  font-weight:800;
+
+  line-height:20px;
+
+  letter-spacing:-.015em;
+
+  font-weight:var(--font-bold);
+
   margin-bottom:6px;
+
 }
 
 .transfer-summary-detail{
-  color:#667085;
+
+  color:var(--text-secondary);
+
   font-size:12px;
-  line-height:1.6;
+
+  line-height:19px;
+
+  font-weight:var(--font-normal);
+
 }
 
 .transfer-form-group{
+
   margin-bottom:15px;
+
 }
 
 .transfer-form-group label{
+
   display:block;
+
   font-size:13px;
-  font-weight:700;
+
+  line-height:18px;
+
+  font-weight:var(--font-semibold);
+
   color:#344054;
+
   margin-bottom:7px;
+
 }
 
 .transfer-form-group input,
 .transfer-form-group textarea{
+
   width:100%;
+
   border:1px solid #d0d5dd;
+
   border-radius:12px;
+
   padding:13px 14px;
+
   outline:none;
+
   background:#fff;
+
+  color:var(--text);
+
+  font-size:15px;
+
+  line-height:21px;
+
 }
 
 .transfer-form-group input:focus,
 .transfer-form-group textarea:focus{
-  border-color:#087cff;
-  box-shadow:0 0 0 3px rgba(8,124,255,.12);
+
+  border-color:var(--blue);
+
+  box-shadow:
+    0 0 0 3px rgba(8,124,255,.12);
+
 }
 
 .transfer-form-group textarea{
+
   min-height:90px;
+
   resize:vertical;
+
   line-height:1.5;
+
 }
 
 .transfer-note-count{
+
   text-align:right;
-  color:#98a2b3;
+
+  color:var(--text-tertiary);
+
   font-size:11px;
+
+  line-height:15px;
+
   margin-top:5px;
+
 }
 
 .transfer-review{
+
   background:#f8fafc;
-  border:1px solid #eaecf0;
+
+  border:1px solid var(--border);
+
   border-radius:14px;
+
   padding:14px;
+
   margin-bottom:12px;
+
 }
 
 .transfer-review-label{
-  color:#667085;
+
+  color:var(--text-secondary);
+
   font-size:11px;
-  font-weight:800;
+
+  line-height:15px;
+
+  font-weight:var(--font-bold);
+
   text-transform:uppercase;
-  letter-spacing:.05em;
+
+  letter-spacing:.055em;
+
   margin-bottom:7px;
+
 }
 
 .transfer-review-value{
-  color:#101828;
+
+  color:var(--text);
+
   font-size:13px;
-  line-height:1.55;
+
+  line-height:20px;
+
+  font-weight:var(--font-normal);
+
 }
 
 .transfer-recipient{
+
   display:flex;
+
   align-items:center;
+
   gap:11px;
+
 }
 
 .transfer-recipient-avatar{
+
   width:42px;
   height:42px;
+
   border-radius:50%;
+
   background:#e8f2ff;
-  color:#087cff;
+
+  color:var(--blue);
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
-  font-weight:900;
+
   font-size:13px;
+
+  line-height:17px;
+
+  font-weight:var(--font-bold);
+
 }
 
 .transfer-edit-btn{
+
   width:100%;
+
   border:1px solid #d0d5dd;
+
   background:#fff;
+
   color:#344054;
+
   border-radius:13px;
+
   padding:13px;
+
   margin-top:9px;
-  font-weight:800;
+
+  font-size:14px;
+
+  line-height:19px;
+
+  font-weight:var(--font-bold);
+
 }
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media(max-width:520px){
 
   .event-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
   }
 
   .event-image-wrap{
@@ -1014,14 +2158,20 @@ button{
 @media(min-width:700px){
 
   .event-grid{
-    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
   }
 
 }
+
 </style>
 </head>
 
 <body>
+
+<!-- =====================================================
+     AUTH SCREEN
+===================================================== -->
 
 <div id="authScreen" class="auth-screen">
 
@@ -1032,7 +2182,9 @@ button{
       src="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png"
       alt="Ticket Master">
 
-    <h1 class="auth-title">Ticket Master</h1>
+    <h1 class="auth-title">
+      Ticket Master
+    </h1>
 
     <p class="auth-subtitle">
       Independent event tickets
@@ -1059,70 +2211,104 @@ button{
     <form id="loginForm" onsubmit="handleLogin(event)">
 
       <div class="form-group">
+
         <label>Email</label>
+
         <input
           id="loginEmail"
           type="email"
           autocomplete="email"
           required>
+
       </div>
 
       <div class="form-group">
+
         <label>Password</label>
+
         <input
           id="loginPassword"
           type="password"
           autocomplete="current-password"
           required>
+
       </div>
 
-      <button class="primary-btn" type="submit">
+      <button
+        class="primary-btn"
+        type="submit">
+
         Log in
+
       </button>
 
     </form>
 
-    <form id="signupForm" class="hidden" onsubmit="handleSignup(event)">
+    <form
+      id="signupForm"
+      class="hidden"
+      onsubmit="handleSignup(event)">
 
       <div class="form-group">
+
         <label>Full name</label>
+
         <input
           id="signupName"
           type="text"
           autocomplete="name"
           required>
+
       </div>
 
       <div class="form-group">
+
         <label>Email</label>
+
         <input
           id="signupEmail"
           type="email"
           autocomplete="email"
           required>
+
       </div>
 
       <div class="form-group">
+
         <label>Password</label>
+
         <input
           id="signupPassword"
           type="password"
           autocomplete="new-password"
           minlength="6"
           required>
+
       </div>
 
-      <button class="primary-btn" type="submit">
+      <button
+        class="primary-btn"
+        type="submit">
+
         Create account
+
       </button>
 
     </form>
 
-    <div id="authMessage" class="auth-message"></div>
+    <div
+      id="authMessage"
+      class="auth-message">
+    </div>
 
   </div>
 
 </div>
+
+
+<!-- =====================================================
+     APP
+===================================================== -->
 
 <div id="app" class="app hidden">
 
@@ -1144,7 +2330,9 @@ button{
         class="header-user"
         onclick="showPage('profile')"
         id="headerAvatar">
+
         U
+
       </button>
 
     </div>
@@ -1161,40 +2349,55 @@ button{
         id="nav-home"
         class="nav-btn active"
         onclick="showPage('home')">
+
         <span class="nav-icon">⌂</span>
+
         Home
+
       </button>
 
       <button
         id="nav-events"
         class="nav-btn"
         onclick="showPage('events')">
+
         <span class="nav-icon">◫</span>
+
         Events
+
       </button>
 
       <button
         id="nav-favorites"
         class="nav-btn"
         onclick="showPage('favorites')">
+
         <span class="nav-icon">♡</span>
+
         Favorites
+
       </button>
 
       <button
         id="nav-tickets"
         class="nav-btn"
         onclick="showPage('tickets')">
+
         <span class="nav-icon">▣</span>
+
         Tickets
+
       </button>
 
       <button
         id="nav-profile"
         class="nav-btn"
         onclick="showPage('profile')">
+
         <span class="nav-icon">●</span>
+
         Profile
+
       </button>
 
     </div>
@@ -1203,7 +2406,10 @@ button{
 
 </div>
 
-<!-- CHECKOUT -->
+
+<!-- =====================================================
+     CHECKOUT
+===================================================== -->
 
 <div id="checkoutModal" class="modal hidden">
 
@@ -1216,7 +2422,9 @@ button{
       <button
         class="close-btn"
         onclick="closeCheckout()">
+
         ×
+
       </button>
 
     </div>
@@ -1224,44 +2432,61 @@ button{
     <div id="checkoutSummary"></div>
 
     <div class="form-group">
+
       <label>Cardholder name</label>
+
       <input
         id="cardName"
         type="text"
         autocomplete="cc-name"
         placeholder="Name on card">
+
     </div>
 
     <div class="form-group">
+
       <label>Card number</label>
+
       <input
         id="cardNumber"
         inputmode="numeric"
         autocomplete="cc-number"
         maxlength="19"
         placeholder="1234 5678 9012 3456">
+
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div
+      style="
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px
+      ">
 
       <div class="form-group">
+
         <label>Expiry</label>
+
         <input
           id="cardExpiry"
           inputmode="numeric"
           autocomplete="cc-exp"
           maxlength="5"
           placeholder="MM/YY">
+
       </div>
 
       <div class="form-group">
+
         <label>CVC</label>
+
         <input
           id="cardCvc"
           inputmode="numeric"
           autocomplete="cc-csc"
           maxlength="4"
           placeholder="123">
+
       </div>
 
     </div>
@@ -1275,22 +2500,32 @@ button{
     </div>
 
     <div class="total-row">
+
       <span>Total</span>
-      <span id="checkoutTotal">$0.00</span>
+
+      <span id="checkoutTotal">
+        $0.00
+      </span>
+
     </div>
 
     <button
       id="completePurchaseBtn"
       class="primary-btn"
       onclick="completePurchase()">
+
       Complete purchase
+
     </button>
 
   </div>
 
 </div>
 
-<!-- TRANSFER FORM -->
+
+<!-- =====================================================
+     TRANSFER FORM
+===================================================== -->
 
 <div id="transferModal" class="modal hidden">
 
@@ -1303,7 +2538,9 @@ button{
       <button
         class="close-btn"
         onclick="closeTransferModal()">
+
         ×
+
       </button>
 
     </div>
@@ -1355,10 +2592,19 @@ button{
     <div class="transfer-form-group">
 
       <label for="transferNote">
+
         Note
-        <span style="font-weight:400;color:#98a2b3">
+
+        <span
+          style="
+            font-weight:400;
+            color:#98a2b3
+          ">
+
           (optional)
+
         </span>
+
       </label>
 
       <textarea
@@ -1367,7 +2613,11 @@ button{
         placeholder="Add a message for the recipient..."></textarea>
 
       <div class="transfer-note-count">
-        <span id="transferNoteCount">0</span>/250
+
+        <span id="transferNoteCount">
+          0
+        </span>/250
+
       </div>
 
     </div>
@@ -1375,14 +2625,19 @@ button{
     <button
       class="primary-btn"
       onclick="reviewTicketTransfer()">
+
       Review Transfer
+
     </button>
 
   </div>
 
 </div>
 
-<!-- TRANSFER REVIEW -->
+
+<!-- =====================================================
+     TRANSFER REVIEW
+===================================================== -->
 
 <div id="transferReviewModal" class="modal hidden">
 
@@ -1395,7 +2650,9 @@ button{
       <button
         class="close-btn"
         onclick="closeTransferReview()">
+
         ×
+
       </button>
 
     </div>
@@ -1411,7 +2668,9 @@ button{
         <div
           id="transferReviewInitials"
           class="transfer-recipient-avatar">
+
           --
+
         </div>
 
         <div>
@@ -1420,14 +2679,21 @@ button{
             id="transferReviewName"
             class="transfer-review-value"
             style="font-weight:800">
+
             —
+
           </div>
 
           <div
             id="transferReviewContact"
             class="transfer-review-value"
-            style="color:#667085;font-size:12px">
+            style="
+              color:#667085;
+              font-size:12px
+            ">
+
             —
+
           </div>
 
         </div>
@@ -1445,7 +2711,9 @@ button{
       <div
         id="transferReviewTicket"
         class="transfer-review-value">
+
         —
+
       </div>
 
     </div>
@@ -1461,7 +2729,9 @@ button{
       <div
         id="transferReviewNote"
         class="transfer-review-value">
+
         —
+
       </div>
 
     </div>
@@ -1469,20 +2739,27 @@ button{
     <button
       class="primary-btn"
       onclick="confirmTicketTransfer()">
+
       Confirm Transfer
+
     </button>
 
     <button
       class="transfer-edit-btn"
       onclick="backToTransferForm()">
+
       Edit Details
+
     </button>
 
   </div>
 
 </div>
 
-<!-- TICKET -->
+
+<!-- =====================================================
+     TICKET MODAL
+===================================================== -->
 
 <div id="ticketModal" class="modal hidden">
 
@@ -1495,7 +2772,9 @@ button{
       <button
         class="close-btn"
         onclick="closeTicketModal()">
+
         ×
+
       </button>
 
     </div>
@@ -1505,6 +2784,7 @@ button{
   </div>
 
 </div>
+
 
 <div id="toast" class="toast"></div>
 
@@ -1548,8 +2828,6 @@ let transferTicketData = null;
 
 /* =========================================================
    EVENTS
-   Artist images below are used everywhere:
-   Event cards → Event banner → Ticket image
 ========================================================= */
 
 const events = [
@@ -1913,6 +3191,7 @@ async function handleLogin(event){
       result.error.message;
 
     return;
+
   }
 
   currentUser =
@@ -1968,6 +3247,7 @@ async function handleSignup(event){
       result.error.message;
 
     return;
+
   }
 
   if(!result.data.session){
@@ -1978,6 +3258,7 @@ async function handleSignup(event){
       "Account created. Check your email to confirm your account.";
 
     return;
+
   }
 
   currentUser =
@@ -2001,6 +3282,7 @@ async function loadCurrentUser(){
     );
 
     return;
+
   }
 
   currentUser =
@@ -2014,11 +3296,17 @@ async function logout(){
   await db.auth.signOut();
 
   currentUser = null;
+
   tickets = [];
+
   orders = [];
+
   favorites = [];
+
   currentEvent = null;
+
   selectedSeats = [];
+
   transferTicketData = null;
 
   document
@@ -2039,6 +3327,7 @@ async function loadFavorites(){
   if(!currentUser){
 
     favorites=[];
+
     return;
 
   }
@@ -2197,6 +3486,7 @@ async function loadOrders(){
   if(!currentUser){
 
     orders=[];
+
     return;
 
   }
@@ -2288,6 +3578,7 @@ async function loadTickets(){
   if(!currentUser){
 
     tickets=[];
+
     return;
 
   }
@@ -2729,7 +4020,9 @@ function renderHome(){
 
       <section class="hero">
 
-        <h1>Find your next event.</h1>
+        <h1>
+          Find your next event.
+        </h1>
 
         <p>
           Discover concerts, sports and live entertainment
@@ -2751,7 +4044,9 @@ function renderHome(){
 
       <div class="section-heading">
 
-        <h2>Popular events</h2>
+        <h2>
+          Popular events
+        </h2>
 
         <button onclick="showPage('events')">
           See all
@@ -2771,7 +4066,9 @@ function renderHome(){
 
       <div class="section-heading">
 
-        <h2>Browse categories</h2>
+        <h2>
+          Browse categories
+        </h2>
 
       </div>
 
@@ -2780,19 +4077,25 @@ function renderHome(){
         <button
           class="filter-btn"
           onclick="showCategory('Concerts')">
+
           Concerts
+
         </button>
 
         <button
           class="filter-btn"
           onclick="showCategory('Sports')">
+
           Sports
+
         </button>
 
         <button
           class="filter-btn"
           onclick="showCategory('Comedy')">
+
           Comedy
+
         </button>
 
       </div>
@@ -2839,7 +4142,9 @@ function homeSearch(value){
         <div
           class="empty"
           style="grid-column:1/-1">
+
           No matching events found.
+
         </div>
       `;
 
@@ -2871,7 +4176,9 @@ function renderEvents(){
 
       <div class="section-heading">
 
-        <h2>Events</h2>
+        <h2>
+          Events
+        </h2>
 
       </div>
 
@@ -2996,7 +4303,9 @@ function filterEventPage(value){
         <div
           class="empty"
           style="grid-column:1/-1">
+
           No matching events found.
+
         </div>
       `;
 
@@ -3024,7 +4333,9 @@ function renderFavorites(){
 
       <div class="section-heading">
 
-        <h2>Favorites</h2>
+        <h2>
+          Favorites
+        </h2>
 
       </div>
 
@@ -3135,7 +4446,9 @@ async function openEvent(id){
 
       <div class="info-card">
 
-        <h3>Select your seats</h3>
+        <h3>
+          Select your seats
+        </h3>
 
         <div class="loading">
 
@@ -3170,7 +4483,10 @@ async function openEvent(id){
         </strong>
 
         <p
-          style="color:#667085;font-size:13px">
+          style="
+            color:#667085;
+            font-size:13px
+          ">
 
           ${escapeHTML(
             error.message ||
@@ -3263,7 +4579,9 @@ function renderEventSeatMap(){
 
       <div class="info-card">
 
-        <h3>Select your seats</h3>
+        <h3>
+          Select your seats
+        </h3>
 
         <div class="stage">
           STAGE
@@ -3500,6 +4818,7 @@ function selectSeat(
       );
 
       return;
+
     }
 
     selectedSeats.push({
@@ -3601,6 +4920,7 @@ function openCheckout(){
     );
 
     return;
+
   }
 
   if(!currentEvent){
@@ -3610,6 +4930,7 @@ function openCheckout(){
     );
 
     return;
+
   }
 
   if(!selectedSeats.length){
@@ -3619,6 +4940,7 @@ function openCheckout(){
     );
 
     return;
+
   }
 
   const total =
@@ -3641,7 +4963,11 @@ function openCheckout(){
       </strong>
 
       <p
-        style="color:#667085;font-size:12px;margin:6px 0">
+        style="
+          color:#667085;
+          font-size:12px;
+          margin:6px 0
+        ">
 
         ${selectedSeats
           .map(
@@ -3791,6 +5117,7 @@ async function completePurchase(){
     );
 
     return;
+
   }
 
   if(!currentEvent){
@@ -3800,6 +5127,7 @@ async function completePurchase(){
     );
 
     return;
+
   }
 
   if(!selectedSeats.length){
@@ -3809,6 +5137,7 @@ async function completePurchase(){
     );
 
     return;
+
   }
 
   const cardName =
@@ -3839,6 +5168,7 @@ async function completePurchase(){
     );
 
     return;
+
   }
 
   if(
@@ -3852,6 +5182,7 @@ async function completePurchase(){
     );
 
     return;
+
   }
 
   if(
@@ -3865,6 +5196,7 @@ async function completePurchase(){
     );
 
     return;
+
   }
 
   if(
@@ -3876,6 +5208,7 @@ async function completePurchase(){
     );
 
     return;
+
   }
 
   const button =
@@ -3915,6 +5248,7 @@ async function completePurchase(){
       );
 
       return;
+
     }
 
   }
@@ -3983,6 +5317,7 @@ async function completePurchase(){
     );
 
     return;
+
   }
 
   const ticketRows =
@@ -4072,6 +5407,7 @@ async function completePurchase(){
     );
 
     return;
+
   }
 
   document.getElementById(
@@ -4137,7 +5473,9 @@ function renderTickets(){
 
       <div class="section-heading">
 
-        <h2>My Tickets</h2>
+        <h2>
+          My Tickets
+        </h2>
 
       </div>
 
@@ -4292,6 +5630,7 @@ function showTicket(ticketId){
     );
 
     return;
+
   }
 
   document.getElementById(
@@ -4327,17 +5666,35 @@ function showTicket(ticketId){
                 font-size:48px;
                 margin-bottom:12px;
               ">
+
               🎟️
+
             </div>
           `
       }
 
-      <h2 style="margin:0 0 7px">
+      <h2
+        style="
+          margin:0 0 7px;
+          font-family:var(--font-display);
+          font-weight:800;
+          letter-spacing:-.03em;
+        ">
+
         ${escapeHTML(ticket.event)}
+
       </h2>
 
-      <p style="margin:0;opacity:.9">
+      <p
+        style="
+          margin:0;
+          opacity:.9;
+          font-size:13px;
+          line-height:18px;
+        ">
+
         ${escapeHTML(ticket.date)}
+
       </p>
 
     </div>
@@ -4348,13 +5705,25 @@ function showTicket(ticketId){
         ${escapeHTML(ticket.section)}
       </strong>
 
-      <p style="color:#667085">
+      <p
+        style="
+          color:#667085;
+          font-size:13px;
+        ">
+
         Row ${escapeHTML(ticket.row)}
         · Seat ${escapeHTML(ticket.seat)}
+
       </p>
 
-      <p style="color:#667085">
+      <p
+        style="
+          color:#667085;
+          font-size:13px;
+        ">
+
         ${escapeHTML(ticket.venue)}
+
       </p>
 
       <div
@@ -4389,9 +5758,9 @@ function closeTicketModal(){
 }
 
 
-/* =========================
+/* =========================================================
    TRANSFER FLOW
-========================= */
+========================================================= */
 
 function transferTicket(ticketId){
 
@@ -4408,6 +5777,7 @@ function transferTicket(ticketId){
     );
 
     return;
+
   }
 
   if(ticket.status !== "active"){
@@ -4417,6 +5787,7 @@ function transferTicket(ticketId){
     );
 
     return;
+
   }
 
   transferTicketData =
@@ -4449,7 +5820,9 @@ function transferTicket(ticketId){
     <div class="transfer-summary">
 
       <div class="transfer-summary-title">
+
         ${escapeHTML(ticket.event)}
+
       </div>
 
       <div class="transfer-summary-detail">
@@ -4531,6 +5904,7 @@ function reviewTicketTransfer(){
     );
 
     return;
+
   }
 
   const firstName =
@@ -4560,6 +5934,7 @@ function reviewTicketTransfer(){
     );
 
     return;
+
   }
 
   if(!lastName){
@@ -4569,6 +5944,7 @@ function reviewTicketTransfer(){
     );
 
     return;
+
   }
 
   if(!contact){
@@ -4578,6 +5954,7 @@ function reviewTicketTransfer(){
     );
 
     return;
+
   }
 
   const fullName =
@@ -4700,6 +6077,7 @@ function confirmTicketTransfer(){
     );
 
     return;
+
   }
 
   const firstName =
@@ -4812,8 +6190,6 @@ function confirmTicketTransfer(){
 }
 
 
-/* Note counter */
-
 document.addEventListener(
   "input",
   function(event){
@@ -4834,6 +6210,10 @@ document.addEventListener(
   }
 );
 
+
+/* =========================================================
+   PROFILE
+========================================================= */
 
 function renderProfile(){
 
@@ -4966,7 +6346,9 @@ function renderOrders(){
 
       <div class="section-heading">
 
-        <h2>My Orders</h2>
+        <h2>
+          My Orders
+        </h2>
 
       </div>
 
@@ -4980,26 +6362,55 @@ function renderOrders(){
 
                 <div>
 
-                  <h3>
+                  <h3
+                    style="
+                      margin:0 0 5px;
+                      font-family:var(--font-display);
+                      font-size:16px;
+                      line-height:20px;
+                      letter-spacing:-.02em;
+                      font-weight:700;
+                    ">
+
                     ${escapeHTML(
                       order.event
                     )}
+
                   </h3>
 
-                  <p>
+                  <p
+                    style="
+                      font-size:12px;
+                      line-height:17px;
+                      color:#667085;
+                    ">
+
                     Order
                     ${escapeHTML(
                       order.orderNumber
                     )}
+
                   </p>
 
-                  <p>
+                  <p
+                    style="
+                      font-size:12px;
+                      line-height:17px;
+                      color:#667085;
+                    ">
+
                     ${escapeHTML(
                       order.date
                     )}
+
                   </p>
 
-                  <p>
+                  <p
+                    style="
+                      font-size:12px;
+                      line-height:17px;
+                      color:#667085;
+                    ">
 
                     ${order.tickets}
                     ticket${
@@ -5083,7 +6494,9 @@ function showTransfers(){
 
       <div class="section-heading">
 
-        <h2>Transfers</h2>
+        <h2>
+          Transfers
+        </h2>
 
       </div>
 
@@ -5098,13 +6511,28 @@ function showTransfers(){
 
                   <div>
 
-                    <h3>
+                    <h3
+                      style="
+                        margin:0 0 5px;
+                        font-family:var(--font-display);
+                        font-size:16px;
+                        line-height:20px;
+                        letter-spacing:-.02em;
+                        font-weight:700;
+                      ">
+
                       ${escapeHTML(
                         transfer.event
                       )}
+
                     </h3>
 
-                    <p>
+                    <p
+                      style="
+                        font-size:12px;
+                        line-height:17px;
+                        color:#667085;
+                      ">
 
                       To:
                       ${escapeHTML(
@@ -5114,7 +6542,12 @@ function showTransfers(){
 
                     </p>
 
-                    <p>
+                    <p
+                      style="
+                        font-size:12px;
+                        line-height:17px;
+                        color:#667085;
+                      ">
 
                       Contact:
                       ${escapeHTML(
@@ -5133,6 +6566,7 @@ function showTransfers(){
                               padding:10px;
                               margin-top:8px;
                               font-size:12px;
+                              line-height:17px;
                               color:#475467;
                             ">
 
@@ -5149,7 +6583,12 @@ function showTransfers(){
                         : ""
                     }
 
-                    <p>
+                    <p
+                      style="
+                        font-size:12px;
+                        line-height:17px;
+                        color:#667085;
+                      ">
 
                       ${new Date(
                         transfer.created
@@ -5194,6 +6633,10 @@ function showTransfers(){
 
 }
 
+
+/* =========================================================
+   APP STARTUP
+========================================================= */
 
 async function launchApp(){
 
