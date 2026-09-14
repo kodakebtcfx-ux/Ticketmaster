@@ -1176,9 +1176,7 @@ button{border:0;cursor:pointer}
 <div id="toast" class="toast"></div>
 
 
-<!-- IMPORTANT:
-     Supabase MUST load BEFORE the main application script.
--->
+<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1689,7 +1687,7 @@ async function signup(){
 
     setCurrentUser(result.data.user);
 
-    launchApp();
+    await launchApp();
 
     showToast("Account created");
 
@@ -1778,7 +1776,7 @@ async function login(){
 
   setCurrentUser(result.data.user);
 
-  launchApp();
+  await launchApp();
 
 }
 
@@ -1805,6 +1803,7 @@ async function logout(){
   }
 
   currentUser=null;
+  favorites=[];
 
   document
     .getElementById("app")
@@ -1835,6 +1834,7 @@ db.auth.onAuthStateChange(
     }else{
 
       currentUser=null;
+      favorites=[];
 
     }
 
@@ -1850,10 +1850,13 @@ let currentEvent=null;
 let selectedSeats=[];
 let activeCategory="All";
 
-let favorites=
-  JSON.parse(
-    localStorage.getItem("tm_favorites") || "[]"
-  );
+/*
+  Favorites are stored in Supabase.
+  The other application data remains in localStorage
+  until their respective backend systems are added.
+*/
+
+let favorites=[];
 
 let tickets=
   JSON.parse(
@@ -1876,12 +1879,146 @@ let resale=
   );
 
 
+/* =========================================================
+   SUPABASE FAVORITES
+========================================================= */
+
+async function loadFavorites(){
+
+  if(!currentUser){
+
+    favorites=[];
+
+    return;
+
+  }
+
+
+  const result=await db
+    .from("favorites")
+    .select("event_id")
+    .eq("user_id",currentUser.id);
+
+
+  if(result.error){
+
+    console.error(
+      "Favorites load error:",
+      result.error
+    );
+
+    showToast(
+      "Could not load favorites"
+    );
+
+    favorites=[];
+
+    return;
+
+  }
+
+
+  favorites=
+    (result.data || [])
+      .map(row=>Number(row.event_id));
+
+}
+
+
+async function addFavorite(id){
+
+  if(!currentUser){
+
+    showToast(
+      "Please log in to save favorites"
+    );
+
+    return false;
+
+  }
+
+
+  const result=await db
+    .from("favorites")
+    .insert({
+
+      user_id:currentUser.id,
+
+      event_id:String(id)
+
+    });
+
+
+  if(result.error){
+
+    /*
+      23505 means the favorite already exists.
+      Treat it as already saved.
+    */
+
+    if(result.error.code!=="23505"){
+
+      console.error(
+        "Favorite insert error:",
+        result.error
+      );
+
+      showToast(
+        "Could not save favorite"
+      );
+
+      return false;
+
+    }
+
+  }
+
+
+  return true;
+
+}
+
+
+async function removeFavorite(id){
+
+  if(!currentUser)
+    return false;
+
+
+  const result=await db
+    .from("favorites")
+    .delete()
+    .eq("user_id",currentUser.id)
+    .eq("event_id",String(id));
+
+
+  if(result.error){
+
+    console.error(
+      "Favorite delete error:",
+      result.error
+    );
+
+    showToast(
+      "Could not remove favorite"
+    );
+
+    return false;
+
+  }
+
+
+  return true;
+
+}
+
+
 function saveData(){
 
-  localStorage.setItem(
-    "tm_favorites",
-    JSON.stringify(favorites)
-  );
+  /*
+    Favorites are intentionally NOT stored
+    in localStorage anymore.
+  */
 
   localStorage.setItem(
     "tm_tickets",
@@ -1967,7 +2104,7 @@ function closeModal(){
    LAUNCH
 ========================================================= */
 
-function launchApp(){
+async function launchApp(){
 
   if(!currentUser){
 
@@ -1976,6 +2113,15 @@ function launchApp(){
     return;
 
   }
+
+
+  /*
+    Load this user's favorites from Supabase
+    before displaying the application.
+  */
+
+  await loadFavorites();
+
 
   document
     .getElementById("authScreen")
@@ -2823,15 +2969,40 @@ function updateBuyBar(){
 
 
 /* =========================================================
-   FAVORITES
+   FAVORITES — SUPABASE
 ========================================================= */
 
-function toggleFavorite(id){
+async function toggleFavorite(id){
 
-  if(favorites.includes(id)){
+  if(!currentUser){
+
+    showToast(
+      "Please log in to save favorites"
+    );
+
+    return;
+
+  }
+
+
+  const isFavorite=
+    favorites.includes(id);
+
+
+  if(isFavorite){
+
+    const success=
+      await removeFavorite(id);
+
+    if(!success)
+      return;
+
 
     favorites=
-      favorites.filter(x=>x!==id);
+      favorites.filter(
+        x=>x!==id
+      );
+
 
     showToast(
       "Removed from favorites"
@@ -2839,7 +3010,19 @@ function toggleFavorite(id){
 
   }else{
 
-    favorites.push(id);
+    const success=
+      await addFavorite(id);
+
+    if(!success)
+      return;
+
+
+    if(!favorites.includes(id)){
+
+      favorites.push(id);
+
+    }
+
 
     showToast(
       "Added to favorites"
@@ -2847,8 +3030,6 @@ function toggleFavorite(id){
 
   }
 
-
-  saveData();
 
   openEvent(id);
 
@@ -4372,7 +4553,7 @@ function showTransfers(){
 
   if(user){
 
-    launchApp();
+    await launchApp();
 
   }else{
 
