@@ -798,6 +798,12 @@ button{
   font-weight:800;
 }
 
+.order-number{
+  color:#737e8e;
+  font-size:11px;
+  margin-top:4px;
+}
+
 .order-meta{
   color:#737e8e;
   font-size:12px;
@@ -975,6 +981,11 @@ button{
   padding:14px;
   font-weight:850;
   margin-top:12px;
+}
+
+.full-btn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
 }
 
 .security-note{
@@ -1622,6 +1633,7 @@ function getUserDisplayName(user){
     user?.email?.split("@")[0] ||
     "User"
   );
+
 }
 
 
@@ -2055,28 +2067,57 @@ async function loadOrders(){
       result.error
     );
 
+    showToast("Could not load orders");
+
     return;
 
   }
 
+
   orders =
     (result.data || []).map(row=>({
 
-      id:row.id,
-      userId:row.user_id,
-      eventId:row.event_id,
-      event:row.event_name,
-      date:row.event_date,
-      venue:row.venue,
-      tickets:row.quantity,
-      total:Number(row.total || 0),
+      id:
+        row.id,
+
+      orderNumber:
+        row.order_number || "",
+
+      userId:
+        row.user_id,
+
+      eventId:
+        row.event_id,
+
+      event:
+        row.event_name || "Event",
+
+      date:
+        row.event_date || "",
+
+      venue:
+        row.venue || "",
+
+      tickets:
+        Number(row.quantity || 0),
+
+      total:
+        Number(
+          row.total_amount ??
+          row.total ??
+          0
+        ),
+
       status:
         row.status === "confirmed"
           ? "Confirmed"
-          : row.status,
+          : (row.status || "Confirmed"),
+
       created:
         row.created_at
-          ? new Date(row.created_at).toLocaleDateString()
+          ? new Date(
+              row.created_at
+            ).toLocaleDateString()
           : ""
 
     }));
@@ -2797,11 +2838,6 @@ function generateSeatMap(){
 
 function isSeatSold(eventId,section,row,number){
 
-  /*
-    Deterministic seat availability.
-    This gives each event a repeatable seat map.
-  */
-
   const value =
     Number(eventId)*17 +
     section.length*7 +
@@ -3202,6 +3238,10 @@ function setupPaymentFormatting(){
 }
 
 
+/* =========================
+   COMPLETE PURCHASE
+========================= */
+
 async function completePurchase(){
 
   if(!currentUser){
@@ -3344,8 +3384,21 @@ async function completePurchase(){
   }
 
 
-  const orderId =
-    "TM-"+Date.now().toString().slice(-8);
+  /*
+    Generate the order number BEFORE inserting
+    into Supabase because order_number is required.
+  */
+
+  const orderNumber =
+    "TM-" +
+    Date.now()
+      .toString(36)
+      .toUpperCase() +
+    "-" +
+    Math.random()
+      .toString(36)
+      .substring(2,7)
+      .toUpperCase();
 
 
   const total =
@@ -3358,10 +3411,9 @@ async function completePurchase(){
 
   /*
     IMPORTANT:
-    We intentionally DO NOT save card information.
-    Only the order information goes to Supabase.
+    Card information is NOT sent to Supabase.
+    This remains a demo checkout.
   */
-
 
   let orderResult;
 
@@ -3373,7 +3425,11 @@ async function completePurchase(){
         .from("orders")
         .insert({
 
-          user_id:currentUser.id,
+          order_number:
+            orderNumber,
+
+          user_id:
+            currentUser.id,
 
           event_id:
             String(currentEvent.id),
@@ -3387,7 +3443,7 @@ async function completePurchase(){
           venue:
             currentEvent.venue,
 
-          total:
+          total_amount:
             total,
 
           quantity:
@@ -3396,7 +3452,9 @@ async function completePurchase(){
           status:
             "confirmed"
 
-        });
+        })
+        .select()
+        .single();
 
   }catch(error){
 
@@ -3409,14 +3467,15 @@ async function completePurchase(){
     if(button){
 
       button.disabled=false;
-      button.textContent=
+
+      button.textContent =
         "Complete demo purchase";
 
     }
 
 
     showToast(
-      "Order error: "+
+      "Order error: " +
       (
         error?.message ||
         "Unknown error"
@@ -3440,7 +3499,8 @@ async function completePurchase(){
     if(button){
 
       button.disabled=false;
-      button.textContent=
+
+      button.textContent =
         "Complete demo purchase";
 
     }
@@ -3454,7 +3514,7 @@ async function completePurchase(){
 
 
     showToast(
-      "Order error: "+
+      "Order error: " +
       errorMessage
     );
 
@@ -3462,6 +3522,16 @@ async function completePurchase(){
     return;
 
   }
+
+
+  /*
+    Use the database order number if returned.
+    Otherwise keep the locally generated one.
+  */
+
+  const savedOrderNumber =
+    orderResult.data?.order_number ||
+    orderNumber;
 
 
   const purchaseTimestamp =
@@ -3473,15 +3543,15 @@ async function completePurchase(){
       (seat,index)=>({
 
         id:
-          "TKT-"+
+          "TKT-" +
           purchaseTimestamp
             .toString()
-            .slice(-7)+
-          "-"+
+            .slice(-7) +
+          "-" +
           (index+1),
 
         orderId:
-          orderId,
+          savedOrderNumber,
 
         userId:
           currentUser.id,
@@ -3540,7 +3610,11 @@ async function completePurchase(){
   const localOrder = {
 
     id:
-      orderId,
+      orderResult.data?.id ||
+      savedOrderNumber,
+
+    orderNumber:
+      savedOrderNumber,
 
     userId:
       currentUser.id,
@@ -3572,11 +3646,18 @@ async function completePurchase(){
     total:
       total,
 
+    totalAmount:
+      total,
+
     status:
       "Confirmed",
 
     created:
-      new Date().toLocaleDateString()
+      orderResult.data?.created_at
+        ? new Date(
+            orderResult.data.created_at
+          ).toLocaleDateString()
+        : new Date().toLocaleDateString()
 
   };
 
@@ -3589,6 +3670,10 @@ async function completePurchase(){
   saveData();
 
 
+  /*
+    Clear payment fields immediately.
+  */
+
   if(cardElement)
     cardElement.value="";
 
@@ -3597,6 +3682,9 @@ async function completePurchase(){
 
   if(cvcElement)
     cvcElement.value="";
+
+  if(nameElement)
+    nameElement.value="";
 
 
   closeModal();
@@ -3611,15 +3699,24 @@ async function completePurchase(){
 
 
   showToast(
-    "Purchase completed"
+    "Purchase completed — " +
+    savedOrderNumber
   );
+
+
+  /*
+    Reload orders from Supabase so the app
+    displays the same record that was saved.
+  */
+
+  await loadOrders();
 
 
   setTimeout(
     ()=>{
       showPage("tickets");
     },
-    500
+    700
   );
 
 }
@@ -3882,6 +3979,21 @@ function showTicket(ticketId){
               margin-top:3px;
             ">
               ${escapeHtml(ticket.id)}
+            </strong>
+
+            <div style="
+              font-size:11px;
+              color:#667085;
+              margin-top:12px;
+            ">
+              Order
+            </div>
+
+            <strong style="
+              display:block;
+              margin-top:3px;
+            ">
+              ${escapeHtml(ticket.orderId || "")}
             </strong>
 
           </div>
@@ -4325,6 +4437,17 @@ function renderOrders(){
                   </div>
 
 
+                  ${
+                    order.orderNumber
+                      ? `
+                        <div class="order-number">
+                          Order #${escapeHtml(order.orderNumber)}
+                        </div>
+                      `
+                      : ""
+                  }
+
+
                   <div class="order-meta">
 
                     ${escapeHtml(order.date || "")}
@@ -4349,7 +4472,7 @@ function renderOrders(){
                   <div class="order-total">
 
                     Total:
-                    $${Number(order.total).toFixed(2)}
+                    $${Number(order.total || 0).toFixed(2)}
 
                   </div>
 
