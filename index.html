@@ -1,54 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
-<title>Ticket Master</title>
+<title>Ticket Master — Independent Event Tickets</title>
 
 <link rel="apple-touch-icon"
-sizes="180x180"
-href="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png">
-
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Ticketmaster">
-<meta name="theme-color" content="#1769ff">
+      sizes="180x180"
+      href="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png">
 
 <link rel="icon"
-type="image/png"
-href="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png">
+      type="image/png"
+      href="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0b5cff">
 
 <style>
-
 *{
   box-sizing:border-box;
-  margin:0;
-  padding:0;
   -webkit-tap-highlight-color:transparent;
 }
 
-:root{
-  --blue:#1769ff;
-  --blue-dark:#0b55db;
-  --bg:#f5f7fb;
-  --card:#fff;
-  --text:#111827;
-  --muted:#6b7280;
-  --line:#e5e7eb;
-  --green:#16a34a;
-  --red:#dc2626;
-  --orange:#f59e0b;
+html,body{
+  margin:0;
+  padding:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:#f5f7fb;
+  color:#111827;
 }
 
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  max-width:480px;
-  margin:auto;
   min-height:100vh;
 }
 
@@ -58,352 +44,300 @@ input{
 }
 
 button{
-  border:0;
   cursor:pointer;
 }
 
-button:disabled{
-  opacity:.65;
-  cursor:not-allowed;
+.hidden{
+  display:none!important;
 }
 
-.app{
-  min-height:100vh;
-  padding-bottom:80px;
-}
+/* AUTH */
 
-/* =========================================================
-   AUTH
-========================================================= */
-
-.auth-screen{
+#authScreen{
   min-height:100vh;
-  padding:30px 22px;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:radial-gradient(
-    circle at top right,
-    #326fff 0,
-    #1769ff 25%,
-    #07142e 75%
-  );
+  padding:20px;
+  background:
+    radial-gradient(circle at top right,#dce9ff 0,#f5f7fb 45%,#eef3ff 100%);
 }
 
 .auth-box{
   width:100%;
+  max-width:430px;
   background:#fff;
-  border-radius:25px;
-  padding:25px 21px;
-  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  border-radius:24px;
+  padding:28px 22px;
+  box-shadow:0 20px 60px rgba(0,0,0,.12);
 }
 
 .auth-logo{
-  text-align:center;
-  font-size:28px;
-  font-weight:950;
-  letter-spacing:-1.5px;
-  margin-bottom:7px;
+  width:58px;
+  height:58px;
+  border-radius:16px;
+  object-fit:cover;
+  display:block;
+  margin:0 auto 14px;
 }
 
-.auth-logo span{
-  color:var(--blue);
+.auth-title{
+  text-align:center;
+  font-size:27px;
+  font-weight:800;
+  margin-bottom:5px;
 }
 
 .auth-subtitle{
   text-align:center;
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:25px;
+  color:#6b7280;
+  font-size:14px;
+  margin-bottom:24px;
 }
 
 .auth-tabs{
   display:flex;
-  background:#f1f3f6;
-  border-radius:11px;
+  background:#f1f4f8;
   padding:4px;
+  border-radius:12px;
   margin-bottom:20px;
 }
 
 .auth-tab{
   flex:1;
-  padding:10px;
-  border-radius:8px;
-  background:none;
-  font-size:13px;
-  font-weight:800;
-  color:var(--muted);
+  border:0;
+  padding:11px;
+  border-radius:9px;
+  background:transparent;
+  font-weight:700;
+  color:#6b7280;
 }
 
 .auth-tab.active{
   background:#fff;
-  color:var(--blue);
-  box-shadow:0 2px 6px rgba(0,0,0,.08);
+  color:#0b5cff;
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
 }
 
-.auth-field{
+.form-group{
   margin-bottom:14px;
 }
 
-.auth-field label{
+.form-label{
   display:block;
-  font-size:11px;
-  color:var(--muted);
-  font-weight:800;
-  margin-bottom:6px;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:7px;
+  color:#374151;
 }
 
-.auth-field input{
+.form-input{
   width:100%;
-  height:48px;
-  border:1px solid #dfe3e8;
-  border-radius:11px;
-  padding:0 13px;
+  border:1px solid #d8dee8;
+  background:#fff;
+  border-radius:12px;
+  padding:13px 14px;
   outline:none;
+  transition:.2s;
 }
 
-.auth-field input:focus{
-  border-color:var(--blue);
+.form-input:focus{
+  border-color:#0b5cff;
+  box-shadow:0 0 0 3px rgba(11,92,255,.1);
 }
 
-.auth-submit{
+.primary-btn{
   width:100%;
-  height:48px;
-  background:var(--blue);
+  border:0;
+  border-radius:12px;
+  padding:14px;
+  background:#0b5cff;
   color:#fff;
-  border-radius:11px;
-  font-weight:850;
-  margin-top:4px;
+  font-weight:800;
+  margin-top:5px;
+}
+
+.primary-btn:disabled{
+  opacity:.6;
 }
 
 .auth-note{
   text-align:center;
-  color:#9ca3af;
-  font-size:10px;
-  margin-top:18px;
+  color:#7b8493;
+  font-size:12px;
   line-height:1.5;
+  margin-top:16px;
 }
 
-/* =========================================================
-   HEADER
-========================================================= */
+/* APP */
 
-.header{
-  background:#fff;
+#app{
+  min-height:100vh;
+  padding-bottom:76px;
+}
+
+.top-header{
   position:sticky;
   top:0;
   z-index:50;
-  border-bottom:1px solid var(--line);
+  background:#fff;
+  border-bottom:1px solid #e8ecf2;
 }
 
 .header-inner{
-  padding:14px 16px 12px;
+  max-width:1100px;
+  margin:auto;
+  padding:13px 16px;
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  gap:12px;
 }
 
-.logo{
-  font-size:23px;
-  font-weight:950;
-  letter-spacing:-1px;
-}
-
-.logo span{
-  color:var(--blue);
-}
-
-.header-icons{
-  display:flex;
-  gap:8px;
-}
-
-.icon-btn{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  background:#f1f4f8;
+.brand{
   display:flex;
   align-items:center;
-  justify-content:center;
+  gap:9px;
+  min-width:0;
+}
+
+.brand img{
+  width:37px;
+  height:37px;
+  border-radius:10px;
+  object-fit:cover;
+}
+
+.brand-name{
   font-size:18px;
+  font-weight:900;
+  white-space:nowrap;
 }
 
-.search-wrap{
-  padding:0 16px 14px;
+.header-spacer{
+  flex:1;
 }
+
+.header-user{
+  border:0;
+  background:#eef3ff;
+  color:#0b5cff;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  font-weight:800;
+}
+
+.container{
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+  padding:20px 16px;
+}
+
+/* SEARCH */
 
 .search-box{
   position:relative;
+  margin-bottom:18px;
 }
 
-.search{
+.search-box input{
   width:100%;
-  height:45px;
-  border:0;
-  border-radius:12px;
-  background:#f0f2f5;
-  padding:0 15px 0 42px;
+  padding:14px 16px 14px 45px;
+  border:1px solid #e0e5ed;
+  border-radius:15px;
+  background:#fff;
   outline:none;
-  font-size:15px;
 }
 
 .search-icon{
   position:absolute;
-  left:15px;
-  top:11px;
-  font-size:18px;
+  left:16px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#8a94a5;
 }
 
-/* =========================================================
-   CONTENT
-========================================================= */
-
-.page{
-  padding:18px 16px;
-}
-
-.page-title{
-  font-size:27px;
-  font-weight:900;
-  letter-spacing:-.6px;
-  margin-bottom:5px;
-}
-
-.subtitle{
-  color:var(--muted);
-  font-size:14px;
-  margin-bottom:18px;
-}
-
-/* =========================================================
-   CATEGORIES
-========================================================= */
-
-.categories{
-  display:flex;
-  gap:9px;
-  overflow-x:auto;
-  padding-bottom:5px;
-  margin-bottom:20px;
-}
-
-.categories::-webkit-scrollbar{
-  display:none;
-}
-
-.cat{
-  white-space:nowrap;
-  padding:9px 15px;
-  border-radius:30px;
-  background:#fff;
-  border:1px solid var(--line);
-  font-size:13px;
-  font-weight:750;
-}
-
-.cat.active{
-  background:var(--blue);
-  color:#fff;
-  border-color:var(--blue);
-}
-
-/* =========================================================
-   HERO
-========================================================= */
+/* HERO */
 
 .hero{
-  min-height:260px;
-  border-radius:20px;
-  overflow:hidden;
-  position:relative;
+  background:linear-gradient(135deg,#0b5cff,#1643c7);
   color:#fff;
-  margin-bottom:25px;
-  background-size:cover;
-  background-position:center;
+  border-radius:22px;
+  padding:24px 20px;
+  margin-bottom:22px;
+  box-shadow:0 12px 30px rgba(11,92,255,.22);
 }
 
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to top,
-    rgba(0,0,0,.8),
-    rgba(0,0,0,.08)
-  );
-}
-
-.hero-content{
-  position:relative;
-  z-index:2;
-  padding:23px;
-  min-height:260px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-}
-
-.hero-tag{
-  background:rgba(255,255,255,.18);
-  width:max-content;
-  padding:6px 10px;
-  border-radius:20px;
-  font-size:10px;
-  font-weight:850;
-  margin-bottom:9px;
-}
-
-.hero h2{
-  font-size:30px;
-  line-height:1;
-  margin-bottom:8px;
+.hero h1{
+  margin:0 0 8px;
+  font-size:28px;
+  line-height:1.12;
 }
 
 .hero p{
-  font-size:13px;
-  opacity:.9;
-  margin-bottom:15px;
+  margin:0;
+  color:rgba(255,255,255,.86);
+  line-height:1.5;
+  font-size:14px;
 }
 
-.hero button{
-  width:max-content;
-  background:#fff;
-  color:#111827;
-  padding:11px 17px;
-  border-radius:10px;
-  font-weight:850;
-}
-
-/* =========================================================
-   SECTION
-========================================================= */
+/* SECTION */
 
 .section-head{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin:24px 0 12px;
+  justify-content:space-between;
+  margin:20px 0 12px;
 }
 
-.section-head h3{
-  font-size:19px;
+.section-title{
+  font-size:20px;
+  font-weight:850;
 }
 
-.section-head button{
+.section-action{
+  border:0;
   background:none;
-  color:var(--blue);
+  color:#0b5cff;
   font-weight:750;
-  font-size:13px;
 }
 
-/* =========================================================
-   EVENT CARD
-========================================================= */
+/* FILTERS */
 
-.events{
+.filter-row{
   display:flex;
-  flex-direction:column;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:4px;
+  margin-bottom:15px;
+}
+
+.filter-row::-webkit-scrollbar{
+  display:none;
+}
+
+.filter-btn{
+  white-space:nowrap;
+  border:1px solid #dce2ea;
+  background:#fff;
+  border-radius:999px;
+  padding:9px 14px;
+  font-size:13px;
+  font-weight:700;
+}
+
+.filter-btn.active{
+  background:#0b5cff;
+  color:#fff;
+  border-color:#0b5cff;
+}
+
+/* EVENTS */
+
+.events-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:13px;
 }
 
@@ -411,544 +345,437 @@ button:disabled{
   background:#fff;
   border-radius:17px;
   overflow:hidden;
-  border:1px solid #edf0f4;
-  box-shadow:0 3px 12px rgba(15,23,42,.04);
+  border:1px solid #e9edf3;
+  box-shadow:0 5px 18px rgba(16,24,40,.05);
+  cursor:pointer;
 }
 
 .event-image{
   width:100%;
-  height:150px;
-  background-size:cover;
-  background-position:center;
-  position:relative;
+  aspect-ratio:1.35;
+  object-fit:cover;
+  background:#e7ebf1;
 }
 
-.event-image::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to top,
-    rgba(0,0,0,.6),
-    transparent 55%
-  );
+.event-body{
+  padding:12px;
 }
 
-.event-category{
-  position:absolute;
-  z-index:2;
-  left:11px;
-  top:11px;
-  background:rgba(0,0,0,.55);
-  color:#fff;
-  border-radius:20px;
-  padding:5px 9px;
-  font-size:9px;
+.event-title{
+  font-size:15px;
   font-weight:850;
-}
-
-.event-artist{
-  position:absolute;
-  z-index:2;
-  bottom:11px;
-  left:13px;
-  color:#fff;
-  font-size:20px;
-  font-weight:900;
-}
-
-.event-info{
-  padding:13px;
-}
-
-.event-info h4{
-  font-size:16px;
+  line-height:1.2;
   margin-bottom:6px;
-}
-
-.event-info p{
-  color:var(--muted);
-  font-size:12px;
-  margin:3px 0;
 }
 
 .event-date{
-  color:var(--blue)!important;
-  font-weight:850;
+  color:#5d6878;
+  font-size:12px;
+  line-height:1.4;
 }
 
-.event-actions{
+.event-venue{
+  color:#7a8494;
+  font-size:11px;
+  margin-top:4px;
+  line-height:1.35;
+}
+
+.event-bottom{
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:8px;
   margin-top:10px;
 }
 
-.price{
-  font-size:12px;
+.event-price{
   font-weight:850;
+  font-size:13px;
 }
 
-.small-btn{
-  background:var(--blue);
-  color:#fff;
-  padding:8px 12px;
-  border-radius:8px;
-  font-size:11px;
-  font-weight:850;
+.favorite-btn{
+  width:32px;
+  height:32px;
+  border:0;
+  border-radius:50%;
+  background:#f0f3f8;
+  color:#7b8491;
+  font-size:16px;
 }
 
-/* =========================================================
-   DETAIL
-========================================================= */
+.favorite-btn.active{
+  color:#ef3340;
+  background:#fff0f1;
+}
+
+/* EMPTY */
+
+.empty{
+  text-align:center;
+  padding:45px 20px;
+  color:#788293;
+}
+
+.empty-icon{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.empty h3{
+  margin:0 0 6px;
+  color:#1f2937;
+}
+
+/* DETAIL */
+
+.back-btn{
+  border:0;
+  background:#fff;
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);
+  margin-bottom:15px;
+}
+
+.detail-hero{
+  border-radius:20px;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid #e6eaf0;
+}
 
 .detail-image{
-  height:270px;
-  border-radius:20px;
-  background-size:cover;
-  background-position:center;
-  position:relative;
-  overflow:hidden;
-  margin-bottom:16px;
+  width:100%;
+  max-height:310px;
+  object-fit:cover;
 }
 
-.detail-image::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to top,
-    rgba(0,0,0,.85),
-    transparent 65%
-  );
+.detail-body{
+  padding:18px;
 }
 
-.detail-image-content{
-  position:absolute;
-  z-index:2;
-  left:20px;
-  right:20px;
-  bottom:20px;
-  color:#fff;
-}
-
-.detail-image-content h1{
-  font-size:31px;
-  line-height:1;
-  margin-bottom:6px;
-}
-
-.detail-image-content p{
-  font-size:13px;
-  opacity:.9;
-}
-
-.info-box{
-  background:#fff;
-  border-radius:16px;
-  padding:15px;
-  margin-bottom:12px;
-}
-
-.info-row{
+.detail-title-row{
   display:flex;
-  gap:12px;
-  align-items:center;
-  margin-bottom:13px;
+  align-items:flex-start;
+  gap:10px;
 }
 
-.info-row:last-child{
-  margin-bottom:0;
+.detail-title{
+  flex:1;
+  font-size:25px;
+  font-weight:900;
+  line-height:1.12;
 }
 
-.info-icon{
-  width:38px;
-  height:38px;
-  border-radius:10px;
-  background:#edf4ff;
+.detail-fav{
+  flex:none;
+  width:43px;
+  height:43px;
+  border-radius:50%;
+  border:0;
+  background:#f1f4f8;
+  font-size:20px;
+}
+
+.detail-info{
+  display:grid;
+  gap:9px;
+  margin-top:16px;
+}
+
+.info-item{
   display:flex;
-  align-items:center;
-  justify-content:center;
+  gap:10px;
+  align-items:flex-start;
+  color:#4b5563;
+  font-size:14px;
 }
 
-.info-row strong{
-  font-size:13px;
+.info-item span:first-child{
+  width:23px;
 }
 
-.info-row span{
-  display:block;
-  color:var(--muted);
-  font-size:12px;
-  margin-top:2px;
+.detail-description{
+  margin-top:18px;
+  color:#667085;
+  line-height:1.55;
+  font-size:14px;
 }
 
-/* =========================================================
-   MAP
-========================================================= */
+/* SEATS */
 
-.map-card{
-  background:#fff;
-  border-radius:20px;
-  padding:16px;
-  overflow:hidden;
+.seat-wrap{
+  margin-top:20px;
+  padding-bottom:100px;
 }
 
 .stage{
-  width:75%;
-  margin:5px auto 25px;
-  height:38px;
-  border-radius:50% 50% 10px 10px;
-  background:#111827;
+  text-align:center;
+  background:#1d2738;
   color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:11px;
-  font-weight:850;
-  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  border-radius:10px 10px 50% 50%;
+  padding:12px;
+  margin:0 auto 25px;
+  max-width:290px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:1px;
 }
 
-.section-label{
-  text-align:center;
-  font-size:10px;
-  color:#9ca3af;
-  font-weight:850;
-  margin:13px 0 7px;
+.seat-section{
+  margin-bottom:24px;
+}
+
+.seat-section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.seat-section-title strong{
+  font-size:14px;
+}
+
+.seat-section-title span{
+  font-size:12px;
+  color:#788293;
 }
 
 .seat-row{
   display:flex;
+  gap:5px;
   justify-content:center;
-  gap:4px;
-  margin:4px 0;
+  margin-bottom:6px;
+  overflow-x:auto;
+  padding:2px;
 }
 
 .seat{
-  width:20px;
-  height:20px;
-  border-radius:5px 5px 7px 7px;
-  background:#36c76f;
-  font-size:7px;
+  width:25px;
+  height:25px;
+  min-width:25px;
+  border-radius:7px 7px 5px 5px;
+  border:0;
+  font-size:8px;
+  font-weight:800;
+  background:#dce5f4;
+  color:#354052;
+}
+
+.seat.available:hover{
+  transform:translateY(-1px);
+}
+
+.seat.selected{
+  background:#0b5cff;
   color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 
 .seat.sold{
-  background:#d1d5db;
+  background:#aab2be;
+  color:#fff;
   cursor:not-allowed;
 }
 
 .seat.resale{
-  background:#f59e0b;
+  background:#ffb020;
+  color:#fff;
 }
 
-.seat.selected{
-  background:var(--blue);
-  transform:scale(1.18);
-  box-shadow:0 3px 8px rgba(23,105,255,.35);
-}
-
-.legend{
+.seat-legend{
   display:flex;
   justify-content:center;
-  gap:13px;
-  margin-top:17px;
-  font-size:10px;
-  color:var(--muted);
+  flex-wrap:wrap;
+  gap:15px;
+  margin-top:20px;
+  color:#6b7280;
+  font-size:11px;
 }
 
 .legend-item{
   display:flex;
-  gap:4px;
   align-items:center;
+  gap:5px;
 }
 
-.dot{
-  width:10px;
-  height:10px;
-  border-radius:3px;
+.legend-dot{
+  width:13px;
+  height:13px;
+  border-radius:4px;
 }
 
-/* =========================================================
-   BUY BAR
-========================================================= */
+.dot-available{background:#dce5f4}
+.dot-selected{background:#0b5cff}
+.dot-sold{background:#aab2be}
+.dot-resale{background:#ffb020}
+
+/* BUY BAR */
 
 .buy-bar{
   position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:480px;
+  z-index:80;
+  left:0;
+  right:0;
+  bottom:65px;
   background:#fff;
-  border-top:1px solid var(--line);
-  padding:12px 16px;
-  z-index:60;
-  display:none;
+  border-top:1px solid #e1e6ee;
+  box-shadow:0 -8px 25px rgba(0,0,0,.08);
+  transform:translateY(120%);
+  transition:.25s;
 }
 
 .buy-bar.show{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
+  transform:translateY(0);
 }
 
-.total strong{
-  display:block;
-  font-size:18px;
-}
-
-.total span{
-  font-size:11px;
-  color:var(--muted);
-}
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.primary{
-  background:var(--blue);
-  color:#fff;
-  padding:12px 19px;
-  border-radius:11px;
-  font-weight:850;
-}
-
-.secondary{
-  background:#eef2f7;
-  color:#111827;
-  padding:12px 18px;
-  border-radius:11px;
-  font-weight:800;
-}
-
-/* =========================================================
-   TICKETS
-========================================================= */
-
-.ticket{
-  background:#fff;
-  border-radius:19px;
-  overflow:hidden;
-  margin-bottom:16px;
-  box-shadow:0 4px 15px rgba(0,0,0,.05);
-}
-
-.ticket-top{
-  height:125px;
-  padding:17px;
-  background-size:cover;
-  background-position:center;
-  position:relative;
-  color:#fff;
-}
-
-.ticket-top::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to top,
-    rgba(0,0,0,.75),
-    transparent
-  );
-}
-
-.ticket-top-content{
-  position:relative;
-  z-index:2;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-}
-
-.ticket-top h3{
-  font-size:19px;
-  margin-bottom:4px;
-}
-
-.ticket-top p{
-  opacity:.9;
-  font-size:12px;
-}
-
-.ticket-body{
-  padding:16px;
-}
-
-.ticket-details{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-
-.ticket-detail small{
-  display:block;
-  color:#9ca3af;
-  font-size:9px;
-  text-transform:uppercase;
-  font-weight:850;
-  margin-bottom:3px;
-}
-
-.ticket-detail strong{
-  font-size:13px;
-}
-
-.ticket-code{
-  margin-top:18px;
-  border-top:1px dashed #d1d5db;
-  padding-top:17px;
-  text-align:center;
-}
-
-.qr{
-  margin:0 auto 10px;
-  width:125px;
-  height:125px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #111 0 4px,
-      #fff 4px 8px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent 0 5px,
-      #111 5px 7px,
-      transparent 7px 10px
-    );
-  border:8px solid #fff;
-  box-shadow:0 0 0 1px #ddd;
-}
-
-/* =========================================================
-   NAV
-========================================================= */
-
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  max-width:480px;
-  width:100%;
-  height:70px;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(12px);
-  border-top:1px solid var(--line);
-  z-index:55;
-  display:flex;
-  justify-content:space-around;
-}
-
-.nav-btn{
-  flex:1;
-  background:none;
-  color:#7b8494;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:3px;
-  font-size:10px;
-  font-weight:750;
-}
-
-.nav-btn span{
-  font-size:21px;
-}
-
-.nav-btn.active{
-  color:var(--blue);
-}
-
-/* =========================================================
-   PROFILE
-========================================================= */
-
-.profile-card{
-  background:#fff;
-  border-radius:19px;
-  padding:20px;
-  text-align:center;
-  margin-bottom:15px;
-}
-
-.avatar{
-  width:76px;
-  height:76px;
-  border-radius:50%;
-  background:linear-gradient(
-    135deg,
-    #1769ff,
-    #6d9cff
-  );
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.buy-bar-inner{
+  max-width:1100px;
   margin:auto;
-  font-size:25px;
-  font-weight:900;
-}
-
-.profile-card h2{
-  margin-top:10px;
-  font-size:21px;
-}
-
-.profile-card p{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:3px;
-}
-
-.setting{
-  background:#fff;
-  padding:16px;
-  border-bottom:1px solid #f0f1f3;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.setting:first-child{
-  border-radius:15px 15px 0 0;
-}
-
-.setting:last-child{
-  border-radius:0 0 15px 15px;
-  border:0;
-}
-
-.setting-left{
+  padding:11px 16px;
   display:flex;
   align-items:center;
   gap:12px;
 }
 
-.setting-icon{
-  width:35px;
-  height:35px;
-  background:#eef3ff;
-  border-radius:9px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.buy-summary{
+  flex:1;
 }
 
-/* =========================================================
-   ORDERS
-========================================================= */
+.buy-summary strong{
+  display:block;
+  font-size:14px;
+}
 
-.order{
+.buy-summary span{
+  color:#727d8d;
+  font-size:12px;
+}
+
+.buy-btn{
+  border:0;
+  background:#0b5cff;
+  color:#fff;
+  border-radius:12px;
+  padding:13px 19px;
+  font-weight:850;
+}
+
+/* PAGES */
+
+.page-title{
+  font-size:25px;
+  font-weight:900;
+  margin:5px 0 18px;
+}
+
+/* TICKETS */
+
+.ticket-card{
   background:#fff;
+  border:1px solid #e3e8ef;
+  border-radius:18px;
+  overflow:hidden;
+  margin-bottom:14px;
+  box-shadow:0 5px 18px rgba(16,24,40,.05);
+}
+
+.ticket-top{
+  display:flex;
+  gap:12px;
+  padding:14px;
+}
+
+.ticket-image{
+  width:74px;
+  height:74px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.ticket-info{
+  flex:1;
+  min-width:0;
+}
+
+.ticket-info h3{
+  margin:0 0 5px;
+  font-size:16px;
+}
+
+.ticket-info p{
+  margin:3px 0;
+  color:#6b7280;
+  font-size:12px;
+}
+
+.ticket-status{
+  display:inline-block;
+  margin-top:6px;
+  padding:4px 7px;
+  border-radius:999px;
+  background:#e8f8ef;
+  color:#16834b;
+  font-size:10px;
+  font-weight:800;
+}
+
+.ticket-details{
+  border-top:1px dashed #d8dee8;
+  padding:13px 14px;
+}
+
+.ticket-seat{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:13px;
+}
+
+.ticket-seat div{
+  background:#f6f8fb;
+  border-radius:10px;
+  padding:9px;
+}
+
+.ticket-seat small{
+  display:block;
+  color:#7b8492;
+  font-size:10px;
+}
+
+.ticket-seat strong{
+  font-size:13px;
+}
+
+.ticket-actions{
+  display:flex;
+  gap:8px;
+}
+
+.small-btn{
+  flex:1;
+  border:1px solid #dce2ea;
+  background:#fff;
+  border-radius:10px;
+  padding:10px;
+  font-size:12px;
+  font-weight:750;
+}
+
+.small-btn.primary{
+  background:#0b5cff;
+  border-color:#0b5cff;
+  color:#fff;
+}
+
+/* ORDERS */
+
+.order-card{
+  background:#fff;
+  border:1px solid #e4e9f0;
   border-radius:16px;
   padding:15px;
   margin-bottom:12px;
@@ -958,398 +785,587 @@ button:disabled{
   display:flex;
   justify-content:space-between;
   gap:10px;
-  margin-bottom:8px;
 }
 
-.status{
-  font-size:10px;
-  padding:5px 8px;
-  border-radius:20px;
-  background:#dcfce7;
-  color:#15803d;
-  font-weight:850;
-  white-space:nowrap;
+.order-head h3{
+  margin:0;
+  font-size:15px;
 }
 
-.order p{
-  color:var(--muted);
+.order-status{
+  color:#16834b;
+  font-size:11px;
+  font-weight:800;
+}
+
+.order-meta{
+  color:#737e8e;
   font-size:12px;
+  margin-top:7px;
+  line-height:1.5;
+}
+
+.order-total{
+  margin-top:10px;
+  font-weight:900;
+}
+
+/* PROFILE */
+
+.profile-card{
+  background:#fff;
+  border:1px solid #e4e9f0;
+  border-radius:18px;
+  padding:20px;
+}
+
+.profile-avatar{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  background:#0b5cff;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  font-weight:900;
+  margin-bottom:12px;
+}
+
+.profile-name{
+  font-size:22px;
+  font-weight:900;
+}
+
+.profile-email{
+  color:#778191;
+  font-size:13px;
   margin-top:3px;
 }
 
-/* =========================================================
-   MARKETPLACE
-========================================================= */
+.profile-actions{
+  margin-top:20px;
+  display:grid;
+  gap:9px;
+}
 
-.resale-card{
+.profile-action{
+  width:100%;
+  text-align:left;
+  border:1px solid #e1e6ed;
   background:#fff;
+  padding:13px;
+  border-radius:12px;
+  font-weight:750;
+}
+
+.profile-action.danger{
+  color:#dc2626;
+}
+
+/* TRANSFERS / MARKETPLACE */
+
+.transfer-card,
+.market-card{
+  background:#fff;
+  border:1px solid #e2e7ee;
   border-radius:16px;
   padding:15px;
   margin-bottom:12px;
 }
 
-.resale-head{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-}
-
-.resale-card h4{
+.transfer-card h3,
+.market-card h3{
+  margin:0 0 7px;
   font-size:15px;
 }
 
-.resale-card p{
-  color:var(--muted);
+.transfer-meta,
+.market-meta{
+  color:#737e8e;
   font-size:12px;
-  margin-top:4px;
+  line-height:1.5;
 }
 
-.resale-price{
-  font-size:18px;
-  font-weight:900;
-  color:var(--blue);
-}
+/* MODAL */
 
-/* =========================================================
-   EMPTY
-========================================================= */
-
-.empty{
-  text-align:center;
-  padding:50px 20px;
-  color:var(--muted);
-}
-
-.empty-icon{
-  font-size:45px;
-  margin-bottom:10px;
-}
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-.modal-bg{
+.modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.5);
-  z-index:100;
+  z-index:200;
   display:none;
   align-items:flex-end;
   justify-content:center;
+  background:rgba(8,15,28,.56);
 }
 
-.modal-bg.open{
+.modal.show{
   display:flex;
 }
 
-.modal{
+.modal-box{
+  width:100%;
+  max-width:550px;
+  max-height:92vh;
+  overflow-y:auto;
   background:#fff;
-  width:100%;
-  max-width:480px;
-  border-radius:23px 23px 0 0;
+  border-radius:24px 24px 0 0;
   padding:20px;
-  max-height:88vh;
-  overflow:auto;
+  animation:slideUp .2s ease;
 }
 
-.modal-handle{
-  width:45px;
-  height:5px;
-  background:#d1d5db;
-  border-radius:10px;
-  margin:0 auto 17px;
+@keyframes slideUp{
+  from{transform:translateY(40px);opacity:.5}
+  to{transform:translateY(0);opacity:1}
 }
 
-.modal h2{
-  margin-bottom:14px;
+.modal-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:16px;
 }
 
-.form{
-  margin-bottom:13px;
+.modal-title{
+  font-size:20px;
+  font-weight:900;
 }
 
-.form label{
+.close-btn{
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:50%;
+  background:#f0f3f7;
+  font-size:20px;
+}
+
+.checkout-event{
+  background:#f5f7fb;
+  border-radius:13px;
+  padding:12px;
+  margin-bottom:15px;
+}
+
+.checkout-event strong{
   display:block;
-  font-size:11px;
-  color:var(--muted);
-  font-weight:750;
-  margin-bottom:5px;
+  font-size:14px;
 }
 
-.form input{
-  width:100%;
-  height:45px;
-  border:1px solid #dfe3e9;
-  border-radius:10px;
-  padding:0 12px;
-  outline:none;
+.checkout-event span{
+  display:block;
+  color:#727d8c;
+  font-size:12px;
+  margin-top:3px;
 }
 
-.form input:focus{
-  border-color:var(--blue);
+.checkout-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
 .full-btn{
   width:100%;
-  height:46px;
-  border-radius:11px;
-  background:var(--blue);
+  border:0;
+  background:#0b5cff;
   color:#fff;
+  border-radius:12px;
+  padding:14px;
   font-weight:850;
-  margin-top:5px;
+  margin-top:12px;
 }
 
-.close-btn{
-  width:100%;
-  height:43px;
-  border-radius:11px;
-  background:#eef2f7;
-  margin-top:8px;
-  font-weight:800;
+.security-note{
+  margin-top:11px;
+  padding:10px;
+  border-radius:10px;
+  background:#fff8e8;
+  color:#8a6415;
+  font-size:11px;
+  line-height:1.45;
 }
 
-/* =========================================================
-   TOAST
-========================================================= */
+/* TOAST */
 
 .toast{
   position:fixed;
+  z-index:500;
   left:50%;
-  bottom:85px;
-  transform:translateX(-50%) translateY(20px);
+  bottom:90px;
+  transform:translate(-50%,20px);
   background:#111827;
   color:#fff;
   padding:11px 15px;
-  border-radius:10px;
-  font-size:12px;
+  border-radius:11px;
+  font-size:13px;
   opacity:0;
   pointer-events:none;
   transition:.25s;
-  z-index:200;
   max-width:90%;
   text-align:center;
 }
 
 .toast.show{
   opacity:1;
-  transform:translateX(-50%) translateY(0);
+  transform:translate(-50%,0);
 }
 
-.hidden{
-  display:none!important;
+/* NAV */
+
+.bottom-nav{
+  position:fixed;
+  z-index:100;
+  left:0;
+  right:0;
+  bottom:0;
+  background:#fff;
+  border-top:1px solid #e4e8ee;
+  display:flex;
+  justify-content:center;
 }
 
+.bottom-nav-inner{
+  width:100%;
+  max-width:700px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+}
+
+.nav-btn{
+  border:0;
+  background:#fff;
+  color:#7b8492;
+  padding:9px 3px 8px;
+  font-size:10px;
+  font-weight:750;
+}
+
+.nav-icon{
+  display:block;
+  font-size:19px;
+  line-height:20px;
+  margin-bottom:3px;
+}
+
+.nav-btn.active{
+  color:#0b5cff;
+}
+
+/* DESKTOP */
+
+@media(min-width:700px){
+
+  .events-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+
+  .modal{
+    align-items:center;
+  }
+
+  .modal-box{
+    border-radius:22px;
+  }
+
+  .bottom-nav{
+    bottom:0;
+  }
+
+  .buy-bar{
+    bottom:65px;
+  }
+}
+
+@media(max-width:390px){
+
+  .events-grid{
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+  }
+
+  .event-body{
+    padding:10px;
+  }
+
+  .event-title{
+    font-size:13px;
+  }
+
+  .event-date{
+    font-size:11px;
+  }
+
+  .seat{
+    width:23px;
+    min-width:23px;
+    height:23px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- =========================================================
-     AUTH
-========================================================= -->
+<!-- AUTH SCREEN -->
 
-<div id="authScreen" class="auth-screen">
+<section id="authScreen">
 
   <div class="auth-box">
 
-    <div class="auth-logo">
-      Ticket <span>Master</span>
-    </div>
+    <img
+      class="auth-logo"
+      src="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png"
+      alt="Ticket Master">
+
+    <div class="auth-title">Ticket Master</div>
 
     <div class="auth-subtitle">
-      Discover live events and manage your tickets
+      Independent event ticketing platform
     </div>
 
     <div class="auth-tabs">
 
       <button
-      id="loginTab"
-      class="auth-tab active"
-      onclick="switchAuth('login')">
-
+        id="loginTab"
+        class="auth-tab active"
+        onclick="switchAuth('login')">
         Login
-
       </button>
 
       <button
-      id="signupTab"
-      class="auth-tab"
-      onclick="switchAuth('signup')">
-
-        Sign up
-
+        id="signupTab"
+        class="auth-tab"
+        onclick="switchAuth('signup')">
+        Create account
       </button>
 
     </div>
 
-    <div id="authForm"></div>
+    <div id="loginForm">
+
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input
+          id="loginEmail"
+          class="form-input"
+          type="email"
+          autocomplete="email"
+          placeholder="you@example.com">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input
+          id="loginPassword"
+          class="form-input"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Your password">
+      </div>
+
+      <button
+        class="primary-btn"
+        onclick="login()">
+        Login
+      </button>
+
+    </div>
+
+    <div id="signupForm" class="hidden">
+
+      <div class="form-group">
+        <label class="form-label">Name</label>
+        <input
+          id="signupName"
+          class="form-input"
+          type="text"
+          autocomplete="name"
+          placeholder="Your name">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input
+          id="signupEmail"
+          class="form-input"
+          type="email"
+          autocomplete="email"
+          placeholder="you@example.com">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input
+          id="signupPassword"
+          class="form-input"
+          type="password"
+          autocomplete="new-password"
+          placeholder="At least 6 characters">
+      </div>
+
+      <button
+        class="primary-btn"
+        onclick="signup()">
+        Create account
+      </button>
+
+    </div>
 
     <div class="auth-note">
-      Independent ticketing application.<br>
-      Your account is securely handled by Supabase Auth.
+      This is an independent event-ticketing application.
     </div>
 
   </div>
 
-</div>
+</section>
 
 
-<!-- =========================================================
-     APP
-========================================================= -->
+<!-- MAIN APP -->
 
-<div id="app" class="app hidden">
+<div id="app" class="hidden">
 
-<header class="header">
+  <header class="top-header">
 
-  <div class="header-inner">
+    <div class="header-inner">
 
-    <div class="logo">
-      Ticket <span>Master</span>
-    </div>
+      <div class="brand">
+        <img
+          src="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png"
+          alt="Logo">
 
-    <div class="header-icons">
+        <div class="brand-name">
+          Ticket Master
+        </div>
+      </div>
 
-      <button
-      class="icon-btn"
-      onclick="showPage('favorites')">
-
-        ♡
-
-      </button>
+      <div class="header-spacer"></div>
 
       <button
-      class="icon-btn"
-      onclick="showToast('Notifications are up to date')">
-
-        🔔
-
+        class="header-user"
+        onclick="showPage('profile')"
+        id="headerUser">
+        U
       </button>
 
     </div>
 
-  </div>
+  </header>
 
-  <div class="search-wrap">
 
-    <div class="search-box">
+  <main id="main"></main>
 
-      <span class="search-icon">
-        ⌕
-      </span>
 
-      <input
-      id="searchInput"
-      class="search"
-      placeholder="Search artists, events or venues"
-      oninput="searchEvents(this.value)">
+  <div id="buyBar" class="buy-bar">
+
+    <div class="buy-bar-inner">
+
+      <div class="buy-summary">
+
+        <strong id="buyCount">
+          0 tickets
+        </strong>
+
+        <span id="buyTotal">
+          $0.00
+        </span>
+
+      </div>
+
+      <button
+        class="buy-btn"
+        onclick="openCheckout()">
+        Continue
+      </button>
 
     </div>
 
   </div>
 
-</header>
 
+  <nav class="bottom-nav">
 
-<main id="main"></main>
+    <div class="bottom-nav-inner">
 
+      <button
+        id="navHome"
+        class="nav-btn active"
+        onclick="showPage('home')">
 
-<nav class="bottom-nav">
+        <span class="nav-icon">⌂</span>
+        Home
 
-  <button
-  class="nav-btn active"
-  id="nav-home"
-  onclick="showPage('home')">
+      </button>
 
-    <span>⌂</span>
-    Home
+      <button
+        id="navEvents"
+        class="nav-btn"
+        onclick="showPage('events')">
 
-  </button>
+        <span class="nav-icon">◫</span>
+        Events
 
-  <button
-  class="nav-btn"
-  id="nav-events"
-  onclick="showPage('events')">
+      </button>
 
-    <span>🎫</span>
-    Events
+      <button
+        id="navFavorites"
+        class="nav-btn"
+        onclick="showPage('favorites')">
 
-  </button>
+        <span class="nav-icon">♡</span>
+        Favorites
 
-  <button
-  class="nav-btn"
-  id="nav-tickets"
-  onclick="showPage('tickets')">
+      </button>
 
-    <span>▣</span>
-    Tickets
+      <button
+        id="navTickets"
+        class="nav-btn"
+        onclick="showPage('tickets')">
 
-  </button>
+        <span class="nav-icon">▣</span>
+        Tickets
 
-  <button
-  class="nav-btn"
-  id="nav-orders"
-  onclick="showPage('orders')">
+      </button>
 
-    <span>▤</span>
-    Orders
+      <button
+        id="navProfile"
+        class="nav-btn"
+        onclick="showPage('profile')">
 
-  </button>
+        <span class="nav-icon">●</span>
+        Profile
 
-  <button
-  class="nav-btn"
-  id="nav-profile"
-  onclick="showPage('profile')">
+      </button>
 
-    <span>●</span>
-    Profile
+    </div>
 
-  </button>
-
-</nav>
-
-</div>
-
-
-<!-- =========================================================
-     BUY BAR
-========================================================= -->
-
-<div id="buyBar" class="buy-bar">
-
-  <div class="total">
-
-    <strong id="selectedTotal">
-      $0
-    </strong>
-
-    <span id="selectedCount">
-      0 tickets selected
-    </span>
-
-  </div>
-
-  <button
-  class="primary"
-  onclick="openCheckout()">
-
-    Continue
-
-  </button>
+  </nav>
 
 </div>
 
 
-<!-- =========================================================
-     MODAL
-========================================================= -->
+<!-- MODAL -->
 
-<div id="modalBg" class="modal-bg">
+<div id="modal" class="modal">
 
-  <div class="modal">
+  <div class="modal-box">
 
-    <div class="modal-handle"></div>
+    <div class="modal-header">
+
+      <div
+        id="modalTitle"
+        class="modal-title">
+        Checkout
+      </div>
+
+      <button
+        class="close-btn"
+        onclick="closeModal()">
+        ×
+      </button>
+
+    </div>
 
     <div id="modalContent"></div>
 
@@ -1361,559 +1377,390 @@ button:disabled{
 <div id="toast" class="toast"></div>
 
 
-<!-- =========================================================
-     SUPABASE
-========================================================= -->
+<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-/* =========================================================
-   SUPABASE CONFIG
-========================================================= */
-
 const SUPABASE_URL =
   "https://xaxvikgtivolxhwhyhvw.supabase.co";
 
-const SUPABASE_PUBLISHABLE_KEY =
+const SUPABASE_KEY =
   "sb_publishable_3CH58RzUC3Vu1y08B_5T3Q_vXk3Uyv_";
 
 const db =
   window.supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
+    SUPABASE_KEY
   );
 
 
-/* =========================================================
-   EVENT DATA
-========================================================= */
+/* =========================
+   DATA
+========================= */
 
 const events = [
 
-{
-  id:1,
-  artist:"Bruno Mars",
-  title:"Bruno Mars Live",
-  date:"Friday, February 19, 2027",
-  time:"5:00 PM",
-  venue:"Marvel Stadium",
-  city:"Melbourne, VIC",
-  category:"Concerts",
-  price:105,
-  image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id:1,
+    title:"Bruno Mars",
+    artist:"Bruno Mars",
+    date:"Friday, February 19, 2027",
+    time:"5:00 PM",
+    venue:"Marvel Stadium",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:105,
+    image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=80"
+  },
 
-{
-  id:2,
-  artist:"BIGBANG",
-  title:"BIGBANG World Tour",
-  date:"Saturday, October 24, 2026",
-  time:"7:30 PM",
-  venue:"Rod Laver Arena",
-  city:"Melbourne, VIC",
-  category:"Concerts",
-  price:120,
-  image:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id:2,
+    title:"BIGBANG",
+    artist:"BIGBANG",
+    date:"Saturday, October 24, 2026",
+    time:"7:30 PM",
+    venue:"Rod Laver Arena",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:120,
+    image:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80"
+  },
 
-{
-  id:3,
-  artist:"The Weeknd",
-  title:"After Hours Til Dawn",
-  date:"Saturday, November 7, 2026",
-  time:"7:30 PM",
-  venue:"Accor Stadium",
-  city:"Sydney, NSW",
-  category:"Concerts",
-  price:99,
-  image:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id:3,
+    title:"The Weeknd",
+    artist:"The Weeknd",
+    date:"Saturday, November 7, 2026",
+    time:"7:30 PM",
+    venue:"Accor Stadium",
+    city:"Sydney NSW",
+    category:"Concerts",
+    price:99,
+    image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=80"
+  },
 
-{
-  id:4,
-  artist:"Coldplay",
-  title:"Music Of The Spheres",
-  date:"Sunday, November 15, 2026",
-  time:"7:00 PM",
-  venue:"Marvel Stadium",
-  city:"Melbourne, VIC",
-  category:"Concerts",
-  price:105,
-  image:"https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id:4,
+    title:"Coldplay",
+    artist:"Coldplay",
+    date:"Sunday, November 15, 2026",
+    time:"7:00 PM",
+    venue:"Marvel Stadium",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:105,
+    image:"https://images.unsplash.com/photo-1521337581100-8ca9a73a5f79?auto=format&fit=crop&w=900&q=80"
+  },
 
-{
-  id:5,
-  artist:"Beyoncé",
-  title:"Renaissance World Tour",
-  date:"Saturday, December 5, 2026",
-  time:"8:00 PM",
-  venue:"Accor Stadium",
-  city:"Sydney, NSW",
-  category:"Concerts",
-  price:145,
-  image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id:5,
+    title:"Beyoncé",
+    artist:"Beyoncé",
+    date:"Saturday, December 5, 2026",
+    time:"8:00 PM",
+    venue:"Accor Stadium",
+    city:"Sydney NSW",
+    category:"Concerts",
+    price:145,
+    image:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=80"
+  },
 
-{
-  id:6,
-  artist:"Taylor Swift",
-  title:"The Eras Experience",
-  date:"Friday, January 15, 2027",
-  time:"7:30 PM",
-  venue:"MCG",
-  city:"Melbourne, VIC",
-  category:"Concerts",
-  price:160,
-  image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id:6,
+    title:"Taylor Swift",
+    artist:"Taylor Swift",
+    date:"Friday, January 15, 2027",
+    time:"7:30 PM",
+    venue:"MCG",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:160,
+    image:"https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=80"
+  },
 
-{
-  id:7,
-  artist:"Drake",
-  title:"Drake Live",
-  date:"Saturday, February 13, 2027",
-  time:"8:00 PM",
-  venue:"Qudos Bank Arena",
-  city:"Sydney, NSW",
-  category:"Concerts",
-  price:110,
-  image:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id:7,
+    title:"Drake",
+    artist:"Drake",
+    date:"Saturday, February 13, 2027",
+    time:"8:00 PM",
+    venue:"Qudos Bank Arena",
+    city:"Sydney NSW",
+    category:"Concerts",
+    price:110,
+    image:"https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=900&q=80"
+  },
 
-{
-  id:8,
-  artist:"BLACKPINK",
-  title:"BLACKPINK World Tour",
-  date:"Sunday, March 7, 2027",
-  time:"7:30 PM",
-  venue:"Rod Laver Arena",
-  city:"Melbourne, VIC",
-  category:"Concerts",
-  price:125,
-  image:"https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id:8,
+    title:"BLACKPINK",
+    artist:"BLACKPINK",
+    date:"Sunday, March 7, 2027",
+    time:"7:30 PM",
+    venue:"Rod Laver Arena",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:125,
+    image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=80"
+  },
 
-{
-  id:9,
-  artist:"Adele",
-  title:"Adele Live",
-  date:"Saturday, April 10, 2027",
-  time:"8:00 PM",
-  venue:"Rod Laver Arena",
-  city:"Melbourne, VIC",
-  category:"Concerts",
-  price:135,
-  image:"https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id:9,
+    title:"Adele",
+    artist:"Adele",
+    date:"Saturday, April 10, 2027",
+    time:"8:00 PM",
+    venue:"Rod Laver Arena",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:135,
+    image:"https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=900&q=80"
+  },
 
-{
-  id:10,
-  artist:"Ed Sheeran",
-  title:"Mathematics Tour",
-  date:"Saturday, May 1, 2027",
-  time:"7:30 PM",
-  venue:"MCG",
-  city:"Melbourne, VIC",
-  category:"Concerts",
-  price:95,
-  image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id:10,
+    title:"Ed Sheeran",
+    artist:"Ed Sheeran",
+    date:"Saturday, May 1, 2027",
+    time:"7:30 PM",
+    venue:"MCG",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:95,
+    image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=80"
+  },
 
-{
-  id:11,
-  artist:"Lady Gaga",
-  title:"Mayhem Ball",
-  date:"Friday, May 21, 2027",
-  time:"8:00 PM",
-  venue:"Qudos Bank Arena",
-  city:"Sydney, NSW",
-  category:"Concerts",
-  price:130,
-  image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id:11,
+    title:"Lady Gaga",
+    artist:"Lady Gaga",
+    date:"Friday, May 21, 2027",
+    time:"8:00 PM",
+    venue:"Qudos Bank Arena",
+    city:"Sydney NSW",
+    category:"Concerts",
+    price:130,
+    image:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80"
+  },
 
-{
-  id:12,
-  artist:"Rihanna",
-  title:"Rihanna Live",
-  date:"Saturday, June 12, 2027",
-  time:"8:00 PM",
-  venue:"Marvel Stadium",
-  city:"Melbourne, VIC",
-  category:"Concerts",
-  price:150,
-  image:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id:12,
+    title:"Rihanna",
+    artist:"Rihanna",
+    date:"Saturday, June 12, 2027",
+    time:"8:00 PM",
+    venue:"Marvel Stadium",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:150,
+    image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=80"
+  },
 
-{
-  id:13,
-  artist:"Melbourne United",
-  title:"Melbourne United",
-  date:"Sunday, July 4, 2027",
-  time:"5:00 PM",
-  venue:"John Cain Arena",
-  city:"Melbourne, VIC",
-  category:"Sports",
-  price:45,
-  image:"https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id:13,
+    title:"Melbourne United",
+    artist:"Melbourne United",
+    date:"Sunday, July 4, 2027",
+    time:"5:00 PM",
+    venue:"John Cain Arena",
+    city:"Melbourne VIC",
+    category:"Sports",
+    price:45,
+    image:"https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=900&q=80"
+  },
 
-{
-  id:14,
-  artist:"Comedy Night",
-  title:"Comedy All Stars",
-  date:"Friday, July 16, 2027",
-  time:"7:30 PM",
-  venue:"Forum Melbourne",
-  city:"Melbourne, VIC",
-  category:"Comedy",
-  price:39,
-  image:"https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&w=1000&q=85"
-}
+  {
+    id:14,
+    title:"Comedy Night",
+    artist:"Comedy Night",
+    date:"Friday, July 16, 2027",
+    time:"7:30 PM",
+    venue:"Forum Melbourne",
+    city:"Melbourne VIC",
+    category:"Comedy",
+    price:39,
+    image:"https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&w=900&q=80"
+  }
 
 ];
 
 
-/* =========================================================
-   ACCOUNT
-========================================================= */
+/* =========================
+   STATE
+========================= */
 
-let currentUser=null;
+let currentUser = null;
+let currentPage = "home";
+let currentEvent = null;
+let selectedSeats = [];
+let favorites = [];
 
+let tickets =
+  JSON.parse(localStorage.getItem("tm_tickets") || "[]");
+
+let orders =
+  JSON.parse(localStorage.getItem("tm_orders") || "[]");
+
+let transfers =
+  JSON.parse(localStorage.getItem("tm_transfers") || "[]");
+
+let resale =
+  JSON.parse(localStorage.getItem("tm_resale") || "[]");
+
+
+/* =========================
+   AUTH
+========================= */
 
 function getUserDisplayName(user){
 
-  return(
+  return (
     user?.user_metadata?.full_name ||
     user?.user_metadata?.name ||
     user?.email?.split("@")[0] ||
     "User"
   );
-
 }
 
 
 function setCurrentUser(user){
 
-  if(!user){
+  currentUser = user || null;
 
-    currentUser=null;
+  const headerUser =
+    document.getElementById("headerUser");
 
-    return;
+  if(headerUser && currentUser){
+
+    const name =
+      getUserDisplayName(currentUser);
+
+    headerUser.textContent =
+      name.charAt(0).toUpperCase();
 
   }
-
-  currentUser={
-    id:user.id,
-    email:user.email,
-    name:getUserDisplayName(user)
-  };
 
 }
 
 
 async function loadCurrentUser(){
 
-  const result=
+  const result =
     await db.auth.getSession();
 
-  if(result.error){
-
-    console.error(
-      "Session error:",
-      result.error
-    );
-
-    currentUser=null;
-
-    return null;
-
-  }
-
-  const session=
-    result.data.session;
-
-  if(session?.user){
-
-    setCurrentUser(
-      session.user
-    );
-
-    return session.user;
-
-  }
-
-  currentUser=null;
-
-  return null;
+  setCurrentUser(
+    result?.data?.session?.user || null
+  );
 
 }
 
 
-/* =========================================================
-   AUTH UI
-========================================================= */
+function switchAuth(mode){
 
-function switchAuth(type){
+  const loginForm =
+    document.getElementById("loginForm");
 
-  document
-    .getElementById("loginTab")
-    .classList.toggle(
-      "active",
-      type==="login"
-    );
+  const signupForm =
+    document.getElementById("signupForm");
 
-  document
-    .getElementById("signupTab")
-    .classList.toggle(
-      "active",
-      type==="signup"
-    );
+  const loginTab =
+    document.getElementById("loginTab");
 
+  const signupTab =
+    document.getElementById("signupTab");
 
-  if(type==="login"){
+  if(mode === "login"){
 
-    document
-      .getElementById("authForm")
-      .innerHTML=`
+    loginForm.classList.remove("hidden");
+    signupForm.classList.add("hidden");
 
-        <div class="auth-field">
-
-          <label>EMAIL</label>
-
-          <input
-          id="loginEmail"
-          type="email"
-          autocomplete="email"
-          placeholder="you@example.com">
-
-        </div>
-
-        <div class="auth-field">
-
-          <label>PASSWORD</label>
-
-          <input
-          id="loginPassword"
-          type="password"
-          autocomplete="current-password"
-          placeholder="Password">
-
-        </div>
-
-        <button
-        class="auth-submit"
-        onclick="login()">
-
-          Log in
-
-        </button>
-
-      `;
+    loginTab.classList.add("active");
+    signupTab.classList.remove("active");
 
   }else{
 
-    document
-      .getElementById("authForm")
-      .innerHTML=`
+    loginForm.classList.add("hidden");
+    signupForm.classList.remove("hidden");
 
-        <div class="auth-field">
-
-          <label>FULL NAME</label>
-
-          <input
-          id="signupName"
-          autocomplete="name"
-          placeholder="Your full name">
-
-        </div>
-
-        <div class="auth-field">
-
-          <label>EMAIL</label>
-
-          <input
-          id="signupEmail"
-          type="email"
-          autocomplete="email"
-          placeholder="you@example.com">
-
-        </div>
-
-        <div class="auth-field">
-
-          <label>PASSWORD</label>
-
-          <input
-          id="signupPassword"
-          type="password"
-          autocomplete="new-password"
-          placeholder="Create a password">
-
-        </div>
-
-        <div class="auth-field">
-
-          <label>CONFIRM PASSWORD</label>
-
-          <input
-          id="signupConfirm"
-          type="password"
-          autocomplete="new-password"
-          placeholder="Repeat password">
-
-        </div>
-
-        <button
-        class="auth-submit"
-        onclick="signup()">
-
-          Create account
-
-        </button>
-
-      `;
+    loginTab.classList.remove("active");
+    signupTab.classList.add("active");
 
   }
 
 }
 
 
-/* =========================================================
-   SIGN UP
-========================================================= */
-
 async function signup(){
 
-  const name=
-    document
-      .getElementById("signupName")
-      .value
-      .trim();
+  const name =
+    document.getElementById("signupName").value.trim();
 
-  const email=
-    document
-      .getElementById("signupEmail")
-      .value
-      .trim()
-      .toLowerCase();
+  const email =
+    document.getElementById("signupEmail").value.trim();
 
-  const password=
-    document
-      .getElementById("signupPassword")
-      .value;
+  const password =
+    document.getElementById("signupPassword").value;
 
-  const confirm=
-    document
-      .getElementById("signupConfirm")
-      .value;
+  if(!name){
 
-
-  if(!name || !email || !password){
-
-    showToast(
-      "Please complete all fields."
-    );
-
+    showToast("Enter your name");
     return;
 
   }
 
+  if(!email){
 
-  if(password!==confirm){
-
-    showToast(
-      "Passwords do not match."
-    );
-
+    showToast("Enter your email");
     return;
 
   }
 
+  if(password.length < 6){
 
-  if(password.length<6){
-
-    showToast(
-      "Password must be at least 6 characters."
-    );
-
+    showToast("Password must be at least 6 characters");
     return;
 
   }
 
-
-  const button=
-    document.querySelector(
-      ".auth-submit"
-    );
-
-
-  if(button){
-
-    button.disabled=true;
-
-    button.textContent=
-      "Creating account...";
-
-  }
-
-
-  const result=
+  const result =
     await db.auth.signUp({
 
-      email:email,
-
-      password:password,
+      email,
+      password,
 
       options:{
         data:{
-          full_name:name
-        }
+          full_name:name,
+          name:name
+        },
+
+        emailRedirectTo:
+          "https://kodakebtcfx-ux.github.io/Ticketmaster/"
       }
 
     });
 
 
-  if(button){
-
-    button.disabled=false;
-
-    button.textContent=
-      "Create account";
-
-  }
-
-
   if(result.error){
 
-    console.error(
-      "Signup error:",
-      result.error
-    );
+    console.error(result.error);
 
     showToast(
-      result.error.message
+      result.error.message ||
+      "Could not create account"
     );
 
     return;
 
   }
 
-
   if(result.data.session){
 
-    setCurrentUser(
-      result.data.user
-    );
+    setCurrentUser(result.data.user);
 
     await launchApp();
-
-    showToast(
-      "Account created"
-    );
 
   }else{
 
@@ -1928,130 +1775,56 @@ async function signup(){
 }
 
 
-/* =========================================================
-   LOGIN
-========================================================= */
-
 async function login(){
 
-  const email=
-    document
-      .getElementById("loginEmail")
-      .value
-      .trim()
-      .toLowerCase();
+  const email =
+    document.getElementById("loginEmail").value.trim();
 
-  const password=
-    document
-      .getElementById("loginPassword")
-      .value;
-
+  const password =
+    document.getElementById("loginPassword").value;
 
   if(!email || !password){
 
-    showToast(
-      "Enter your email and password."
-    );
-
+    showToast("Enter your email and password");
     return;
 
   }
 
-
-  const button=
-    document.querySelector(
-      ".auth-submit"
-    );
-
-
-  if(button){
-
-    button.disabled=true;
-
-    button.textContent=
-      "Logging in...";
-
-  }
-
-
-  const result=
+  const result =
     await db.auth.signInWithPassword({
-
-      email:email,
-
-      password:password
-
+      email,
+      password
     });
-
-
-  if(button){
-
-    button.disabled=false;
-
-    button.textContent=
-      "Log in";
-
-  }
 
 
   if(result.error){
 
-    console.error(
-      "Login error:",
-      result.error
-    );
+    console.error(result.error);
 
     showToast(
-      result.error.message
+      result.error.message ||
+      "Login failed"
     );
 
     return;
 
   }
 
-
-  setCurrentUser(
-    result.data.user
-  );
+  setCurrentUser(result.data.user);
 
   await launchApp();
 
 }
 
 
-/* =========================================================
-   LOGOUT
-========================================================= */
-
 async function logout(){
 
-  const result=
-    await db.auth.signOut();
+  await db.auth.signOut();
 
-  if(result.error){
-
-    console.error(
-      "Logout error:",
-      result.error
-    );
-
-    showToast(
-      result.error.message
-    );
-
-    return;
-
-  }
-
-
-  currentUser=null;
-
-  favorites=[];
-  tickets=[];
-  orders=[];
-  transfers=[];
-  resale=[];
-
+  currentUser = null;
+  favorites = [];
+  selectedSeats = [];
+  currentEvent = null;
 
   document
     .getElementById("app")
@@ -2063,27 +1836,17 @@ async function logout(){
 
   switchAuth("login");
 
+  showToast("Logged out");
+
 }
 
 
-/* =========================================================
-   AUTH STATE
-========================================================= */
-
 db.auth.onAuthStateChange(
-  (event,session)=>{
+  async (event,session)=>{
 
     if(session?.user){
 
-      setCurrentUser(
-        session.user
-      );
-
-    }else{
-
-      currentUser=null;
-
-      favorites=[];
+      setCurrentUser(session.user);
 
     }
 
@@ -2091,70 +1854,24 @@ db.auth.onAuthStateChange(
 );
 
 
-/* =========================================================
-   APPLICATION STATE
-========================================================= */
-
-let currentEvent=null;
-
-let selectedSeats=[];
-
-let activeCategory="All";
-
-let favorites=[];
-
-let tickets=
-  JSON.parse(
-    localStorage.getItem(
-      "tm_tickets"
-    ) || "[]"
-  );
-
-let orders=
-  JSON.parse(
-    localStorage.getItem(
-      "tm_orders"
-    ) || "[]"
-  );
-
-let transfers=
-  JSON.parse(
-    localStorage.getItem(
-      "tm_transfers"
-    ) || "[]"
-  );
-
-let resale=
-  JSON.parse(
-    localStorage.getItem(
-      "tm_resale"
-    ) || "[]"
-  );
-
-
-/* =========================================================
+/* =========================
    FAVORITES
-========================================================= */
+========================= */
 
 async function loadFavorites(){
 
   if(!currentUser){
 
     favorites=[];
-
     return;
 
   }
 
-
-  const result=
+  const result =
     await db
       .from("favorites")
       .select("event_id")
-      .eq(
-        "user_id",
-        currentUser.id
-      );
+      .eq("user_id",currentUser.id);
 
 
   if(result.error){
@@ -2165,21 +1882,13 @@ async function loadFavorites(){
     );
 
     favorites=[];
-
-    showToast(
-      "Could not load favorites"
-    );
-
     return;
 
   }
 
-
-  favorites=
+  favorites =
     (result.data || [])
-      .map(row=>
-        Number(row.event_id)
-      );
+      .map(row=>Number(row.event_id));
 
 }
 
@@ -2188,50 +1897,38 @@ async function addFavorite(id){
 
   if(!currentUser){
 
-    showToast(
-      "Please log in to save favorites"
-    );
-
+    showToast("Please log in to save favorites");
     return false;
 
   }
 
-
-  const result=
+  const result =
     await db
       .from("favorites")
       .insert({
 
-        user_id:
-          currentUser.id,
-
-        event_id:
-          String(id)
+        user_id:currentUser.id,
+        event_id:String(id)
 
       });
 
 
   if(result.error){
 
-    if(
-      result.error.code!=="23505"
-    ){
+    if(result.error.code !== "23505"){
 
       console.error(
         "Favorite insert error:",
         result.error
       );
 
-      showToast(
-        "Could not save favorite"
-      );
+      showToast("Could not save favorite");
 
       return false;
 
     }
 
   }
-
 
   return true;
 
@@ -2243,19 +1940,12 @@ async function removeFavorite(id){
   if(!currentUser)
     return false;
 
-
-  const result=
+  const result =
     await db
       .from("favorites")
       .delete()
-      .eq(
-        "user_id",
-        currentUser.id
-      )
-      .eq(
-        "event_id",
-        String(id)
-      );
+      .eq("user_id",currentUser.id)
+      .eq("event_id",String(id));
 
 
   if(result.error){
@@ -2265,154 +1955,60 @@ async function removeFavorite(id){
       result.error
     );
 
-    showToast(
-      "Could not remove favorite"
-    );
+    showToast("Could not remove favorite");
 
     return false;
 
   }
-
 
   return true;
 
 }
 
 
-/* =========================================================
-   SUPABASE ORDERS
-========================================================= */
+async function toggleFavorite(id){
 
-async function loadOrders(){
-
-  if(!currentUser){
-
-    orders=[];
-
-    return;
-
-  }
+  const exists =
+    favorites.includes(Number(id));
 
 
-  const result=
-    await db
-      .from("orders")
-      .select("*")
-      .eq(
-        "user_id",
-        currentUser.id
-      )
-      .order(
-        "created_at",
-        {
-          ascending:false
-        }
-      );
+  if(exists){
 
+    const ok =
+      await removeFavorite(id);
 
-  if(result.error){
+    if(ok){
 
-    console.error(
-      "Orders load error:",
-      result.error
-    );
-
-    /*
-      Keep local orders available if the
-      Supabase request fails.
-    */
-
-    return;
-
-  }
-
-
-  const remoteOrders=
-    result.data || [];
-
-
-  orders=
-    remoteOrders.map(order=>{
-
-      const event=
-        events.find(
-          e=>
-            String(e.id)===
-            String(order.event_id)
+      favorites =
+        favorites.filter(
+          x=>Number(x)!==Number(id)
         );
 
+      refreshCurrentPage();
 
-      return{
+    }
 
-        id:
-          order.id,
+  }else{
 
-        supabaseId:
-          order.id,
+    const ok =
+      await addFavorite(id);
 
-        userId:
-          order.user_id,
+    if(ok){
 
-        event:
-          order.event_name,
+      favorites.push(Number(id));
 
-        image:
-          event?.image || "",
+      refreshCurrentPage();
 
-        date:
-          order.event_date ||
-          event?.date ||
-          "",
+    }
 
-        time:
-          event?.time ||
-          "",
-
-        venue:
-          order.venue ||
-          event?.venue ||
-          "",
-
-        city:
-          event?.city ||
-          "",
-
-        tickets:
-          order.quantity || 1,
-
-        total:
-          Number(order.total || 0),
-
-        status:
-          order.status || "confirmed",
-
-        created:
-          order.created_at
-            ?new Date(
-              order.created_at
-            ).toLocaleDateString()
-            :""
-
-      };
-
-    });
-
-
-  /*
-    Keep the local copy synchronized.
-  */
-
-  localStorage.setItem(
-    "tm_orders",
-    JSON.stringify(orders)
-  );
+  }
 
 }
 
 
-/* =========================================================
-   LOCAL STORAGE
-========================================================= */
+/* =========================
+   LOCAL DATA
+========================= */
 
 function saveData(){
 
@@ -2439,1219 +2035,375 @@ function saveData(){
 }
 
 
-/* =========================================================
-   HELPERS
-========================================================= */
+async function loadOrders(){
 
-function money(value){
+  if(!currentUser)
+    return;
 
-  return(
-    "$"+
-    Number(value).toFixed(2)
-  );
-
-}
-
-
-function initials(name){
-
-  return String(
-    name || "User"
-  )
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0,2)
-    .map(
-      x=>x[0].toUpperCase()
-    )
-    .join("");
-
-}
+  const result =
+    await db
+      .from("orders")
+      .select("*")
+      .eq("user_id",currentUser.id)
+      .order("created_at",{ascending:false});
 
 
-function showToast(message){
+  if(result.error){
 
-  const toast=
-    document.getElementById(
-      "toast"
+    console.error(
+      "Orders load error:",
+      result.error
     );
-
-  toast.textContent=message;
-
-  toast.classList.add("show");
-
-  setTimeout(()=>{
-
-    toast.classList.remove(
-      "show"
-    );
-
-  },2500);
-
-}
-
-
-function openModal(html){
-
-  document
-    .getElementById(
-      "modalContent"
-    )
-    .innerHTML=html;
-
-  document
-    .getElementById(
-      "modalBg"
-    )
-    .classList.add("open");
-
-}
-
-
-function closeModal(){
-
-  document
-    .getElementById(
-      "modalBg"
-    )
-    .classList.remove("open");
-
-}
-
-
-/* =========================================================
-   LAUNCH APP
-========================================================= */
-
-async function launchApp(){
-
-  if(!currentUser){
-
-    showAuth();
 
     return;
 
   }
 
+  orders =
+    (result.data || []).map(row=>({
 
-  await loadFavorites();
+      id:row.id,
+      userId:row.user_id,
+      eventId:row.event_id,
+      event:row.event_name,
+      date:row.event_date,
+      venue:row.venue,
+      tickets:row.quantity,
+      total:Number(row.total || 0),
+      status:
+        row.status === "confirmed"
+          ? "Confirmed"
+          : row.status,
+      created:
+        row.created_at
+          ? new Date(row.created_at).toLocaleDateString()
+          : ""
 
-  await loadOrders();
-
-
-  document
-    .getElementById(
-      "authScreen"
-    )
-    .classList.add("hidden");
-
-  document
-    .getElementById(
-      "app"
-    )
-    .classList.remove("hidden");
-
-
-  showPage("home");
-
-}
-
-
-function showAuth(){
-
-  document
-    .getElementById(
-      "app"
-    )
-    .classList.add("hidden");
-
-  document
-    .getElementById(
-      "authScreen"
-    )
-    .classList.remove("hidden");
-
-  switchAuth("login");
+    }));
 
 }
 
 
-/* =========================================================
+/* =========================
    NAVIGATION
-========================================================= */
+========================= */
 
-function showPage(page){
-
-  document
-    .getElementById(
-      "buyBar"
-    )
-    .classList.remove("show");
-
+function updateNav(page){
 
   document
     .querySelectorAll(".nav-btn")
-    .forEach(btn=>
-      btn.classList.remove(
-        "active"
-      )
-    );
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
 
 
-  const nav=
-    document.getElementById(
-      "nav-"+page
-    );
+  const map = {
+
+    home:"navHome",
+    events:"navEvents",
+    favorites:"navFavorites",
+    tickets:"navTickets",
+    profile:"navProfile"
+
+  };
 
 
-  if(nav){
+  const id = map[page];
 
-    nav.classList.add(
-      "active"
-    );
+  if(id){
+
+    document
+      .getElementById(id)
+      ?.classList.add("active");
 
   }
 
+}
+
+
+function showPage(page){
+
+  currentPage = page;
+
+  selectedSeats=[];
+
+  document
+    .getElementById("buyBar")
+    .classList.remove("show");
+
+  updateNav(page);
 
   if(page==="home")
     renderHome();
 
-  if(page==="events")
+  else if(page==="events")
     renderEvents();
 
-  if(page==="tickets")
-    renderTickets();
-
-  if(page==="orders")
-    renderOrders();
-
-  if(page==="profile")
-    renderProfile();
-
-  if(page==="favorites")
+  else if(page==="favorites")
     renderFavorites();
 
+  else if(page==="tickets")
+    renderTickets();
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+  else if(page==="profile")
+    renderProfile();
+
+  else if(page==="orders")
+    renderOrders();
+
+  else if(page==="transfers")
+    showTransfers();
+
+  else if(page==="marketplace")
+    showMarketplace();
 
 }
 
 
-/* =========================================================
+function refreshCurrentPage(){
+
+  if(currentPage==="home")
+    renderHome();
+
+  else if(currentPage==="events")
+    renderEvents();
+
+  else if(currentPage==="favorites")
+    renderFavorites();
+
+  else if(currentPage==="tickets")
+    renderTickets();
+
+  else if(currentPage==="profile")
+    renderProfile();
+
+}
+
+
+/* =========================
    HOME
-========================================================= */
+========================= */
 
 function renderHome(){
 
-  const featured=
-    events[0];
+  const main =
+    document.getElementById("main");
 
 
-  document
-    .getElementById("main")
-    .innerHTML=`
-
-      <div class="page">
-
-        <div class="categories">
-
-          ${[
-            "All",
-            "Concerts",
-            "Sports",
-            "Comedy",
-            "Family",
-            "Theater"
-          ].map(cat=>`
-
-            <button
-            class="cat ${
-              activeCategory===cat
-              ?"active"
-              :""
-            }"
-            onclick="
-              setCategory('${cat}')
-            ">
-
-              ${cat}
-
-            </button>
-
-          `).join("")}
-
-        </div>
+  const featured =
+    events.slice(0,6);
 
 
-        <div
-        class="hero"
-        style="
-          background-image:url('${featured.image}')
-        ">
+  main.innerHTML = `
 
-          <div class="hero-content">
+    <div class="container">
 
-            <div class="hero-tag">
-              FEATURED EVENT
-            </div>
+      <div class="search-box">
 
-            <h2>
-              ${featured.artist}
-            </h2>
+        <span class="search-icon">⌕</span>
 
-            <p>
-              ${featured.title}
-            </p>
-
-            <button
-            onclick="
-              openEvent(${featured.id})
-            ">
-
-              View tickets
-
-            </button>
-
-          </div>
-
-        </div>
-
-
-        <div class="section-head">
-
-          <h3>
-            Popular events
-          </h3>
-
-          <button
-          onclick="
-            showPage('events')
-          ">
-
-            See all
-
-          </button>
-
-        </div>
-
-
-        <div class="events">
-
-          ${eventCards(
-            filteredEvents()
-              .slice(0,6)
-          )}
-
-        </div>
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Search events, artists or venues..."
+          oninput="searchEvents(this.value)">
 
       </div>
 
-    `;
 
-}
+      <section class="hero">
 
+        <h1>
+          Find your next live experience.
+        </h1>
 
-function setCategory(category){
+        <p>
+          Discover concerts, sports and entertainment
+          events and manage your tickets in one place.
+        </p>
 
-  activeCategory=
-    category;
-
-  renderHome();
-
-}
-
-
-function filteredEvents(){
-
-  if(activeCategory==="All")
-    return events;
-
-  return events.filter(
-    e=>
-      e.category===
-      activeCategory
-  );
-
-}
+      </section>
 
 
-/* =========================================================
-   EVENT CARDS
-========================================================= */
+      <div class="section-head">
 
-function eventCards(list){
-
-  if(!list.length){
-
-    return`
-
-      <div class="empty">
-
-        <div class="empty-icon">
-          🔎
+        <div class="section-title">
+          Popular events
         </div>
 
-        No events found.
+        <button
+          class="section-action"
+          onclick="showPage('events')">
+          See all
+        </button>
 
       </div>
 
-    `;
-
-  }
-
-
-  return list.map(event=>`
-
-    <div
-    class="event-card"
-    onclick="
-      openEvent(${event.id})
-    ">
 
       <div
-      class="event-image"
-      style="
-        background-image:url('${event.image}')
-      ">
+        id="homeEvents"
+        class="events-grid">
 
-        <div class="event-category">
-          ${event.category.toUpperCase()}
-        </div>
+        ${featured
+          .map(eventCard)
+          .join("")}
 
-        <div class="event-artist">
-          ${event.artist}
+      </div>
+
+
+      <div class="section-head">
+
+        <div class="section-title">
+          Categories
         </div>
 
       </div>
 
 
-      <div class="event-info">
+      <div class="filter-row">
 
-        <h4>
-          ${event.title}
-        </h4>
+        <button
+          class="filter-btn"
+          onclick="showCategory('Concerts')">
+          Concerts
+        </button>
 
-        <p class="event-date">
-          ${event.date}
-        </p>
+        <button
+          class="filter-btn"
+          onclick="showCategory('Sports')">
+          Sports
+        </button>
 
-        <p>
-          ${event.time}
-        </p>
-
-        <p>
-          ${event.venue}
-        </p>
-
-
-        <div class="event-actions">
-
-          <span class="price">
-            From ${money(event.price)}
-          </span>
-
-          <button
-          class="small-btn"
-          onclick="
-            event.stopPropagation();
-            openEvent(${event.id})
-          ">
-
-            Tickets
-
-          </button>
-
-        </div>
+        <button
+          class="filter-btn"
+          onclick="showCategory('Comedy')">
+          Comedy
+        </button>
 
       </div>
 
     </div>
 
-  `).join("");
+  `;
 
 }
 
 
-/* =========================================================
-   EVENTS
-========================================================= */
+/* =========================
+   EVENT CARD
+========================= */
 
-function renderEvents(){
+function eventCard(event){
+
+  const isFav =
+    favorites.includes(Number(event.id));
+
+
+  return `
+
+    <article
+      class="event-card"
+      onclick="openEvent(${event.id})">
+
+      <img
+        class="event-image"
+        src="${event.image}"
+        alt="${escapeHtml(event.title)}"
+        loading="lazy">
+
+      <div class="event-body">
+
+        <div class="event-title">
+          ${escapeHtml(event.title)}
+        </div>
+
+        <div class="event-date">
+          ${escapeHtml(event.date)}
+        </div>
+
+        <div class="event-venue">
+          ${escapeHtml(event.venue)} ·
+          ${escapeHtml(event.city)}
+        </div>
+
+        <div class="event-bottom">
+
+          <div class="event-price">
+            From $${Number(event.price).toFixed(2)}
+          </div>
+
+          <button
+            class="favorite-btn ${isFav ? "active":""}"
+            onclick="event.stopPropagation();toggleFavorite(${event.id})">
+            ${isFav ? "♥":"♡"}
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================
+   EVENTS
+========================= */
+
+function renderEvents(category="All"){
+
+  const filtered =
+    category==="All"
+      ? events
+      : events.filter(
+          e=>e.category===category
+        );
+
 
   document
     .getElementById("main")
-    .innerHTML=`
+    .innerHTML = `
 
-      <div class="page">
+      <div class="container">
 
         <div class="page-title">
           Events
         </div>
 
-        <div class="subtitle">
-          Find your next live experience.
-        </div>
 
+        <div class="filter-row">
 
-        <div class="categories">
+          ${["All","Concerts","Sports","Comedy"]
+            .map(cat=>`
 
-          ${[
-            "All",
-            "Concerts",
-            "Sports",
-            "Comedy",
-            "Family",
-            "Theater"
-          ].map(cat=>`
+              <button
+                class="filter-btn ${category===cat ? "active":""}"
+                onclick="renderEvents('${cat}')">
+                ${cat}
+              </button>
 
-            <button
-            class="cat ${
-              activeCategory===cat
-              ?"active"
-              :""
-            }"
-            onclick="
-              activeCategory='${cat}';
-              renderEvents()
-            ">
-
-              ${cat}
-
-            </button>
-
-          `).join("")}
+            `)
+            .join("")}
 
         </div>
 
 
-        <div class="events">
-
-          ${eventCards(
-            filteredEvents()
-          )}
-
-        </div>
-
-      </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-function searchEvents(query){
-
-  query=
-    query
-      .toLowerCase()
-      .trim();
-
-
-  if(!query){
-
-    showPage("home");
-
-    return;
-
-  }
-
-
-  const results=
-    events.filter(event=>
-
-      event.title
-        .toLowerCase()
-        .includes(query) ||
-
-      event.artist
-        .toLowerCase()
-        .includes(query) ||
-
-      event.venue
-        .toLowerCase()
-        .includes(query) ||
-
-      event.city
-        .toLowerCase()
-        .includes(query)
-
-    );
-
-
-  document
-    .querySelectorAll(".nav-btn")
-    .forEach(btn=>
-      btn.classList.remove(
-        "active"
-      )
-    );
-
-
-  document
-    .getElementById("main")
-    .innerHTML=`
-
-      <div class="page">
-
-        <div class="page-title">
-          Search
-        </div>
-
-        <div class="subtitle">
-          Results for "${query}"
-        </div>
-
-        <div class="events">
-
-          ${eventCards(results)}
-
-        </div>
-
-      </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   EVENT DETAIL
-========================================================= */
-
-function openEvent(id){
-
-  currentEvent=
-    events.find(
-      e=>e.id===id
-    );
-
-
-  if(!currentEvent)
-    return;
-
-
-  selectedSeats=[];
-
-
-  const favorite=
-    favorites.includes(id);
-
-
-  document
-    .getElementById("main")
-    .innerHTML=`
-
-      <div class="page">
-
-        <button
-        class="secondary"
-        onclick="
-          showPage('events')
-        ">
-
-          ← Back
-
-        </button>
-
-
-        <div style="
-          height:12px">
-        </div>
-
-
-        <div
-        class="detail-image"
-        style="
-          background-image:url('${currentEvent.image}')
-        ">
-
-          <div class="detail-image-content">
-
-            <div class="hero-tag">
-              ${currentEvent.category}
-            </div>
-
-            <h1>
-              ${currentEvent.artist}
-            </h1>
-
-            <p>
-              ${currentEvent.title}
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="info-box">
-
-          <div class="info-row">
-
-            <div class="info-icon">
-              📅
-            </div>
-
-            <div>
-
-              <strong>
-                ${currentEvent.date}
-              </strong>
-
-              <span>
-                ${currentEvent.time}
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div class="info-row">
-
-            <div class="info-icon">
-              📍
-            </div>
-
-            <div>
-
-              <strong>
-                ${currentEvent.venue}
-              </strong>
-
-              <span>
-                ${currentEvent.city}
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div class="info-row">
-
-            <div class="info-icon">
-              🎫
-            </div>
-
-            <div>
-
-              <strong>
-                Tickets from
-                ${money(currentEvent.price)}
-              </strong>
-
-              <span>
-                Prices vary by section and seat.
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div style="
-          display:flex;
-          justify-content:space-between;
-          align-items:center;
-          margin:20px 0 10px">
-
-          <h3>
-            Choose your seats
-          </h3>
-
-          <button
-          class="secondary"
-          onclick="
-            toggleFavorite(${currentEvent.id})
-          ">
-
-            ${
-              favorite
-              ?"♥ Saved"
-              :"♡ Save"
-            }
-
-          </button>
-
-        </div>
-
-
-        <div class="map-card">
-
-          <div class="stage">
-            STAGE
-          </div>
-
-          ${generateSeatMap()}
-
-
-          <div class="legend">
-
-            <div class="legend-item">
-
-              <div
-              class="dot"
-              style="
-                background:#36c76f">
-              </div>
-
-              Available
-
-            </div>
-
-
-            <div class="legend-item">
-
-              <div
-              class="dot"
-              style="
-                background:#f59e0b">
-              </div>
-
-              Resale
-
-            </div>
-
-
-            <div class="legend-item">
-
-              <div
-              class="dot"
-              style="
-                background:#d1d5db">
-              </div>
-
-              Sold
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div style="
-          height:25px">
-        </div>
-
-      </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   SEAT MAP
-========================================================= */
-
-function generateSeatMap(){
-
-  let html="";
-
-  const sections=[
-
-    {
-      name:"VIP",
-      rows:2,
-      seats:10
-    },
-
-    {
-      name:"PREMIUM",
-      rows:3,
-      seats:12
-    },
-
-    {
-      name:"STANDARD",
-      rows:5,
-      seats:14
-    }
-
-  ];
-
-  let seatNumber=1;
-
-
-  sections.forEach(
-    section=>{
-
-      html+=`
-
-        <div class="section-label">
-          ${section.name}
-        </div>
-
-      `;
-
-
-      for(
-        let r=1;
-        r<=section.rows;
-        r++
-      ){
-
-        html+=`
-          <div class="seat-row">
-        `;
-
-
-        for(
-          let s=1;
-          s<=section.seats;
-          s++
-        ){
-
-          const id=
-            `${section.name}-${r}-${s}`;
-
-
-          const random=
-            (seatNumber*17)%23;
-
-
-          let state="";
-
-
-          if(random<4)
-            state="sold";
-
-          else if(random<7)
-            state="resale";
-
-
-          const price=
-            currentEvent.price+
-            (
-              section.name==="VIP"
-              ?80
-              :section.name==="PREMIUM"
-              ?40
-              :0
-            );
-
-
-          html+=`
-
-            <div
-            class="seat ${state}"
-            id="seat-${id}"
-            data-section="${section.name}"
-            data-row="${r}"
-            data-seat="${s}"
-            data-price="${price}"
-            onclick="${
-              state==="sold"
-              ?""
-              :`selectSeat('${id}')`
-            }">
-
-              ${s}
-
-            </div>
-
-          `;
-
-
-          seatNumber++;
-
-        }
-
-
-        html+=`
-          </div>
-        `;
-
-      }
-
-    }
-  );
-
-
-  return html;
-
-}
-
-
-/* =========================================================
-   SELECT SEAT
-========================================================= */
-
-function selectSeat(id){
-
-  const element=
-    document.getElementById(
-      "seat-"+id
-    );
-
-
-  if(!element)
-    return;
-
-
-  const index=
-    selectedSeats.findIndex(
-      seat=>seat.id===id
-    );
-
-
-  if(index>=0){
-
-    selectedSeats.splice(
-      index,
-      1
-    );
-
-    element.classList.remove(
-      "selected"
-    );
-
-  }else{
-
-    const seat={
-
-      id:id,
-
-      section:
-        element.dataset.section,
-
-      row:
-        element.dataset.row,
-
-      number:
-        element.dataset.seat,
-
-      price:
-        Number(
-          element.dataset.price
-        ),
-
-      resale:
-        element.classList.contains(
-          "resale"
-        )
-
-    };
-
-
-    selectedSeats.push(
-      seat
-    );
-
-    element.classList.add(
-      "selected"
-    );
-
-  }
-
-
-  updateBuyBar();
-
-}
-
-
-/* =========================================================
-   BUY BAR
-========================================================= */
-
-function updateBuyBar(){
-
-  const bar=
-    document.getElementById(
-      "buyBar"
-    );
-
-
-  if(!selectedSeats.length){
-
-    bar.classList.remove(
-      "show"
-    );
-
-    return;
-
-  }
-
-
-  const total=
-    selectedSeats.reduce(
-      (sum,s)=>
-        sum+s.price,
-      0
-    );
-
-
-  document
-    .getElementById(
-      "selectedTotal"
-    )
-    .textContent=
-      money(total);
-
-
-  document
-    .getElementById(
-      "selectedCount"
-    )
-    .textContent=
-      `${selectedSeats.length} ticket${
-        selectedSeats.length===1
-        ?""
-        :"s"
-      } selected`;
-
-
-  bar.classList.add(
-    "show"
-  );
-
-}
-
-
-/* =========================================================
-   TOGGLE FAVORITE
-========================================================= */
-
-async function toggleFavorite(id){
-
-  if(!currentUser){
-
-    showToast(
-      "Please log in to save favorites"
-    );
-
-    return;
-
-  }
-
-
-  const isFavorite=
-    favorites.includes(id);
-
-
-  if(isFavorite){
-
-    const success=
-      await removeFavorite(id);
-
-
-    if(!success)
-      return;
-
-
-    favorites=
-      favorites.filter(
-        x=>x!==id
-      );
-
-
-    showToast(
-      "Removed from favorites"
-    );
-
-  }else{
-
-    const success=
-      await addFavorite(id);
-
-
-    if(!success)
-      return;
-
-
-    if(!favorites.includes(id)){
-
-      favorites.push(id);
-
-    }
-
-
-    showToast(
-      "Added to favorites"
-    );
-
-  }
-
-
-  openEvent(id);
-
-}
-
-
-/* =========================================================
-   FAVORITES PAGE
-========================================================= */
-
-function renderFavorites(){
-
-  document
-    .querySelectorAll(".nav-btn")
-    .forEach(btn=>
-      btn.classList.remove(
-        "active"
-      )
-    );
-
-
-  const list=
-    events.filter(
-      e=>
-        favorites.includes(
-          e.id
-        )
-    );
-
-
-  document
-    .getElementById("main")
-    .innerHTML=`
-
-      <div class="page">
-
-        <div class="page-title">
-          Favorites
-        </div>
-
-        <div class="subtitle">
-          Events you've saved.
-        </div>
-
-
-        <div class="events">
+        <div class="events-grid">
 
           ${
-            list.length
-            ?eventCards(list)
-            :`
-
-              <div class="empty">
-
-                <div class="empty-icon">
-                  ♡
+            filtered.length
+              ? filtered.map(eventCard).join("")
+              : `
+                <div class="empty"
+                     style="grid-column:1/-1">
+                  <div class="empty-icon">⌕</div>
+                  <h3>No events found</h3>
+                  <p>Try another category.</p>
                 </div>
-
-                <h3>
-                  No favorites yet
-                </h3>
-
-                <p>
-                  Save events to find them here.
-                </p>
-
-              </div>
-
-            `
+              `
           }
 
         </div>
@@ -3663,18 +2415,571 @@ function renderFavorites(){
 }
 
 
-/* =========================================================
+function showCategory(category){
+
+  showPage("events");
+
+  renderEvents(category);
+
+}
+
+
+function searchEvents(value){
+
+  const term =
+    String(value || "")
+      .trim()
+      .toLowerCase();
+
+
+  if(!term){
+
+    renderHome();
+    return;
+
+  }
+
+
+  const results =
+    events.filter(event=>
+      event.title.toLowerCase().includes(term) ||
+      event.artist.toLowerCase().includes(term) ||
+      event.venue.toLowerCase().includes(term) ||
+      event.city.toLowerCase().includes(term) ||
+      event.category.toLowerCase().includes(term)
+    );
+
+
+  document
+    .getElementById("main")
+    .innerHTML = `
+
+      <div class="container">
+
+        <div class="page-title">
+          Search results
+        </div>
+
+        <div style="color:#778191;font-size:13px;margin-bottom:15px">
+          ${results.length} result${results.length===1?"":"s"}
+          for “${escapeHtml(value)}”
+        </div>
+
+        ${
+          results.length
+            ? `<div class="events-grid">
+                ${results.map(eventCard).join("")}
+               </div>`
+            : `
+              <div class="empty">
+
+                <div class="empty-icon">⌕</div>
+
+                <h3>
+                  Nothing found
+                </h3>
+
+                <p>
+                  Try searching for another artist,
+                  event or venue.
+                </p>
+
+              </div>
+            `
+        }
+
+      </div>
+
+    `;
+
+}
+
+
+/* =========================
+   EVENT DETAIL
+========================= */
+
+function openEvent(id){
+
+  currentEvent =
+    events.find(
+      event=>Number(event.id)===Number(id)
+    );
+
+
+  if(!currentEvent)
+    return;
+
+
+  selectedSeats=[];
+
+
+  const isFav =
+    favorites.includes(Number(currentEvent.id));
+
+
+  document
+    .getElementById("main")
+    .innerHTML = `
+
+      <div class="container">
+
+        <button
+          class="back-btn"
+          onclick="showPage('events')">
+          ←
+        </button>
+
+
+        <section class="detail-hero">
+
+          <img
+            class="detail-image"
+            src="${currentEvent.image}"
+            alt="${escapeHtml(currentEvent.title)}">
+
+
+          <div class="detail-body">
+
+            <div class="detail-title-row">
+
+              <div class="detail-title">
+                ${escapeHtml(currentEvent.title)}
+              </div>
+
+              <button
+                class="detail-fav"
+                onclick="toggleFavorite(${currentEvent.id})">
+                ${isFav ? "♥":"♡"}
+              </button>
+
+            </div>
+
+
+            <div class="detail-info">
+
+              <div class="info-item">
+                <span>📅</span>
+                <span>
+                  ${escapeHtml(currentEvent.date)}
+                </span>
+              </div>
+
+              <div class="info-item">
+                <span>⏰</span>
+                <span>
+                  ${escapeHtml(currentEvent.time)}
+                </span>
+              </div>
+
+              <div class="info-item">
+                <span>📍</span>
+                <span>
+                  ${escapeHtml(currentEvent.venue)},
+                  ${escapeHtml(currentEvent.city)}
+                </span>
+              </div>
+
+              <div class="info-item">
+                <span>🎟️</span>
+                <span>
+                  Tickets from
+                  $${Number(currentEvent.price).toFixed(2)}
+                </span>
+              </div>
+
+            </div>
+
+
+            <div class="detail-description">
+
+              Select your seats below.
+              Available seats are shown in light blue,
+              selected seats in blue and unavailable seats
+              in grey.
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <div class="section-head">
+
+          <div class="section-title">
+            Select seats
+          </div>
+
+        </div>
+
+
+        <div
+          id="seatMap"
+          class="seat-wrap">
+
+          ${generateSeatMap()}
+
+        </div>
+
+      </div>
+
+    `;
+
+}
+
+
+function generateSeatMap(){
+
+  const sections = [
+
+    {
+      name:"VIP",
+      rows:2,
+      seats:10,
+      price:currentEvent.price + 90
+    },
+
+    {
+      name:"PREMIUM",
+      rows:3,
+      seats:12,
+      price:currentEvent.price + 45
+    },
+
+    {
+      name:"STANDARD",
+      rows:5,
+      seats:14,
+      price:currentEvent.price
+    }
+
+  ];
+
+
+  let html = `
+    <div class="stage">
+      STAGE
+    </div>
+  `;
+
+
+  sections.forEach(section=>{
+
+    html += `
+
+      <div class="seat-section">
+
+        <div class="seat-section-title">
+
+          <strong>
+            ${section.name}
+          </strong>
+
+          <span>
+            From $${section.price}
+          </span>
+
+        </div>
+
+    `;
+
+
+    for(let row=1;row<=section.rows;row++){
+
+      html += `<div class="seat-row">`;
+
+
+      for(let number=1;number<=section.seats;number++){
+
+        const key =
+          `${section.name}-${row}-${number}`;
+
+        const sold =
+          isSeatSold(
+            currentEvent.id,
+            section.name,
+            row,
+            number
+          );
+
+
+        const selected =
+          selectedSeats.some(
+            seat=>seat.key===key
+          );
+
+
+        const resaleSeat =
+          !sold &&
+          number===section.seats &&
+          row===section.rows;
+
+
+        let className="seat available";
+
+        if(sold)
+          className="seat sold";
+
+        else if(selected)
+          className="seat selected";
+
+        else if(resaleSeat)
+          className="seat resale";
+
+
+        html += `
+
+          <button
+            class="${className}"
+            ${sold ? "disabled":""}
+            title="${section.name} Row ${row} Seat ${number}"
+            onclick="selectSeat(
+              '${section.name}',
+              ${row},
+              ${number},
+              ${section.price},
+              '${key}'
+            )">
+
+            ${number}
+
+          </button>
+
+        `;
+
+      }
+
+
+      html += `</div>`;
+
+    }
+
+
+    html += `</div>`;
+
+  });
+
+
+  html += `
+
+    <div class="seat-legend">
+
+      <div class="legend-item">
+        <span class="legend-dot dot-available"></span>
+        Available
+      </div>
+
+      <div class="legend-item">
+        <span class="legend-dot dot-selected"></span>
+        Selected
+      </div>
+
+      <div class="legend-item">
+        <span class="legend-dot dot-sold"></span>
+        Unavailable
+      </div>
+
+      <div class="legend-item">
+        <span class="legend-dot dot-resale"></span>
+        Resale
+      </div>
+
+    </div>
+
+  `;
+
+
+  return html;
+
+}
+
+
+function isSeatSold(eventId,section,row,number){
+
+  /*
+    Deterministic seat availability.
+    This gives each event a repeatable seat map.
+  */
+
+  const value =
+    Number(eventId)*17 +
+    section.length*7 +
+    row*11 +
+    number*5;
+
+
+  return value % 13 === 0 ||
+         value % 17 === 0;
+
+}
+
+
+function selectSeat(
+  section,
+  row,
+  number,
+  price,
+  key
+){
+
+  if(!currentEvent)
+    return;
+
+
+  const existing =
+    selectedSeats.find(
+      seat=>seat.key===key
+    );
+
+
+  if(existing){
+
+    selectedSeats =
+      selectedSeats.filter(
+        seat=>seat.key!==key
+      );
+
+  }else{
+
+    selectedSeats.push({
+
+      key,
+      section,
+      row,
+      number,
+      price:Number(price)
+
+    });
+
+  }
+
+
+  const seatMap =
+    document.getElementById("seatMap");
+
+  if(seatMap){
+
+    seatMap.innerHTML =
+      generateSeatMap();
+
+  }
+
+
+  updateBuyBar();
+
+}
+
+
+function updateBuyBar(){
+
+  const bar =
+    document.getElementById("buyBar");
+
+
+  if(!selectedSeats.length){
+
+    bar.classList.remove("show");
+    return;
+
+  }
+
+
+  const total =
+    selectedSeats.reduce(
+      (sum,seat)=>
+        sum+Number(seat.price),
+      0
+    );
+
+
+  document
+    .getElementById("buyCount")
+    .textContent =
+      `${selectedSeats.length} ticket${selectedSeats.length===1?"":"s"}`;
+
+
+  document
+    .getElementById("buyTotal")
+    .textContent =
+      `$${total.toFixed(2)}`;
+
+
+  bar.classList.add("show");
+
+}
+
+
+/* =========================
+   FAVORITES PAGE
+========================= */
+
+function renderFavorites(){
+
+  const favEvents =
+    events.filter(
+      event=>
+        favorites.includes(Number(event.id))
+    );
+
+
+  document
+    .getElementById("main")
+    .innerHTML = `
+
+      <div class="container">
+
+        <div class="page-title">
+          Favorites
+        </div>
+
+        ${
+          favEvents.length
+
+          ? `
+            <div class="events-grid">
+              ${favEvents.map(eventCard).join("")}
+            </div>
+          `
+
+          : `
+
+            <div class="empty">
+
+              <div class="empty-icon">
+                ♡
+              </div>
+
+              <h3>
+                No favorites yet
+              </h3>
+
+              <p>
+                Tap the heart on an event
+                to save it here.
+              </p>
+
+            </div>
+
+          `
+        }
+
+      </div>
+
+    `;
+
+}
+
+
+/* =========================
    CHECKOUT
-========================================================= */
+========================= */
 
 function openCheckout(){
 
   if(!currentUser){
 
-    showToast(
-      "Please log in before purchasing"
-    );
-
+    showToast("Please log in before purchasing");
     return;
 
   }
@@ -3682,10 +2987,7 @@ function openCheckout(){
 
   if(!currentEvent){
 
-    showToast(
-      "Please select an event again"
-    );
-
+    showToast("Please select an event again");
     return;
 
   }
@@ -3693,220 +2995,218 @@ function openCheckout(){
 
   if(!selectedSeats.length){
 
-    showToast(
-      "Select at least one seat"
-    );
-
+    showToast("Please select at least one seat");
     return;
 
   }
 
 
-  const total=
+  const total =
     selectedSeats.reduce(
-      (sum,s)=>
-        sum+s.price,
+      (sum,seat)=>
+        sum+Number(seat.price),
       0
     );
 
 
-  openModal(`
-
-    <h2>
-      Checkout
-    </h2>
-
-
-    <div class="info-box">
-
-      <strong>
-        ${currentEvent.title}
-      </strong>
-
-      <p style="
-        color:#6b7280;
-        font-size:12px;
-        margin-top:5px">
-
-        ${currentEvent.date}<br>
-        ${currentEvent.venue}
-
-      </p>
+  document
+    .getElementById("modalTitle")
+    .textContent =
+      "Checkout";
 
 
-      <div style="
-        margin-top:12px">
+  document
+    .getElementById("modalContent")
+    .innerHTML = `
 
-        ${
-          selectedSeats
-            .map(
-              seat=>`
+      <div class="checkout-event">
 
-                <div style="
-                  display:flex;
-                  justify-content:space-between;
-                  font-size:12px;
-                  margin:5px 0">
+        <strong>
+          ${escapeHtml(currentEvent.title)}
+        </strong>
 
-                  <span>
-                    ${seat.section}
-                    · Row ${seat.row}
-                    · Seat ${seat.number}
-                  </span>
+        <span>
+          ${escapeHtml(currentEvent.date)}
+          ·
+          ${escapeHtml(currentEvent.venue)}
+        </span>
 
-                  <strong>
-                    ${money(seat.price)}
-                  </strong>
-
-                </div>
-
-              `
-            )
-            .join("")
-        }
+        <span>
+          ${selectedSeats.length}
+          ticket${selectedSeats.length===1?"":"s"}
+          ·
+          $${total.toFixed(2)}
+        </span>
 
       </div>
 
-    </div>
 
+      <div class="form-group">
 
-    <div class="form">
-
-      <label>
-        CARDHOLDER NAME
-      </label>
-
-      <input
-      id="cardName"
-      value="${currentUser?.name || ""}"
-      placeholder="Your name"
-      autocomplete="cc-name">
-
-    </div>
-
-
-    <div class="form">
-
-      <label>
-        CARD NUMBER
-      </label>
-
-      <input
-      id="cardNumber"
-      inputmode="numeric"
-      autocomplete="cc-number"
-      placeholder="4242 4242 4242 4242"
-      maxlength="19">
-
-    </div>
-
-
-    <div style="
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px">
-
-      <div class="form">
-
-        <label>
-          EXPIRY
+        <label class="form-label">
+          Cardholder name
         </label>
 
         <input
-        id="expiry"
-        inputmode="numeric"
-        autocomplete="cc-exp"
-        placeholder="MM/YY"
-        maxlength="5">
+          id="cardName"
+          class="form-input"
+          type="text"
+          autocomplete="cc-name"
+          placeholder="Name on card">
 
       </div>
 
 
-      <div class="form">
+      <div class="form-group">
 
-        <label>
-          CVC
+        <label class="form-label">
+          Card number
         </label>
 
         <input
-        id="cvc"
-        type="password"
-        inputmode="numeric"
-        autocomplete="cc-csc"
-        placeholder="123"
-        maxlength="3">
+          id="cardNumber"
+          class="form-input"
+          type="text"
+          inputmode="numeric"
+          autocomplete="cc-number"
+          maxlength="19"
+          placeholder="0000 0000 0000 0000">
 
       </div>
 
-    </div>
+
+      <div class="checkout-grid">
+
+        <div class="form-group">
+
+          <label class="form-label">
+            Expiry
+          </label>
+
+          <input
+            id="expiry"
+            class="form-input"
+            type="text"
+            inputmode="numeric"
+            autocomplete="cc-exp"
+            maxlength="5"
+            placeholder="MM/YY">
+
+        </div>
 
 
-    <div style="
-      padding:10px 0;
-      color:#6b7280;
-      font-size:11px">
+        <div class="form-group">
 
-      Demo checkout only.
-      Card information is not stored.
+          <label class="form-label">
+            CVC
+          </label>
 
-    </div>
+          <input
+            id="cvc"
+            class="form-input"
+            type="password"
+            inputmode="numeric"
+            autocomplete="cc-csc"
+            maxlength="4"
+            placeholder="123">
 
+        </div>
 
-    <div style="
-      display:flex;
-      justify-content:space-between;
-      padding:14px 0;
-      border-top:1px solid #eee">
-
-      <strong>
-        Total
-      </strong>
-
-      <strong>
-        ${money(total)}
-      </strong>
-
-    </div>
+      </div>
 
 
-    <button
-    class="full-btn"
-    onclick="
-      completePurchase()
-    ">
+      <button
+        class="full-btn"
+        onclick="completePurchase()">
 
-      Complete purchase
+        Complete demo purchase
 
-    </button>
+      </button>
 
 
-    <button
-    class="close-btn"
-    onclick="
-      closeModal()
-    ">
+      <div class="security-note">
 
-      Cancel
+        Demo checkout only.
+        Card details are used only for local
+        validation and are not saved to your
+        Ticket Master account or Supabase.
 
-    </button>
+        For real payments, connect a PCI-compliant
+        payment provider such as Stripe Checkout
+        instead of collecting raw card details.
 
-  `);
+      </div>
+
+    `;
+
+
+  document
+    .getElementById("modal")
+    .classList.add("show");
 
 }
 
 
-/* =========================================================
-   PURCHASE — SUPABASE ORDERS
-========================================================= */
+function formatCardNumber(value){
+
+  return String(value)
+    .replace(/\D/g,"")
+    .slice(0,16)
+    .replace(/(.{4})/g,"$1 ")
+    .trim();
+
+}
+
+
+function setupPaymentFormatting(){
+
+  document.addEventListener(
+    "input",
+    event=>{
+
+      if(event.target.id==="cardNumber"){
+
+        event.target.value =
+          formatCardNumber(
+            event.target.value
+          );
+
+      }
+
+
+      if(event.target.id==="expiry"){
+
+        let value =
+          event.target.value
+            .replace(/\D/g,"")
+            .slice(0,4);
+
+
+        if(value.length>2){
+
+          value =
+            value.slice(0,2)+
+            "/"+
+            value.slice(2);
+
+        }
+
+
+        event.target.value=value;
+
+      }
+
+    }
+  );
+
+}
+
 
 async function completePurchase(){
 
   if(!currentUser){
 
-    showToast(
-      "Please log in before purchasing"
-    );
-
+    showToast("Please log in before purchasing");
     return;
 
   }
@@ -3914,10 +3214,7 @@ async function completePurchase(){
 
   if(!currentEvent){
 
-    showToast(
-      "Please select an event again"
-    );
-
+    showToast("Please select an event again");
     return;
 
   }
@@ -3925,63 +3222,42 @@ async function completePurchase(){
 
   if(!selectedSeats.length){
 
-    showToast(
-      "Please select at least one seat"
-    );
-
+    showToast("Please select at least one seat");
     return;
 
   }
 
 
-  const nameElement=
-    document.getElementById(
-      "cardName"
-    );
+  const nameElement =
+    document.getElementById("cardName");
 
-  const cardElement=
-    document.getElementById(
-      "cardNumber"
-    );
+  const cardElement =
+    document.getElementById("cardNumber");
 
-  const expiryElement=
-    document.getElementById(
-      "expiry"
-    );
+  const expiryElement =
+    document.getElementById("expiry");
 
-  const cvcElement=
-    document.getElementById(
-      "cvc"
-    );
+  const cvcElement =
+    document.getElementById("cvc");
 
 
-  const name=
-    nameElement
-    ?.value
-    .trim() || "";
+  const name =
+    nameElement?.value.trim() || "";
 
-  const card=
-    cardElement
-    ?.value
-    .replace(/\s/g,"") || "";
+  const card =
+    cardElement?.value
+      .replace(/\s/g,"") || "";
 
-  const expiry=
-    expiryElement
-    ?.value
-    .trim() || "";
+  const expiry =
+    expiryElement?.value.trim() || "";
 
-  const cvc=
-    cvcElement
-    ?.value
-    .trim() || "";
+  const cvc =
+    cvcElement?.value.trim() || "";
 
 
   if(!name){
 
-    showToast(
-      "Enter the cardholder name"
-    );
-
+    showToast("Enter the cardholder name");
     return;
 
   }
@@ -3989,10 +3265,7 @@ async function completePurchase(){
 
   if(!/^\d{13,19}$/.test(card)){
 
-    showToast(
-      "Enter a valid card number"
-    );
-
+    showToast("Enter a valid card number");
     return;
 
   }
@@ -4000,46 +3273,38 @@ async function completePurchase(){
 
   if(!/^\d{2}\/\d{2}$/.test(expiry)){
 
-    showToast(
-      "Enter expiry as MM/YY"
-    );
-
+    showToast("Enter expiry as MM/YY");
     return;
 
   }
 
 
-  const expiryParts=
+  const expiryParts =
     expiry.split("/");
 
-  const month=
+
+  const month =
     Number(expiryParts[0]);
 
-  const year=
+  const year =
     Number(expiryParts[1]);
 
 
-  if(
-    month<1 ||
-    month>12
-  ){
+  if(month<1 || month>12){
 
-    showToast(
-      "Enter a valid expiry date"
-    );
-
+    showToast("Enter a valid expiry date");
     return;
 
   }
 
 
-  const now=
+  const now =
     new Date();
 
-  const currentYear=
+  const currentYear =
     now.getFullYear()%100;
 
-  const currentMonth=
+  const currentMonth =
     now.getMonth()+1;
 
 
@@ -4051,10 +3316,7 @@ async function completePurchase(){
     )
   ){
 
-    showToast(
-      "Card appears to be expired"
-    );
-
+    showToast("Card appears to be expired");
     return;
 
   }
@@ -4062,16 +3324,13 @@ async function completePurchase(){
 
   if(!/^\d{3,4}$/.test(cvc)){
 
-    showToast(
-      "Enter a valid CVC"
-    );
-
+    showToast("Enter a valid CVC");
     return;
 
   }
 
 
-  const button=
+  const button =
     document.querySelector(
       "#modalContent .full-btn"
     );
@@ -4080,79 +3339,94 @@ async function completePurchase(){
   if(button){
 
     button.disabled=true;
-
-    button.textContent=
-      "Processing...";
+    button.textContent="Saving order...";
 
   }
 
 
-  const orderId=
-    "TM-"+
-    Date.now()
-      .toString()
-      .slice(-8);
+  const orderId =
+    "TM-"+Date.now().toString().slice(-8);
 
 
-  const total=
+  const total =
     selectedSeats.reduce(
       (sum,seat)=>
-        sum+seat.price,
+        sum+Number(seat.price),
       0
     );
 
 
   /*
-    IMPORTANT SECURITY NOTE:
-
-    Card number, expiry and CVC are used
-    only for this demo validation.
-
-    They are NOT written to Supabase,
-    localStorage, tickets, orders, or
-    browser storage.
-
-    A production payment system should use
-    a hosted/tokenized payment provider.
+    IMPORTANT:
+    We intentionally DO NOT save card information.
+    Only the order information goes to Supabase.
   */
 
 
-  /* =======================================================
-     SAVE ORDER TO SUPABASE
-  ======================================================= */
+  let orderResult;
 
-  const orderResult=
-    await db
-      .from("orders")
-      .insert({
 
-        user_id:
-          currentUser.id,
+  try{
 
-        event_id:
-          String(currentEvent.id),
+    orderResult =
+      await db
+        .from("orders")
+        .insert({
 
-        event_name:
-          currentEvent.title,
+          user_id:currentUser.id,
 
-        event_date:
-          currentEvent.date,
+          event_id:
+            String(currentEvent.id),
 
-        venue:
-          currentEvent.venue,
+          event_name:
+            currentEvent.title,
 
-        total:
-          total,
+          event_date:
+            currentEvent.date,
 
-        quantity:
-          selectedSeats.length,
+          venue:
+            currentEvent.venue,
 
-        status:
-          "confirmed"
+          total:
+            total,
 
-      })
-      .select()
-      .single();
+          quantity:
+            selectedSeats.length,
+
+          status:
+            "confirmed"
+
+        });
+
+  }catch(error){
+
+    console.error(
+      "Order insert exception:",
+      error
+    );
+
+
+    if(button){
+
+      button.disabled=false;
+      button.textContent=
+        "Complete demo purchase";
+
+    }
+
+
+    showToast(
+      "Order error: "+
+      (
+        error?.message ||
+        "Unknown error"
+      )
+    );
+
+
+    return;
+
+  }
 
 
   if(orderResult.error){
@@ -4166,31 +3440,35 @@ async function completePurchase(){
     if(button){
 
       button.disabled=false;
-
       button.textContent=
-        "Complete purchase";
+        "Complete demo purchase";
 
     }
 
 
+    const errorMessage =
+      orderResult.error.message ||
+      orderResult.error.details ||
+      orderResult.error.hint ||
+      "Unknown Supabase error";
+
+
     showToast(
-      "Could not save your order. Please try again."
+      "Order error: "+
+      errorMessage
     );
+
 
     return;
 
   }
 
 
-  /* =======================================================
-     CREATE LOCAL TICKETS
-  ======================================================= */
-
-  const purchaseTimestamp=
+  const purchaseTimestamp =
     Date.now();
 
 
-  const newTickets=
+  const newTickets =
     selectedSeats.map(
       (seat,index)=>({
 
@@ -4204,9 +3482,6 @@ async function completePurchase(){
 
         orderId:
           orderId,
-
-        supabaseOrderId:
-          orderResult.data.id,
 
         userId:
           currentUser.id,
@@ -4251,7 +3526,7 @@ async function completePurchase(){
           "active",
 
         owner:
-          currentUser.name
+          getUserDisplayName(currentUser)
 
       })
     );
@@ -4262,20 +3537,16 @@ async function completePurchase(){
   );
 
 
-  /* =======================================================
-     UPDATE LOCAL ORDER VIEW
-  ======================================================= */
-
-  const localOrder={
+  const localOrder = {
 
     id:
       orderId,
 
-    supabaseId:
-      orderResult.data.id,
-
     userId:
       currentUser.id,
+
+    eventId:
+      currentEvent.id,
 
     event:
       currentEvent.title,
@@ -4305,8 +3576,7 @@ async function completePurchase(){
       "Confirmed",
 
     created:
-      new Date()
-        .toLocaleDateString()
+      new Date().toLocaleDateString()
 
   };
 
@@ -4318,11 +3588,6 @@ async function completePurchase(){
 
   saveData();
 
-
-  /*
-    Clear payment form values from
-    the DOM before closing the modal.
-  */
 
   if(cardElement)
     cardElement.value="";
@@ -4336,16 +3601,13 @@ async function completePurchase(){
 
   closeModal();
 
+
   selectedSeats=[];
 
 
   document
-    .getElementById(
-      "buyBar"
-    )
-    .classList.remove(
-      "show"
-    );
+    .getElementById("buyBar")
+    .classList.remove("show");
 
 
   showToast(
@@ -4353,61 +3615,53 @@ async function completePurchase(){
   );
 
 
-  setTimeout(()=>{
-
-    showPage("tickets");
-
-  },500);
+  setTimeout(
+    ()=>{
+      showPage("tickets");
+    },
+    500
+  );
 
 }
 
 
-/* =========================================================
+/* =========================
    TICKETS
-========================================================= */
+========================= */
 
 function renderTickets(){
 
-  const myTickets=
+  const userTickets =
     tickets.filter(
-      t=>
-        t.userId===
-        currentUser.id
+      ticket=>
+        ticket.userId===currentUser?.id
     );
 
 
   document
     .getElementById("main")
-    .innerHTML=`
+    .innerHTML = `
 
-      <div class="page">
+      <div class="container">
 
         <div class="page-title">
           My Tickets
         </div>
 
-        <div class="subtitle">
-          Your purchased tickets.
-        </div>
-
 
         ${
-          myTickets.length
+          userTickets.length
 
-          ?
+          ? userTickets
+              .map(ticketCard)
+              .join("")
 
-          myTickets
-            .map(ticketCard)
-            .join("")
-
-          :
-
-          `
+          : `
 
             <div class="empty">
 
               <div class="empty-icon">
-                🎫
+                🎟️
               </div>
 
               <h3>
@@ -4415,19 +3669,14 @@ function renderTickets(){
               </h3>
 
               <p>
-                Your tickets will appear here after purchase.
+                Your purchased tickets will appear here.
               </p>
 
-              <br>
-
               <button
-              class="primary"
-              onclick="
-                showPage('events')
-              ">
-
+                class="primary-btn"
+                style="max-width:220px"
+                onclick="showPage('events')">
                 Browse events
-
               </button>
 
             </div>
@@ -4444,128 +3693,87 @@ function renderTickets(){
 
 function ticketCard(ticket){
 
-  return`
+  return `
 
-    <div class="ticket">
+    <div class="ticket-card">
 
-      <div
-      class="ticket-top"
-      style="
-        background-image:url('${ticket.image}')
-      ">
+      <div class="ticket-top">
 
-        <div class="ticket-top-content">
+        <img
+          class="ticket-image"
+          src="${ticket.image}"
+          alt="${escapeHtml(ticket.event)}">
+
+
+        <div class="ticket-info">
 
           <h3>
-            ${ticket.artist}
+            ${escapeHtml(ticket.event)}
           </h3>
 
           <p>
-            ${ticket.event}
+            ${escapeHtml(ticket.date)}
           </p>
+
+          <p>
+            ${escapeHtml(ticket.venue)}
+          </p>
+
+          <span class="ticket-status">
+            ${escapeHtml(ticket.status)}
+          </span>
 
         </div>
 
       </div>
 
 
-      <div class="ticket-body">
+      <div class="ticket-details">
 
-        <div class="ticket-details">
+        <div class="ticket-seat">
 
-          <div class="ticket-detail">
-
-            <small>
-              Date
-            </small>
-
+          <div>
+            <small>Section</small>
             <strong>
-              ${ticket.date}
+              ${escapeHtml(ticket.section)}
             </strong>
-
           </div>
 
-
-          <div class="ticket-detail">
-
-            <small>
-              Time
-            </small>
-
+          <div>
+            <small>Row</small>
             <strong>
-              ${ticket.time}
+              ${escapeHtml(String(ticket.row))}
             </strong>
-
           </div>
 
-
-          <div class="ticket-detail">
-
-            <small>
-              Venue
-            </small>
-
+          <div>
+            <small>Seat</small>
             <strong>
-              ${ticket.venue}
+              ${escapeHtml(String(ticket.seat))}
             </strong>
-
-          </div>
-
-
-          <div class="ticket-detail">
-
-            <small>
-              Seat
-            </small>
-
-            <strong>
-              ${ticket.section}
-              · Row ${ticket.row}
-              · ${ticket.seat}
-            </strong>
-
           </div>
 
         </div>
 
 
-        <div class="ticket-code">
-
-          <div class="qr"></div>
-
-          <small>
-            ${ticket.id}
-          </small>
-
-        </div>
-
-
-        <div style="
-          display:flex;
-          gap:8px;
-          margin-top:15px">
+        <div class="ticket-actions">
 
           <button
-          class="primary"
-          style="flex:1"
-          onclick="
-            transferTicket('${ticket.id}')
-          ">
-
-            Transfer
-
+            class="small-btn primary"
+            onclick="showTicket('${ticket.id}')">
+            View ticket
           </button>
 
+          <button
+            class="small-btn"
+            onclick="transferTicket('${ticket.id}')">
+            Transfer
+          </button>
 
           <button
-          class="secondary"
-          style="flex:1"
-          onclick="
-            listForResale('${ticket.id}')
-          ">
-
+            class="small-btn"
+            onclick="listForResale('${ticket.id}')">
             Resale
-
           </button>
 
         </div>
@@ -4579,15 +3787,11 @@ function ticketCard(ticket){
 }
 
 
-/* =========================================================
-   TRANSFER
-========================================================= */
+function showTicket(ticketId){
 
-function transferTicket(id){
-
-  const ticket=
+  const ticket =
     tickets.find(
-      t=>t.id===id
+      item=>item.id===ticketId
     );
 
 
@@ -4595,140 +3799,186 @@ function transferTicket(id){
     return;
 
 
-  openModal(`
+  openModal(
+    "Ticket",
+    `
 
-    <h2>
-      Transfer ticket
-    </h2>
+      <div class="ticket-card">
 
-    <p style="
-      color:#6b7280;
-      font-size:13px;
-      margin-bottom:15px">
+        <div class="ticket-top">
 
-      Send this ticket to another person.
+          <img
+            class="ticket-image"
+            src="${ticket.image}"
+            alt="Ticket">
 
-    </p>
+          <div class="ticket-info">
 
+            <h3>
+              ${escapeHtml(ticket.event)}
+            </h3>
 
-    <div class="info-box">
+            <p>
+              ${escapeHtml(ticket.date)}
+            </p>
 
-      <strong>
-        ${ticket.event}
-      </strong>
+            <p>
+              ${escapeHtml(ticket.venue)}
+            </p>
 
-      <p style="
-        color:#6b7280;
-        font-size:12px;
-        margin-top:5px">
+          </div>
 
-        ${ticket.section}
-        · Row ${ticket.row}
-        · Seat ${ticket.seat}
-
-      </p>
-
-    </div>
+        </div>
 
 
-    <div class="form">
+        <div class="ticket-details">
 
-      <label>
-        RECIPIENT NAME
-      </label>
+          <div class="ticket-seat">
 
-      <input
-      id="transferName"
-      placeholder="Recipient name">
+            <div>
+              <small>Section</small>
+              <strong>${escapeHtml(ticket.section)}</strong>
+            </div>
 
-    </div>
+            <div>
+              <small>Row</small>
+              <strong>${ticket.row}</strong>
+            </div>
 
+            <div>
+              <small>Seat</small>
+              <strong>${ticket.seat}</strong>
+            </div>
 
-    <div class="form">
-
-      <label>
-        RECIPIENT EMAIL
-      </label>
-
-      <input
-      id="transferEmail"
-      type="email"
-      placeholder="name@example.com">
-
-    </div>
+          </div>
 
 
-    <button
-    class="full-btn"
-    onclick="
-      completeTransfer('${id}')
-    ">
+          <div style="
+            text-align:center;
+            padding:20px;
+            border:1px dashed #ccd3df;
+            border-radius:15px;
+            background:#f8fafc;
+          ">
 
-      Send transfer
+            <div style="
+              font-size:64px;
+              line-height:1;
+              letter-spacing:3px;
+            ">
+              ▦
+            </div>
 
-    </button>
+            <div style="
+              font-size:11px;
+              color:#667085;
+              margin-top:8px;
+            ">
+              Ticket ID
+            </div>
 
+            <strong style="
+              display:block;
+              margin-top:3px;
+            ">
+              ${escapeHtml(ticket.id)}
+            </strong>
 
-    <button
-    class="close-btn"
-    onclick="
-      closeModal()
-    ">
+          </div>
 
-      Cancel
+        </div>
 
-    </button>
+      </div>
 
-  `);
+    `
+  );
 
 }
 
 
-function completeTransfer(id){
+/* =========================
+   TRANSFER
+========================= */
 
-  const name=
-    document
-      .getElementById(
-        "transferName"
-      )
-      .value
-      .trim();
+function transferTicket(ticketId){
 
-  const email=
-    document
-      .getElementById(
-        "transferEmail"
-      )
-      .value
-      .trim();
-
-
-  if(!name || !email){
-
-    showToast(
-      "Enter the recipient details"
+  const ticket =
+    tickets.find(
+      item=>item.id===ticketId
     );
 
+
+  if(!ticket)
+    return;
+
+
+  if(ticket.status!=="active"){
+
+    showToast("This ticket is not available");
     return;
 
   }
 
 
-  const ticket=
+  openModal(
+    "Transfer ticket",
+    `
+
+      <div class="form-group">
+
+        <label class="form-label">
+          Recipient email
+        </label>
+
+        <input
+          id="transferEmail"
+          class="form-input"
+          type="email"
+          placeholder="recipient@example.com">
+
+      </div>
+
+
+      <button
+        class="full-btn"
+        onclick="completeTransfer('${ticket.id}')">
+
+        Transfer ticket
+
+      </button>
+
+    `
+  );
+
+}
+
+
+function completeTransfer(ticketId){
+
+  const email =
+    document
+      .getElementById("transferEmail")
+      ?.value
+      .trim()
+      .toLowerCase();
+
+
+  if(!email){
+
+    showToast("Enter the recipient email");
+    return;
+
+  }
+
+
+  const ticket =
     tickets.find(
-      t=>t.id===id
+      item=>item.id===ticketId
     );
 
 
   if(!ticket)
     return;
-
-
-  ticket.status=
-    "transferred";
-
-  ticket.transferredTo=
-    name;
 
 
   transfers.unshift({
@@ -4736,29 +3986,29 @@ function completeTransfer(id){
     id:
       "TR-"+Date.now(),
 
-    userId:
-      currentUser.id,
-
     ticketId:
-      id,
-
-    recipient:
-      name,
-
-    email:
-      email,
+      ticket.id,
 
     event:
       ticket.event,
 
-    date:
-      new Date()
-        .toLocaleDateString(),
+    from:
+      currentUser.email,
+
+    to:
+      email,
 
     status:
-      "Pending"
+      "Pending",
+
+    created:
+      new Date().toLocaleString()
 
   });
+
+
+  ticket.status =
+    "transfer-pending";
 
 
   saveData();
@@ -4766,28 +4016,23 @@ function completeTransfer(id){
   closeModal();
 
   showToast(
-    "Transfer sent"
+    "Transfer request created"
   );
 
-
-  setTimeout(()=>{
-
-    showPage("tickets");
-
-  },500);
+  renderTickets();
 
 }
 
 
-/* =========================================================
+/* =========================
    RESALE
-========================================================= */
+========================= */
 
-function listForResale(id){
+function listForResale(ticketId){
 
-  const ticket=
+  const ticket =
     tickets.find(
-      t=>t.id===id
+      item=>item.id===ticketId
     );
 
 
@@ -4795,99 +4040,10 @@ function listForResale(id){
     return;
 
 
-  openModal(`
-
-    <h2>
-      List ticket for resale
-    </h2>
-
-
-    <div class="info-box">
-
-      <strong>
-        ${ticket.event}
-      </strong>
-
-      <p style="
-        color:#6b7280;
-        font-size:12px;
-        margin-top:5px">
-
-        ${ticket.section}
-        · Row ${ticket.row}
-        · Seat ${ticket.seat}
-
-      </p>
-
-    </div>
-
-
-    <div class="form">
-
-      <label>
-        ASKING PRICE
-      </label>
-
-      <input
-      id="resalePrice"
-      type="number"
-      value="${ticket.price}">
-
-    </div>
-
-
-    <button
-    class="full-btn"
-    onclick="
-      completeResale('${id}')
-    ">
-
-      List ticket
-
-    </button>
-
-
-    <button
-    class="close-btn"
-    onclick="
-      closeModal()
-    ">
-
-      Cancel
-
-    </button>
-
-  `);
-
-}
-
-
-function completeResale(id){
-
-  const ticket=
-    tickets.find(
-      t=>t.id===id
-    );
-
-
-  if(!ticket)
-    return;
-
-
-  const price=
-    Number(
-      document
-        .getElementById(
-          "resalePrice"
-        )
-        .value
-    );
-
-
-  if(!price || price<=0){
+  if(ticket.status!=="active"){
 
     showToast(
-      "Enter a valid price"
+      "This ticket cannot be listed"
     );
 
     return;
@@ -4895,35 +4051,79 @@ function completeResale(id){
   }
 
 
-  ticket.status=
-    "listed";
+  openModal(
+    "List ticket for resale",
+    `
+
+      <div class="form-group">
+
+        <label class="form-label">
+          Resale price
+        </label>
+
+        <input
+          id="resalePrice"
+          class="form-input"
+          type="number"
+          min="1"
+          step="0.01"
+          value="${Number(ticket.price).toFixed(2)}">
+
+      </div>
 
 
-  resale.push({
+      <button
+        class="full-btn"
+        onclick="completeResale('${ticket.id}')">
+
+        List for resale
+
+      </button>
+
+    `
+  );
+
+}
+
+
+function completeResale(ticketId){
+
+  const price =
+    Number(
+      document
+        .getElementById("resalePrice")
+        ?.value
+    );
+
+
+  if(!price || price<=0){
+
+    showToast("Enter a valid price");
+    return;
+
+  }
+
+
+  const ticket =
+    tickets.find(
+      item=>item.id===ticketId
+    );
+
+
+  if(!ticket)
+    return;
+
+
+  resale.unshift({
 
     id:
       "RS-"+Date.now(),
 
     ticketId:
-      id,
-
-    userId:
-      currentUser.id,
+      ticket.id,
 
     event:
       ticket.event,
-
-    artist:
-      ticket.artist,
-
-    image:
-      ticket.image,
-
-    venue:
-      ticket.venue,
-
-    date:
-      ticket.date,
 
     section:
       ticket.section,
@@ -4938,9 +4138,19 @@ function completeResale(id){
       price,
 
     seller:
-      currentUser.name
+      currentUser.email,
+
+    status:
+      "Listed",
+
+    created:
+      new Date().toLocaleString()
 
   });
+
+
+  ticket.status =
+    "listed";
 
 
   saveData();
@@ -4951,126 +4161,106 @@ function completeResale(id){
     "Ticket listed for resale"
   );
 
-  showMarketplace();
+  renderTickets();
 
 }
 
 
-/* =========================================================
+/* =========================
    MARKETPLACE
-========================================================= */
+========================= */
 
 function showMarketplace(){
 
-  document
-    .querySelectorAll(".nav-btn")
-    .forEach(btn=>
-      btn.classList.remove(
-        "active"
-      )
+  const activeListings =
+    resale.filter(
+      item=>item.status==="Listed"
     );
 
 
   document
     .getElementById("main")
-    .innerHTML=`
+    .innerHTML = `
 
-      <div class="page">
+      <div class="container">
+
+        <button
+          class="back-btn"
+          onclick="showPage('profile')">
+          ←
+        </button>
 
         <div class="page-title">
           Marketplace
         </div>
 
-        <div class="subtitle">
-          Tickets listed for resale.
-        </div>
-
 
         ${
-          resale.length
+          activeListings.length
 
-          ?
+          ? activeListings
+              .map(listing=>`
 
-          resale
-            .map(
-              item=>`
+                <div class="market-card">
 
-                <div class="resale-card">
+                  <h3>
+                    ${escapeHtml(listing.event)}
+                  </h3>
 
-                  <div
-                  style="
-                    width:100%;
-                    height:130px;
-                    border-radius:12px;
-                    background:url('${item.image}')
-                    center/cover;
-                    margin-bottom:12px">
-                  </div>
+                  <div class="market-meta">
 
+                    Section ${escapeHtml(listing.section)}
+                    · Row ${listing.row}
+                    · Seat ${listing.seat}
 
-                  <div class="resale-head">
+                    <br>
 
-                    <div>
-
-                      <h4>
-                        ${item.artist}
-                      </h4>
-
-                      <p>
-                        ${item.event}
-                      </p>
-
-                      <p>
-                        ${item.venue}
-                      </p>
-
-                      <p>
-                        ${item.section}
-                        · Row ${item.row}
-                        · Seat ${item.seat}
-                      </p>
-
-                    </div>
-
-
-                    <div class="resale-price">
-                      ${money(item.price)}
-                    </div>
+                    Seller:
+                    ${escapeHtml(listing.seller)}
 
                   </div>
 
 
-                  <button
-                  class="full-btn"
-                  onclick="
-                    showToast(
-                      'Marketplace payment requires a connected payment provider'
-                    )
+                  <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    margin-top:12px;
                   ">
 
-                    Buy ticket
+                    <strong>
+                      $${Number(listing.price).toFixed(2)}
+                    </strong>
 
-                  </button>
+                    <button
+                      class="small-btn primary"
+                      style="max-width:120px"
+                      onclick="showToast('Marketplace purchase flow can be connected to a real payment provider later.')">
+                      Buy
+                    </button>
+
+                  </div>
 
                 </div>
 
-              `
-            )
-            .join("")
+              `)
+              .join("")
 
-          :
-
-          `
+          : `
 
             <div class="empty">
 
               <div class="empty-icon">
-                🛍️
+                🎟️
               </div>
 
               <h3>
-                No resale listings
+                Marketplace is empty
               </h3>
+
+              <p>
+                Listed resale tickets will appear here.
+              </p>
 
             </div>
 
@@ -5084,133 +4274,91 @@ function showMarketplace(){
 }
 
 
-/* =========================================================
+/* =========================
    ORDERS
-========================================================= */
+========================= */
 
 function renderOrders(){
 
-  const myOrders=
+  const userOrders =
     orders.filter(
-      o=>
-        o.userId===
-        currentUser.id
+      order=>
+        order.userId===currentUser?.id
     );
 
 
   document
     .getElementById("main")
-    .innerHTML=`
+    .innerHTML = `
 
-      <div class="page">
+      <div class="container">
+
+        <button
+          class="back-btn"
+          onclick="showPage('profile')">
+          ←
+        </button>
 
         <div class="page-title">
           Orders
         </div>
 
-        <div class="subtitle">
-          Your purchase history.
-        </div>
-
 
         ${
-          myOrders.length
+          userOrders.length
 
-          ?
+          ? userOrders
+              .map(order=>`
 
-          myOrders
-            .map(
-              order=>`
-
-                <div class="order">
-
-                  ${
-                    order.image
-                    ?
-
-                    `<div
-                    style="
-                      height:100px;
-                      border-radius:10px;
-                      background:url('${order.image}')
-                      center/cover;
-                      margin-bottom:12px">
-                    </div>`
-
-                    :
-
-                    ""
-                  }
-
+                <div class="order-card">
 
                   <div class="order-head">
 
-                    <strong>
-                      ${order.event}
-                    </strong>
+                    <h3>
+                      ${escapeHtml(order.event)}
+                    </h3>
 
-                    <span class="status">
-                      ${order.status}
-                    </span>
+                    <div class="order-status">
+                      ${escapeHtml(order.status)}
+                    </div>
 
                   </div>
 
 
-                  <p>
-                    ${order.date || ""}
-                  </p>
+                  <div class="order-meta">
+
+                    ${escapeHtml(order.date || "")}
+
+                    <br>
+
+                    ${escapeHtml(order.venue || "")}
+
+                    <br>
+
+                    ${order.tickets}
+                    ticket${order.tickets===1?"":"s"}
+
+                    <br>
+
+                    Order date:
+                    ${escapeHtml(order.created || "")}
+
+                  </div>
 
 
-                  <p>
-                    ${order.venue || ""}
-                  </p>
+                  <div class="order-total">
 
-
-                  <p>
-                    ${order.tickets || 1}
-                    ticket(s)
-                  </p>
-
-
-                  ${
-                    order.created
-                    ?
-
-                    `<p>
-                      Purchased:
-                      ${order.created}
-                    </p>`
-
-                    :
-
-                    ""
-                  }
-
-
-                  <p>
-                    Order
-                    ${order.id}
-                  </p>
-
-
-                  <div style="
-                    text-align:right;
-                    margin-top:10px;
-                    font-weight:900">
-
-                    ${money(order.total)}
+                    Total:
+                    $${Number(order.total).toFixed(2)}
 
                   </div>
 
                 </div>
 
-              `
-            )
-            .join("")
+              `)
+              .join("")
 
-          :
-
-          `
+          : `
 
             <div class="empty">
 
@@ -5226,18 +4374,6 @@ function renderOrders(){
                 Completed purchases will appear here.
               </p>
 
-              <br>
-
-              <button
-              class="primary"
-              onclick="
-                showPage('events')
-              ">
-
-                Browse events
-
-              </button>
-
             </div>
 
           `
@@ -5250,379 +4386,86 @@ function renderOrders(){
 }
 
 
-/* =========================================================
-   PROFILE
-========================================================= */
-
-function renderProfile(){
-
-  const name=
-    currentUser?.name ||
-    "User";
-
-
-  document
-    .getElementById("main")
-    .innerHTML=`
-
-      <div class="page">
-
-        <div class="profile-card">
-
-          <div class="avatar">
-            ${initials(name)}
-          </div>
-
-          <h2>
-            ${name}
-          </h2>
-
-          <p>
-            ${currentUser?.email || ""}
-          </p>
-
-        </div>
-
-
-        <div style="
-          background:#fff;
-          border-radius:15px;
-          overflow:hidden;
-          margin-bottom:15px">
-
-
-          <div
-          class="setting"
-          onclick="
-            showPage('tickets')
-          ">
-
-            <div class="setting-left">
-
-              <div class="setting-icon">
-                🎫
-              </div>
-
-              <strong>
-                My Tickets
-              </strong>
-
-            </div>
-
-            <span>
-              ›
-            </span>
-
-          </div>
-
-
-          <div
-          class="setting"
-          onclick="
-            showMarketplace()
-          ">
-
-            <div class="setting-left">
-
-              <div class="setting-icon">
-                🛍️
-              </div>
-
-              <strong>
-                Marketplace
-              </strong>
-
-            </div>
-
-            <span>
-              ›
-            </span>
-
-          </div>
-
-
-          <div
-          class="setting"
-          onclick="
-            showTransfers()
-          ">
-
-            <div class="setting-left">
-
-              <div class="setting-icon">
-                ↗
-              </div>
-
-              <strong>
-                Transfers
-              </strong>
-
-            </div>
-
-            <span>
-              ›
-            </span>
-
-          </div>
-
-
-          <div
-          class="setting"
-          onclick="
-            showPage('favorites')
-          ">
-
-            <div class="setting-left">
-
-              <div class="setting-icon">
-                ♥
-              </div>
-
-              <strong>
-                Favorites
-              </strong>
-
-            </div>
-
-            <span>
-              ›
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div style="
-          background:#fff;
-          border-radius:15px;
-          overflow:hidden">
-
-
-          <div
-          class="setting"
-          onclick="
-            showToast(
-              'Payment methods require a connected payment provider'
-            )
-          ">
-
-            <div class="setting-left">
-
-              <div class="setting-icon">
-                💳
-              </div>
-
-              <strong>
-                Payment methods
-              </strong>
-
-            </div>
-
-            <span>
-              ›
-            </span>
-
-          </div>
-
-
-          <div
-          class="setting"
-          onclick="
-            showToast(
-              'Mobile wallet integration ready'
-            )
-          ">
-
-            <div class="setting-left">
-
-              <div class="setting-icon">
-                📱
-              </div>
-
-              <strong>
-                Mobile wallet
-              </strong>
-
-            </div>
-
-            <span>
-              ›
-            </span>
-
-          </div>
-
-
-          <div
-          class="setting"
-          onclick="
-            showToast(
-              'Notifications enabled'
-            )
-          ">
-
-            <div class="setting-left">
-
-              <div class="setting-icon">
-                🔔
-              </div>
-
-              <strong>
-                Notifications
-              </strong>
-
-            </div>
-
-            <span>
-              ›
-            </span>
-
-          </div>
-
-
-          <div
-          class="setting"
-          onclick="
-            logout()
-          ">
-
-            <div class="setting-left">
-
-              <div class="setting-icon">
-                🚪
-              </div>
-
-              <strong>
-                Log out
-              </strong>
-
-            </div>
-
-            <span>
-              ›
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div style="
-          text-align:center;
-          color:#9ca3af;
-          font-size:10px;
-          margin:25px 0">
-
-          Ticket Master<br>
-          Independent ticketing application
-
-        </div>
-
-      </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   TRANSFERS
-========================================================= */
+/* =========================
+   TRANSFERS PAGE
+========================= */
 
 function showTransfers(){
 
-  document
-    .querySelectorAll(".nav-btn")
-    .forEach(btn=>
-      btn.classList.remove(
-        "active"
-      )
-    );
-
-
-  const myTransfers=
+  const userTransfers =
     transfers.filter(
-      t=>
-        t.userId===
-        currentUser.id
+      item=>
+        item.from===currentUser?.email ||
+        item.to===currentUser?.email
     );
 
 
   document
     .getElementById("main")
-    .innerHTML=`
+    .innerHTML = `
 
-      <div class="page">
+      <div class="container">
+
+        <button
+          class="back-btn"
+          onclick="showPage('profile')">
+          ←
+        </button>
 
         <div class="page-title">
           Transfers
         </div>
 
-        <div class="subtitle">
-          Tickets you've sent to others.
-        </div>
-
 
         ${
-          myTransfers.length
+          userTransfers.length
 
-          ?
+          ? userTransfers
+              .map(item=>`
 
-          myTransfers
-            .map(
-              t=>`
+                <div class="transfer-card">
 
-                <div class="order">
+                  <h3>
+                    ${escapeHtml(item.event)}
+                  </h3>
 
-                  <div class="order-head">
+                  <div class="transfer-meta">
 
-                    <strong>
-                      ${t.event}
-                    </strong>
+                    Ticket:
+                    ${escapeHtml(item.ticketId)}
 
-                    <span class="status">
-                      ${t.status}
-                    </span>
+                    <br>
+
+                    From:
+                    ${escapeHtml(item.from)}
+
+                    <br>
+
+                    To:
+                    ${escapeHtml(item.to)}
+
+                    <br>
+
+                    Status:
+                    ${escapeHtml(item.status)}
+
+                    <br>
+
+                    ${escapeHtml(item.created)}
 
                   </div>
 
-
-                  <p>
-                    Recipient:
-                    ${t.recipient}
-                  </p>
-
-
-                  <p>
-                    ${t.email}
-                  </p>
-
-
-                  <p>
-                    Ticket:
-                    ${t.ticketId}
-                  </p>
-
-
-                  <p>
-                    Sent:
-                    ${t.date}
-                  </p>
-
                 </div>
 
-              `
-            )
-            .join("")
+              `)
+              .join("")
 
-          :
-
-          `
+          : `
 
             <div class="empty">
 
               <div class="empty-icon">
-                ↗️
+                ⇄
               </div>
 
               <h3>
@@ -5630,7 +4473,7 @@ function showTransfers(){
               </h3>
 
               <p>
-                Tickets you transfer will appear here.
+                Ticket transfer activity will appear here.
               </p>
 
             </div>
@@ -5645,30 +4488,254 @@ function showTransfers(){
 }
 
 
-/* =========================================================
-   INITIALIZE
-========================================================= */
+/* =========================
+   PROFILE
+========================= */
 
-(async function init(){
+function renderProfile(){
 
-  switchAuth("login");
-
-
-  const user=
-    await loadCurrentUser();
+  const name =
+    getUserDisplayName(currentUser);
 
 
-  if(user){
+  const initial =
+    name
+      .charAt(0)
+      .toUpperCase();
+
+
+  document
+    .getElementById("main")
+    .innerHTML = `
+
+      <div class="container">
+
+        <div class="page-title">
+          Profile
+        </div>
+
+
+        <div class="profile-card">
+
+          <div class="profile-avatar">
+            ${escapeHtml(initial)}
+          </div>
+
+          <div class="profile-name">
+            ${escapeHtml(name)}
+          </div>
+
+          <div class="profile-email">
+            ${escapeHtml(currentUser?.email || "")}
+          </div>
+
+
+          <div class="profile-actions">
+
+            <button
+              class="profile-action"
+              onclick="showPage('orders')">
+              🧾 &nbsp; My orders
+            </button>
+
+            <button
+              class="profile-action"
+              onclick="showTransfers()">
+              ⇄ &nbsp; Transfers
+            </button>
+
+            <button
+              class="profile-action"
+              onclick="showMarketplace()">
+              🎟️ &nbsp; Resale marketplace
+            </button>
+
+            <button
+              class="profile-action"
+              onclick="showPage('favorites')">
+              ♡ &nbsp; Favorites
+            </button>
+
+            <button
+              class="profile-action danger"
+              onclick="logout()">
+              Log out
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+function openModal(title,content){
+
+  document
+    .getElementById("modalTitle")
+    .textContent=title;
+
+  document
+    .getElementById("modalContent")
+    .innerHTML=content;
+
+  document
+    .getElementById("modal")
+    .classList.add("show");
+
+}
+
+
+function closeModal(){
+
+  document
+    .getElementById("modal")
+    .classList.remove("show");
+
+}
+
+
+document
+  .getElementById("modal")
+  .addEventListener(
+    "click",
+    event=>{
+
+      if(event.target.id==="modal")
+        closeModal();
+
+    }
+  );
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.add("show");
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+    setTimeout(
+      ()=>{
+        toast.classList.remove("show");
+      },
+      3200
+    );
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   APP LAUNCH
+========================= */
+
+async function launchApp(){
+
+  if(!currentUser){
+
+    document
+      .getElementById("authScreen")
+      .classList.remove("hidden");
+
+    document
+      .getElementById("app")
+      .classList.add("hidden");
+
+    return;
+
+  }
+
+
+  document
+    .getElementById("authScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("app")
+    .classList.remove("hidden");
+
+
+  await loadFavorites();
+
+  await loadOrders();
+
+
+  updateNav("home");
+
+  renderHome();
+
+}
+
+
+async function init(){
+
+  setupPaymentFormatting();
+
+  await loadCurrentUser();
+
+  if(currentUser){
 
     await launchApp();
 
   }else{
 
-    showAuth();
+    document
+      .getElementById("authScreen")
+      .classList.remove("hidden");
+
+    document
+      .getElementById("app")
+      .classList.add("hidden");
 
   }
 
-})();
+}
+
+
+init();
 
 </script>
 
