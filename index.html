@@ -1060,7 +1060,6 @@ button{
 
       <div class="form-group">
         <label>Email</label>
-
         <input
           id="loginEmail"
           type="email"
@@ -1070,7 +1069,6 @@ button{
 
       <div class="form-group">
         <label>Password</label>
-
         <input
           id="loginPassword"
           type="password"
@@ -1088,7 +1086,6 @@ button{
 
       <div class="form-group">
         <label>Full name</label>
-
         <input
           id="signupName"
           type="text"
@@ -1098,7 +1095,6 @@ button{
 
       <div class="form-group">
         <label>Email</label>
-
         <input
           id="signupEmail"
           type="email"
@@ -1108,7 +1104,6 @@ button{
 
       <div class="form-group">
         <label>Password</label>
-
         <input
           id="signupPassword"
           type="password"
@@ -1166,50 +1161,40 @@ button{
         id="nav-home"
         class="nav-btn active"
         onclick="showPage('home')">
-
         <span class="nav-icon">⌂</span>
         Home
-
       </button>
 
       <button
         id="nav-events"
         class="nav-btn"
         onclick="showPage('events')">
-
         <span class="nav-icon">◫</span>
         Events
-
       </button>
 
       <button
         id="nav-favorites"
         class="nav-btn"
         onclick="showPage('favorites')">
-
         <span class="nav-icon">♡</span>
         Favorites
-
       </button>
 
       <button
         id="nav-tickets"
         class="nav-btn"
         onclick="showPage('tickets')">
-
         <span class="nav-icon">▣</span>
         Tickets
-
       </button>
 
       <button
         id="nav-profile"
         class="nav-btn"
         onclick="showPage('profile')">
-
         <span class="nav-icon">●</span>
         Profile
-
       </button>
 
     </div>
@@ -1239,56 +1224,44 @@ button{
     <div id="checkoutSummary"></div>
 
     <div class="form-group">
-
       <label>Cardholder name</label>
-
       <input
         id="cardName"
         type="text"
         autocomplete="cc-name"
         placeholder="Name on card">
-
     </div>
 
     <div class="form-group">
-
       <label>Card number</label>
-
       <input
         id="cardNumber"
         inputmode="numeric"
         autocomplete="cc-number"
         maxlength="19"
         placeholder="1234 5678 9012 3456">
-
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
 
       <div class="form-group">
-
         <label>Expiry</label>
-
         <input
           id="cardExpiry"
           inputmode="numeric"
           autocomplete="cc-exp"
           maxlength="5"
           placeholder="MM/YY">
-
       </div>
 
       <div class="form-group">
-
         <label>CVC</label>
-
         <input
           id="cardCvc"
           inputmode="numeric"
           autocomplete="cc-csc"
           maxlength="4"
           placeholder="123">
-
       </div>
 
     </div>
@@ -1302,19 +1275,15 @@ button{
     </div>
 
     <div class="total-row">
-
       <span>Total</span>
       <span id="checkoutTotal">$0.00</span>
-
     </div>
 
     <button
       id="completePurchaseBtn"
       class="primary-btn"
       onclick="completePurchase()">
-
       Complete purchase
-
     </button>
 
   </div>
@@ -1386,13 +1355,10 @@ button{
     <div class="transfer-form-group">
 
       <label for="transferNote">
-
         Note
-
         <span style="font-weight:400;color:#98a2b3">
           (optional)
         </span>
-
       </label>
 
       <textarea
@@ -1401,9 +1367,7 @@ button{
         placeholder="Add a message for the recipient..."></textarea>
 
       <div class="transfer-note-count">
-
         <span id="transferNoteCount">0</span>/250
-
       </div>
 
     </div>
@@ -1411,9 +1375,7 @@ button{
     <button
       class="primary-btn"
       onclick="reviewTicketTransfer()">
-
       Review Transfer
-
     </button>
 
   </div>
@@ -1507,17 +1469,13 @@ button{
     <button
       class="primary-btn"
       onclick="confirmTicketTransfer()">
-
       Confirm Transfer
-
     </button>
 
     <button
       class="transfer-edit-btn"
       onclick="backToTransferForm()">
-
       Edit Details
-
     </button>
 
   </div>
@@ -1585,8 +1543,14 @@ let resale =
   );
 
 let currentEventDbData = null;
-
 let transferTicketData = null;
+
+
+/* =========================================================
+   EVENTS
+   Artist images below are used everywhere:
+   Event cards → Event banner → Ticket image
+========================================================= */
 
 const events = [
 
@@ -1600,7 +1564,7 @@ const events = [
     city:"Melbourne VIC",
     category:"Concerts",
     price:105,
-    image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1000&q=80"
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Bruno_Mars.jpg"
   },
 
   {
@@ -1613,7 +1577,7 @@ const events = [
     city:"Melbourne VIC",
     category:"Concerts",
     price:120,
-    image:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=80"
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/BIGBANG.jpg"
   },
 
   {
@@ -1626,7 +1590,7 @@ const events = [
     city:"Sydney NSW",
     category:"Concerts",
     price:99,
-    image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1000&q=80"
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/The_Weeknd.jpg"
   },
 
   {
@@ -1639,7 +1603,7 @@ const events = [
     city:"Melbourne VIC",
     category:"Concerts",
     price:105,
-    image:"https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=1000&q=80"
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/ColdPlay.jpg"
   },
 
   {
@@ -1652,7 +1616,7 @@ const events = [
     city:"Sydney NSW",
     category:"Concerts",
     price:145,
-    image:"https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1000&q=80"
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Beyonce.jpg"
   },
 
   {
@@ -1665,7 +1629,7 @@ const events = [
     city:"Melbourne VIC",
     category:"Concerts",
     price:160,
-    image:"https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1000&q=80"
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Taylor_Swift_(6820734474).jpg"
   },
 
   {
@@ -1678,7 +1642,7 @@ const events = [
     city:"Sydney NSW",
     category:"Concerts",
     price:110,
-    image:"https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=1000&q=80"
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Drake_(45184).jpg"
   },
 
   {
@@ -1691,7 +1655,7 @@ const events = [
     city:"Melbourne VIC",
     category:"Concerts",
     price:125,
-    image:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1000&q=80"
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Blackpink.jpg"
   },
 
   {
@@ -1704,7 +1668,7 @@ const events = [
     city:"Melbourne VIC",
     category:"Concerts",
     price:135,
-    image:"https://images.unsplash.com/photo-1521337581100-8ca9a73a5f79?auto=format&fit=crop&w=1000&q=80"
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Adele.jpg"
   },
 
   {
@@ -1717,7 +1681,7 @@ const events = [
     city:"Melbourne VIC",
     category:"Concerts",
     price:95,
-    image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1000&q=80"
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Ed_Sheeran.jpg"
   },
 
   {
@@ -1730,7 +1694,7 @@ const events = [
     city:"Sydney NSW",
     category:"Concerts",
     price:130,
-    image:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1000&q=80"
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Lady_Gaga.jpg"
   },
 
   {
@@ -1743,7 +1707,7 @@ const events = [
     city:"Melbourne VIC",
     category:"Concerts",
     price:150,
-    image:"https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1000&q=80"
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Rihanna_(6777125510).jpg"
   },
 
   {
@@ -1774,6 +1738,7 @@ const events = [
 
 ];
 
+
 function money(value){
 
   return "$" +
@@ -1781,6 +1746,7 @@ function money(value){
       .toFixed(2);
 
 }
+
 
 function getEvent(id){
 
@@ -1790,6 +1756,7 @@ function getEvent(id){
   );
 
 }
+
 
 function escapeHTML(value){
 
@@ -1801,6 +1768,7 @@ function escapeHTML(value){
     .replaceAll("'","&#039;");
 
 }
+
 
 function showToast(message){
 
@@ -1821,6 +1789,7 @@ function showToast(message){
 
 }
 
+
 function getUserDisplayName(user){
 
   if(!user)
@@ -1834,6 +1803,7 @@ function getUserDisplayName(user){
   );
 
 }
+
 
 function userInitials(user){
 
@@ -1855,6 +1825,7 @@ function userInitials(user){
 
 }
 
+
 function saveData(){
 
   localStorage.removeItem("tm_tickets");
@@ -1871,6 +1842,7 @@ function saveData(){
   );
 
 }
+
 
 function switchAuth(type){
 
@@ -1911,6 +1883,7 @@ function switchAuth(type){
 
 }
 
+
 async function handleLogin(event){
 
   event.preventDefault();
@@ -1950,6 +1923,7 @@ async function handleLogin(event){
   await launchApp();
 
 }
+
 
 async function handleSignup(event){
 
@@ -2013,6 +1987,7 @@ async function handleSignup(event){
 
 }
 
+
 async function loadCurrentUser(){
 
   const result =
@@ -2032,6 +2007,7 @@ async function loadCurrentUser(){
     result.data.session?.user || null;
 
 }
+
 
 async function logout(){
 
@@ -2056,6 +2032,7 @@ async function logout(){
   switchAuth("login");
 
 }
+
 
 async function loadFavorites(){
 
@@ -2096,6 +2073,7 @@ async function loadFavorites(){
       );
 
 }
+
 
 async function addFavorite(id){
 
@@ -2140,6 +2118,7 @@ async function addFavorite(id){
 
 }
 
+
 async function removeFavorite(id){
 
   if(!currentUser)
@@ -2170,6 +2149,7 @@ async function removeFavorite(id){
   return true;
 
 }
+
 
 async function toggleFavorite(id){
 
@@ -2210,6 +2190,7 @@ async function toggleFavorite(id){
   renderCurrentPage();
 
 }
+
 
 async function loadOrders(){
 
@@ -2300,6 +2281,7 @@ async function loadOrders(){
       }));
 
 }
+
 
 async function loadTickets(){
 
@@ -2449,6 +2431,7 @@ async function loadTickets(){
 
 }
 
+
 async function loadEventSeatData(event){
 
   if(!event)
@@ -2585,6 +2568,7 @@ async function loadEventSeatData(event){
 
 }
 
+
 function isSeatSold(
   eventId,
   section,
@@ -2605,6 +2589,7 @@ function isSeatSold(
 
 }
 
+
 function showPage(page){
 
   currentPage = page;
@@ -2622,6 +2607,7 @@ function showPage(page){
   renderCurrentPage();
 
 }
+
 
 function updateNav(page){
 
@@ -2642,6 +2628,7 @@ function updateNav(page){
 
 }
 
+
 function renderCurrentPage(){
 
   if(currentPage === "home")
@@ -2660,6 +2647,7 @@ function renderCurrentPage(){
     renderProfile();
 
 }
+
 
 function eventCard(event){
 
@@ -2723,6 +2711,7 @@ function eventCard(event){
   `;
 
 }
+
 
 function renderHome(){
 
@@ -2814,6 +2803,7 @@ function renderHome(){
 
 }
 
+
 function homeSearch(value){
 
   const term =
@@ -2855,7 +2845,9 @@ function homeSearch(value){
 
 }
 
+
 let activeCategory = "All";
+
 
 function renderEvents(){
 
@@ -2935,6 +2927,7 @@ function renderEvents(){
 
 }
 
+
 function setCategory(category){
 
   activeCategory = category;
@@ -2942,6 +2935,7 @@ function setCategory(category){
   renderEvents();
 
 }
+
 
 function showCategory(category){
 
@@ -2954,6 +2948,7 @@ function showCategory(category){
   renderEvents();
 
 }
+
 
 function filterEventPage(value){
 
@@ -3006,6 +3001,7 @@ function filterEventPage(value){
       `;
 
 }
+
 
 function renderFavorites(){
 
@@ -3078,6 +3074,7 @@ function renderFavorites(){
   `;
 
 }
+
 
 async function openEvent(id){
 
@@ -3198,6 +3195,7 @@ async function openEvent(id){
 
 }
 
+
 function renderEventSeatMap(){
 
   const main =
@@ -3281,31 +3279,23 @@ function renderEventSeatMap(){
         <div class="seat-legend">
 
           <div class="legend-item">
-
             <span class="legend-dot"></span>
             Available
-
           </div>
 
           <div class="legend-item">
-
             <span class="legend-dot selected"></span>
             Selected
-
           </div>
 
           <div class="legend-item">
-
             <span class="legend-dot sold"></span>
             Unavailable
-
           </div>
 
           <div class="legend-item">
-
             <span class="legend-dot owned"></span>
             Your ticket
-
           </div>
 
         </div>
@@ -3319,6 +3309,7 @@ function renderEventSeatMap(){
   renderBuyBar();
 
 }
+
 
 function renderSectionSeats(section){
 
@@ -3392,9 +3383,7 @@ function renderSectionSeats(section){
             <div class="seat-row">
 
               <div class="row-label">
-
                 ${escapeHTML(rowName)}
-
               </div>
 
               ${rowSeats
@@ -3479,6 +3468,7 @@ function renderSectionSeats(section){
 
 }
 
+
 function selectSeat(
   seatId,
   section,
@@ -3536,6 +3526,7 @@ function selectSeat(
   renderEventSeatMap();
 
 }
+
 
 function renderBuyBar(){
 
@@ -3600,12 +3591,13 @@ function renderBuyBar(){
 
 }
 
+
 function openCheckout(){
 
   if(!currentUser){
 
     showToast(
-      "Please log in first."
+      "Please log in."
     );
 
     return;
@@ -3679,6 +3671,7 @@ function openCheckout(){
 
 }
 
+
 function closeCheckout(){
 
   document
@@ -3688,6 +3681,7 @@ function closeCheckout(){
     .classList.add("hidden");
 
 }
+
 
 function setupPaymentFormatting(){
 
@@ -3754,6 +3748,7 @@ function setupPaymentFormatting(){
 
 }
 
+
 function generateTicketCode(){
 
   if(
@@ -3785,6 +3780,7 @@ function generateTicketCode(){
   );
 
 }
+
 
 async function completePurchase(){
 
@@ -4120,6 +4116,7 @@ async function completePurchase(){
 
 }
 
+
 function renderTickets(){
 
   const main =
@@ -4184,6 +4181,7 @@ function renderTickets(){
   `;
 
 }
+
 
 function ticketCard(ticket){
 
@@ -4278,6 +4276,7 @@ function ticketCard(ticket){
 
 }
 
+
 function showTicket(ticketId){
 
   const ticket =
@@ -4308,26 +4307,37 @@ function showTicket(ticketId){
         text-align:center;
       ">
 
-      <div
-        style="
-          font-size:48px;
-          margin-bottom:12px;
-        ">
-
-        🎟️
-
-      </div>
+      ${
+        ticket.image
+          ? `
+            <img
+              src="${ticket.image}"
+              alt="${escapeHTML(ticket.event)}"
+              style="
+                width:100%;
+                height:180px;
+                object-fit:cover;
+                border-radius:15px;
+                margin-bottom:15px;
+              ">
+          `
+          : `
+            <div
+              style="
+                font-size:48px;
+                margin-bottom:12px;
+              ">
+              🎟️
+            </div>
+          `
+      }
 
       <h2 style="margin:0 0 7px">
-
         ${escapeHTML(ticket.event)}
-
       </h2>
 
       <p style="margin:0;opacity:.9">
-
         ${escapeHTML(ticket.date)}
-
       </p>
 
     </div>
@@ -4339,16 +4349,12 @@ function showTicket(ticketId){
       </strong>
 
       <p style="color:#667085">
-
         Row ${escapeHTML(ticket.row)}
         · Seat ${escapeHTML(ticket.seat)}
-
       </p>
 
       <p style="color:#667085">
-
         ${escapeHTML(ticket.venue)}
-
       </p>
 
       <div
@@ -4371,6 +4377,7 @@ function showTicket(ticketId){
 
 }
 
+
 function closeTicketModal(){
 
   document
@@ -4380,6 +4387,7 @@ function closeTicketModal(){
     .classList.add("hidden");
 
 }
+
 
 /* =========================
    TRANSFER FLOW
@@ -4441,9 +4449,7 @@ function transferTicket(ticketId){
     <div class="transfer-summary">
 
       <div class="transfer-summary-title">
-
         ${escapeHTML(ticket.event)}
-
       </div>
 
       <div class="transfer-summary-detail">
@@ -4474,6 +4480,7 @@ function transferTicket(ticketId){
 
 }
 
+
 function closeTransferModal(){
 
   document
@@ -4483,6 +4490,7 @@ function closeTransferModal(){
     .classList.add("hidden");
 
 }
+
 
 function closeTransferReview(){
 
@@ -4495,6 +4503,7 @@ function closeTransferReview(){
   transferTicketData = null;
 
 }
+
 
 function backToTransferForm(){
 
@@ -4511,6 +4520,7 @@ function backToTransferForm(){
     .classList.remove("hidden");
 
 }
+
 
 function reviewTicketTransfer(){
 
@@ -4599,11 +4609,9 @@ function reviewTicketTransfer(){
   ).innerHTML = `
 
     <strong>
-
       ${escapeHTML(
         transferTicketData.event
       )}
-
     </strong>
 
     <br>
@@ -4681,6 +4689,7 @@ function reviewTicketTransfer(){
     .classList.remove("hidden");
 
 }
+
 
 function confirmTicketTransfer(){
 
@@ -4802,6 +4811,7 @@ function confirmTicketTransfer(){
 
 }
 
+
 /* Note counter */
 
 document.addEventListener(
@@ -4823,6 +4833,7 @@ document.addEventListener(
 
   }
 );
+
 
 function renderProfile(){
 
@@ -4922,6 +4933,7 @@ function renderProfile(){
 
 }
 
+
 function showOrders(){
 
   currentPage = "orders";
@@ -4931,6 +4943,7 @@ function showOrders(){
   renderOrders();
 
 }
+
 
 function renderOrders(){
 
@@ -4974,12 +4987,10 @@ function renderOrders(){
                   </h3>
 
                   <p>
-
                     Order
                     ${escapeHTML(
                       order.orderNumber
                     )}
-
                   </p>
 
                   <p>
@@ -5038,6 +5049,7 @@ function renderOrders(){
   `;
 
 }
+
 
 function showTransfers(){
 
@@ -5182,6 +5194,7 @@ function showTransfers(){
 
 }
 
+
 async function launchApp(){
 
   if(!currentUser)
@@ -5210,6 +5223,7 @@ async function launchApp(){
   renderHome();
 
 }
+
 
 db.auth.onAuthStateChange(
   async (
@@ -5257,6 +5271,7 @@ db.auth.onAuthStateChange(
 
   }
 );
+
 
 async function init(){
 
