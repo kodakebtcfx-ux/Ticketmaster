@@ -6268,7 +6268,7 @@ function reviewTicketTransfer(){
 }
 
 
-function confirmTicketTransfer(){
+async function confirmTicketTransfer(){
 
   if(!transferTicketData){
 
@@ -6300,92 +6300,221 @@ function confirmTicketTransfer(){
       "transferNote"
     ).value.trim();
 
+  if(!firstName){
+
+    showToast(
+      "Enter the recipient's first name."
+    );
+
+    return;
+
+  }
+
+  if(!lastName){
+
+    showToast(
+      "Enter the recipient's last name."
+    );
+
+    return;
+
+  }
+
+  if(!contact){
+
+    showToast(
+      "Enter the recipient's email address."
+    );
+
+    return;
+
+  }
+
+  if(!contact.includes("@")){
+
+    showToast(
+      "Please enter a valid recipient email address."
+    );
+
+    return;
+
+  }
+
+  if(!currentUser){
+
+    showToast(
+      "Please log in before transferring a ticket."
+    );
+
+    return;
+
+  }
+
+  const databaseTicketId =
+    transferTicketData.databaseId ||
+    "";
+
+  if(!databaseTicketId){
+
+    showToast(
+      "This ticket is not connected to the ticket database yet."
+    );
+
+    console.error(
+      "Missing databaseId for ticket:",
+      transferTicketData
+    );
+
+    return;
+
+  }
+
   const recipientName =
     `${firstName} ${lastName}`;
 
-  const transfer = {
+  try{
 
-    id:
-      "TR-" +
-      Date.now(),
+    showToast(
+      "Sending transfer email..."
+    );
 
-    ticketId:
-      transferTicketData.id,
+    const {
+      data,
+      error
+    } = await db.functions.invoke(
+      "send-ticket-transfer",
+      {
+        body: {
 
-    ticketDatabaseId:
-      transferTicketData.databaseId ||
-      "",
+          ticket_id:
+            databaseTicketId,
 
-    ticketSeatId:
-      transferTicketData.seatId ||
-      "",
+          recipient_email:
+            contact.toLowerCase(),
 
-    sender:
-      currentUser.email,
+          message:
+            note
 
-    recipient:
-      contact,
+        }
+      }
+    );
 
-    recipientFirstName:
-      firstName,
+    if(error){
 
-    recipientLastName:
-      lastName,
+      console.error(
+        "Transfer function error:",
+        error
+      );
 
-    recipientName:
-      recipientName,
+      throw error;
 
-    note:
-      note,
+    }
 
-    event:
-      transferTicketData.event,
+    if(!data || !data.success){
 
-    date:
-      transferTicketData.date,
+      throw new Error(
+        data?.error ||
+        "The transfer could not be sent."
+      );
 
-    venue:
-      transferTicketData.venue,
+    }
 
-    section:
-      transferTicketData.section,
+    const transfer = {
 
-    row:
-      transferTicketData.row,
+      id:
+        data.transfer_id ||
+        "TR-" + Date.now(),
 
-    seat:
-      transferTicketData.seat,
+      ticketId:
+        transferTicketData.id,
 
-    created:
-      new Date().toISOString(),
+      ticketDatabaseId:
+        databaseTicketId,
 
-    status:
-      "Pending"
+      ticketSeatId:
+        transferTicketData.seatId ||
+        "",
 
-  };
+      sender:
+        currentUser.email,
 
-  transfers.push(
-    transfer
-  );
+      recipient:
+        contact.toLowerCase(),
 
-  saveData();
+      recipientFirstName:
+        firstName,
 
-  document
-    .getElementById(
-      "transferReviewModal"
-    )
-    .classList.add("hidden");
+      recipientLastName:
+        lastName,
 
-  transferTicketData = null;
+      recipientName:
+        recipientName,
 
-  showToast(
-    "Transfer request created."
-  );
+      note:
+        note,
 
-  setTimeout(
-    () => showTransfers(),
-    500
-  );
+      event:
+        transferTicketData.event,
+
+      date:
+        transferTicketData.date,
+
+      venue:
+        transferTicketData.venue,
+
+      section:
+        transferTicketData.section,
+
+      row:
+        transferTicketData.row,
+
+      seat:
+        transferTicketData.seat,
+
+      created:
+        new Date().toISOString(),
+
+      status:
+        "Pending"
+
+    };
+
+    transfers.push(
+      transfer
+    );
+
+    saveData();
+
+    document
+      .getElementById(
+        "transferReviewModal"
+      )
+      .classList.add("hidden");
+
+    transferTicketData = null;
+
+    showToast(
+      "Transfer email sent successfully."
+    );
+
+    setTimeout(
+      () => showTransfers(),
+      500
+    );
+
+  }catch(error){
+
+    console.error(
+      "Ticket transfer failed:",
+      error
+    );
+
+    showToast(
+      error?.message ||
+      "Unable to send the transfer email."
+    );
+
+  }
 
 }
 
