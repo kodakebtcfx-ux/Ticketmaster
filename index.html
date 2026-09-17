@@ -2505,14 +2505,14 @@ button{
     <div class="transfer-form-group">
 
       <label for="transferContact">
-        Recipient email or phone
+        Recipient email address
       </label>
 
       <input
         id="transferContact"
-        type="text"
+        type="email"
         autocomplete="email"
-        placeholder="Email address or phone number">
+        placeholder="recipient@example.com">
 
     </div>
 
@@ -6484,6 +6484,12 @@ async function confirmTicketTransfer(){
     );
 
     saveData();
+
+    /*
+      Refresh from Supabase so the transferred ticket's
+      database status is reflected immediately in the UI.
+    */
+    await loadTickets();
 
     document
       .getElementById(
