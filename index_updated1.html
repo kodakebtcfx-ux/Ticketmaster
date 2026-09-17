@@ -1,25 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
 <title>Ticket Master — Independent Event Tickets</title>
 
-<link rel="apple-touch-icon"
-      sizes="180x180"
-      href="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png">
+<link rel="apple-touch-icon" sizes="180x180" href="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png">
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Ticket Master">
 <meta name="theme-color" content="#087cff">
 
-<link rel="icon"
-      type="image/png"
-      href="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png">
+<link rel="icon" type="image/png" href="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png">
 
 <style>
 
@@ -2103,10 +2096,7 @@ button{
 
   <div class="auth-box">
 
-    <img
-      class="auth-logo"
-      src="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png"
-      alt="Ticket Master">
+    <img class="auth-logo" src="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png" alt="Ticket Master">
 
     <h1 class="auth-title">
       Ticket Master
@@ -2118,17 +2108,11 @@ button{
 
     <div class="auth-tabs">
 
-      <button
-        id="loginTab"
-        class="auth-tab active"
-        onclick="switchAuth('login')">
+      <button id="loginTab" class="auth-tab active" onclick="switchAuth('login')">
         Login
       </button>
 
-      <button
-        id="signupTab"
-        class="auth-tab"
-        onclick="switchAuth('signup')">
+      <button id="signupTab" class="auth-tab" onclick="switchAuth('signup')">
         Create account
       </button>
 
@@ -2140,11 +2124,7 @@ button{
 
         <label>Email</label>
 
-        <input
-          id="loginEmail"
-          type="email"
-          autocomplete="email"
-          required>
+        <input id="loginEmail" type="email" autocomplete="email" required="">
 
       </div>
 
@@ -2152,17 +2132,11 @@ button{
 
         <label>Password</label>
 
-        <input
-          id="loginPassword"
-          type="password"
-          autocomplete="current-password"
-          required>
+        <input id="loginPassword" type="password" autocomplete="current-password" required="">
 
       </div>
 
-      <button
-        class="primary-btn"
-        type="submit">
+      <button class="primary-btn" type="submit">
 
         Log in
 
@@ -2170,20 +2144,13 @@ button{
 
     </form>
 
-    <form
-      id="signupForm"
-      class="hidden"
-      onsubmit="handleSignup(event)">
+    <form id="signupForm" class="hidden" onsubmit="handleSignup(event)">
 
       <div class="form-group">
 
         <label>Full name</label>
 
-        <input
-          id="signupName"
-          type="text"
-          autocomplete="name"
-          required>
+        <input id="signupName" type="text" autocomplete="name" required="">
 
       </div>
 
@@ -2191,11 +2158,7 @@ button{
 
         <label>Email</label>
 
-        <input
-          id="signupEmail"
-          type="email"
-          autocomplete="email"
-          required>
+        <input id="signupEmail" type="email" autocomplete="email" required="">
 
       </div>
 
@@ -2203,19 +2166,11 @@ button{
 
         <label>Password</label>
 
-        <input
-          id="signupPassword"
-          type="password"
-          autocomplete="new-password"
-          minlength="6"
-          required>
+        <input id="signupPassword" type="password" autocomplete="new-password" minlength="6" required="">
 
       </div>
 
-      <button
-        id="signupButton"
-        class="primary-btn"
-        type="submit">
+      <button id="signupButton" class="primary-btn" type="submit">
 
         Create account
 
@@ -2223,9 +2178,7 @@ button{
 
     </form>
 
-    <div
-      id="authMessage"
-      class="auth-message">
+    <div id="authMessage" class="auth-message">
     </div>
 
   </div>
@@ -2245,18 +2198,13 @@ button{
 
       <div class="brand">
 
-        <img
-          src="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png"
-          alt="Logo">
+        <img src="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png" alt="Logo">
 
         <span>Ticket Master</span>
 
       </div>
 
-      <button
-        class="header-user"
-        onclick="showPage('profile')"
-        id="headerAvatar">
+      <button class="header-user" onclick="showPage('profile')" id="headerAvatar">
 
         U
 
@@ -2272,10 +2220,7 @@ button{
 
     <div class="bottom-nav-inner">
 
-      <button
-        id="nav-home"
-        class="nav-btn active"
-        onclick="showPage('home')">
+      <button id="nav-home" class="nav-btn active" onclick="showPage('home')">
 
         <span class="nav-icon">⌂</span>
 
@@ -2283,10 +2228,7 @@ button{
 
       </button>
 
-      <button
-        id="nav-events"
-        class="nav-btn"
-        onclick="showPage('events')">
+      <button id="nav-events" class="nav-btn" onclick="showPage('events')">
 
         <span class="nav-icon">◫</span>
 
@@ -2294,10 +2236,7 @@ button{
 
       </button>
 
-      <button
-        id="nav-favorites"
-        class="nav-btn"
-        onclick="showPage('favorites')">
+      <button id="nav-favorites" class="nav-btn" onclick="showPage('favorites')">
 
         <span class="nav-icon">♡</span>
 
@@ -2305,10 +2244,7 @@ button{
 
       </button>
 
-      <button
-        id="nav-tickets"
-        class="nav-btn"
-        onclick="showPage('tickets')">
+      <button id="nav-tickets" class="nav-btn" onclick="showPage('tickets')">
 
         <span class="nav-icon">▣</span>
 
@@ -2316,10 +2252,7 @@ button{
 
       </button>
 
-      <button
-        id="nav-profile"
-        class="nav-btn"
-        onclick="showPage('profile')">
+      <button id="nav-profile" class="nav-btn" onclick="showPage('profile')">
 
         <span class="nav-icon">●</span>
 
@@ -2346,9 +2279,7 @@ button{
 
       <h2>Complete purchase</h2>
 
-      <button
-        class="close-btn"
-        onclick="closeCheckout()">
+      <button class="close-btn" onclick="closeCheckout()">
 
         ×
 
@@ -2362,11 +2293,7 @@ button{
 
       <label>Cardholder name</label>
 
-      <input
-        id="cardName"
-        type="text"
-        autocomplete="cc-name"
-        placeholder="Name on card">
+      <input id="cardName" type="text" autocomplete="cc-name" placeholder="Name on card">
 
     </div>
 
@@ -2374,17 +2301,11 @@ button{
 
       <label>Card number</label>
 
-      <input
-        id="cardNumber"
-        inputmode="numeric"
-        autocomplete="cc-number"
-        maxlength="19"
-        placeholder="1234 5678 9012 3456">
+      <input id="cardNumber" inputmode="numeric" autocomplete="cc-number" maxlength="19" placeholder="1234 5678 9012 3456">
 
     </div>
 
-    <div
-      style="
+    <div style="
         display:grid;
         grid-template-columns:1fr 1fr;
         gap:10px
@@ -2394,12 +2315,7 @@ button{
 
         <label>Expiry</label>
 
-        <input
-          id="cardExpiry"
-          inputmode="numeric"
-          autocomplete="cc-exp"
-          maxlength="5"
-          placeholder="MM/YY">
+        <input id="cardExpiry" inputmode="numeric" autocomplete="cc-exp" maxlength="5" placeholder="MM/YY">
 
       </div>
 
@@ -2407,12 +2323,7 @@ button{
 
         <label>CVC</label>
 
-        <input
-          id="cardCvc"
-          inputmode="numeric"
-          autocomplete="cc-csc"
-          maxlength="4"
-          placeholder="123">
+        <input id="cardCvc" inputmode="numeric" autocomplete="cc-csc" maxlength="4" placeholder="123">
 
       </div>
 
@@ -2436,10 +2347,7 @@ button{
 
     </div>
 
-    <button
-      id="completePurchaseBtn"
-      class="primary-btn"
-      onclick="completePurchase()">
+    <button id="completePurchaseBtn" class="primary-btn" onclick="completePurchase()">
 
       Complete purchase
 
@@ -2462,9 +2370,7 @@ button{
 
       <h2>Transfer Ticket</h2>
 
-      <button
-        class="close-btn"
-        onclick="closeTransferModal()">
+      <button class="close-btn" onclick="closeTransferModal()">
 
         ×
 
@@ -2480,11 +2386,7 @@ button{
         Recipient first name
       </label>
 
-      <input
-        id="transferFirstName"
-        type="text"
-        autocomplete="given-name"
-        placeholder="First name">
+      <input id="transferFirstName" type="text" autocomplete="given-name" placeholder="First name">
 
     </div>
 
@@ -2494,11 +2396,7 @@ button{
         Recipient last name
       </label>
 
-      <input
-        id="transferLastName"
-        type="text"
-        autocomplete="family-name"
-        placeholder="Last name">
+      <input id="transferLastName" type="text" autocomplete="family-name" placeholder="Last name">
 
     </div>
 
@@ -2508,11 +2406,7 @@ button{
         Recipient email address
       </label>
 
-      <input
-        id="transferContact"
-        type="email"
-        autocomplete="email"
-        placeholder="recipient@example.com">
+      <input id="transferContact" type="email" autocomplete="email" placeholder="recipient@example.com">
 
     </div>
 
@@ -2522,8 +2416,7 @@ button{
 
         Note
 
-        <span
-          style="
+        <span style="
             font-weight:400;
             color:#98a2b3
           ">
@@ -2534,10 +2427,7 @@ button{
 
       </label>
 
-      <textarea
-        id="transferNote"
-        maxlength="250"
-        placeholder="Add a message for the recipient..."></textarea>
+      <textarea id="transferNote" maxlength="250" placeholder="Add a message for the recipient..."></textarea>
 
       <div class="transfer-note-count">
 
@@ -2549,9 +2439,7 @@ button{
 
     </div>
 
-    <button
-      class="primary-btn"
-      onclick="reviewTicketTransfer()">
+    <button class="primary-btn" onclick="reviewTicketTransfer()">
 
       Review Transfer
 
@@ -2574,9 +2462,7 @@ button{
 
       <h2>Review Transfer</h2>
 
-      <button
-        class="close-btn"
-        onclick="closeTransferReview()">
+      <button class="close-btn" onclick="closeTransferReview()">
 
         ×
 
@@ -2592,9 +2478,7 @@ button{
 
       <div class="transfer-recipient">
 
-        <div
-          id="transferReviewInitials"
-          class="transfer-recipient-avatar">
+        <div id="transferReviewInitials" class="transfer-recipient-avatar">
 
           --
 
@@ -2602,19 +2486,13 @@ button{
 
         <div>
 
-          <div
-            id="transferReviewName"
-            class="transfer-review-value"
-            style="font-weight:800">
+          <div id="transferReviewName" class="transfer-review-value" style="font-weight:800">
 
             —
 
           </div>
 
-          <div
-            id="transferReviewContact"
-            class="transfer-review-value"
-            style="
+          <div id="transferReviewContact" class="transfer-review-value" style="
               color:#667085;
               font-size:12px
             ">
@@ -2635,9 +2513,7 @@ button{
         Ticket
       </div>
 
-      <div
-        id="transferReviewTicket"
-        class="transfer-review-value">
+      <div id="transferReviewTicket" class="transfer-review-value">
 
         —
 
@@ -2645,17 +2521,13 @@ button{
 
     </div>
 
-    <div
-      id="transferReviewNoteBox"
-      class="transfer-review">
+    <div id="transferReviewNoteBox" class="transfer-review">
 
       <div class="transfer-review-label">
         Note
       </div>
 
-      <div
-        id="transferReviewNote"
-        class="transfer-review-value">
+      <div id="transferReviewNote" class="transfer-review-value">
 
         —
 
@@ -2663,17 +2535,13 @@ button{
 
     </div>
 
-    <button
-      class="primary-btn"
-      onclick="confirmTicketTransfer()">
+    <button class="primary-btn" onclick="confirmTicketTransfer()">
 
       Confirm Transfer
 
     </button>
 
-    <button
-      class="transfer-edit-btn"
-      onclick="backToTransferForm()">
+    <button class="transfer-edit-btn" onclick="backToTransferForm()">
 
       Edit Details
 
@@ -2696,9 +2564,7 @@ button{
 
       <h2>Your ticket</h2>
 
-      <button
-        class="close-btn"
-        onclick="closeTicketModal()">
+      <button class="close-btn" onclick="closeTicketModal()">
 
         ×
 
@@ -7120,5 +6986,6 @@ init();
 
 </script>
 
-</body>
-</html>
+
+
+</body></html>
