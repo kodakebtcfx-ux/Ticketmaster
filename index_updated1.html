@@ -1,0 +1,7124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<title>Ticket Master — Independent Event Tickets</title>
+
+<link rel="apple-touch-icon"
+      sizes="180x180"
+      href="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ticket Master">
+<meta name="theme-color" content="#087cff">
+
+<link rel="icon"
+      type="image/png"
+      href="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png">
+
+<style>
+
+/* =========================================================
+   TICKET MASTER — MODERN IOS-STYLE TYPOGRAPHY SYSTEM
+========================================================= */
+
+:root{
+
+  --font-ui:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "SF Pro Display",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  --font-display:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  --font-mono:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+
+  --blue:#087cff;
+  --blue-dark:#0054c7;
+
+  --text:#101828;
+  --text-secondary:#667085;
+  --text-tertiary:#98a2b3;
+
+  --border:#eaecf0;
+
+  --font-normal:400;
+  --font-medium:500;
+  --font-semibold:600;
+  --font-bold:700;
+  --font-heavy:800;
+
+  --tracking-tight:-0.025em;
+  --tracking-heading:-0.03em;
+
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+
+  margin:0;
+  padding:0;
+
+  background:#f5f7fb;
+
+  color:var(--text);
+
+  font-family:var(--font-ui);
+
+  font-size:16px;
+
+  font-weight:var(--font-normal);
+
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+
+  text-rendering:optimizeLegibility;
+
+}
+
+body{
+  min-height:100vh;
+}
+
+button,
+input,
+select,
+textarea{
+
+  font:inherit;
+  font-family:var(--font-ui);
+
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+.auth-screen{
+
+  min-height:100vh;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:22px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      #d9ebff 0,
+      #eef6ff 32%,
+      #f7f9fc 70%
+    );
+
+}
+
+.auth-box{
+
+  width:100%;
+  max-width:430px;
+
+  background:#fff;
+
+  border-radius:28px;
+
+  padding:28px 22px 24px;
+
+  box-shadow:
+    0 20px 60px rgba(15,23,42,.12);
+
+}
+
+.auth-logo{
+
+  width:72px;
+  height:72px;
+
+  border-radius:20px;
+
+  object-fit:cover;
+
+  display:block;
+
+  margin:0 auto 18px;
+
+}
+
+.auth-title{
+
+  text-align:center;
+
+  font-family:var(--font-display);
+
+  font-size:28px;
+  line-height:1.08;
+
+  letter-spacing:var(--tracking-heading);
+
+  font-weight:var(--font-heavy);
+
+  margin:0;
+
+}
+
+.auth-subtitle{
+
+  text-align:center;
+
+  color:var(--text-secondary);
+
+  font-size:14px;
+  line-height:20px;
+
+  font-weight:var(--font-normal);
+
+  margin:8px 0 24px;
+
+}
+
+.auth-tabs{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  background:#f1f4f8;
+
+  border-radius:13px;
+
+  padding:4px;
+
+  margin-bottom:20px;
+
+}
+
+.auth-tab{
+
+  border:0;
+
+  background:transparent;
+
+  padding:11px;
+
+  border-radius:10px;
+
+  color:var(--text-secondary);
+
+  font-size:14px;
+  line-height:20px;
+
+  font-weight:var(--font-semibold);
+
+  letter-spacing:-.01em;
+
+}
+
+.auth-tab.active{
+
+  background:#fff;
+
+  color:var(--blue);
+
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.06);
+
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+
+  display:block;
+
+  font-size:13px;
+  line-height:18px;
+
+  font-weight:var(--font-semibold);
+
+  letter-spacing:-.005em;
+
+  margin-bottom:7px;
+
+  color:#344054;
+
+}
+
+.form-group input,
+.form-group textarea{
+
+  width:100%;
+
+  border:1px solid #d0d5dd;
+
+  border-radius:12px;
+
+  padding:13px 14px;
+
+  outline:none;
+
+  background:#fff;
+
+  color:var(--text);
+
+  font-size:15px;
+  line-height:21px;
+
+  font-weight:var(--font-normal);
+
+}
+
+.form-group textarea{
+
+  min-height:90px;
+
+  resize:vertical;
+
+  line-height:1.5;
+
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+  color:#98a2b3;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+  border-color:var(--blue);
+
+  box-shadow:
+    0 0 0 3px rgba(8,124,255,.12);
+
+}
+
+.primary-btn{
+
+  width:100%;
+
+  border:0;
+
+  background:var(--blue);
+
+  color:#fff;
+
+  font-size:15px;
+  line-height:20px;
+
+  font-weight:var(--font-bold);
+
+  letter-spacing:-.01em;
+
+  border-radius:13px;
+
+  padding:14px;
+
+  margin-top:4px;
+
+}
+
+.primary-btn:disabled{
+
+  opacity:.6;
+
+  cursor:not-allowed;
+
+}
+
+.primary-btn:active{
+  transform:scale(.99);
+}
+
+.auth-message{
+
+  min-height:20px;
+
+  text-align:center;
+
+  font-size:13px;
+  line-height:18px;
+
+  margin-top:12px;
+
+  color:#d92d20;
+
+}
+
+
+/* =========================================================
+   APP HEADER
+========================================================= */
+
+.app{
+
+  min-height:100vh;
+
+  padding-bottom:86px;
+
+}
+
+.header{
+
+  position:sticky;
+
+  top:0;
+
+  z-index:20;
+
+  background:rgba(255,255,255,.94);
+
+  backdrop-filter:blur(16px);
+
+  -webkit-backdrop-filter:blur(16px);
+
+  border-bottom:1px solid var(--border);
+
+}
+
+.header-inner{
+
+  max-width:900px;
+
+  margin:auto;
+
+  padding:14px 16px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+}
+
+.brand{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  font-family:var(--font-display);
+
+  font-weight:var(--font-heavy);
+
+  font-size:20px;
+
+  line-height:24px;
+
+  letter-spacing:-.035em;
+
+}
+
+.brand img{
+
+  width:36px;
+  height:36px;
+
+  border-radius:10px;
+
+  object-fit:cover;
+
+}
+
+.header-user{
+
+  width:38px;
+  height:38px;
+
+  border-radius:50%;
+
+  border:0;
+
+  background:#e8f2ff;
+
+  color:var(--blue);
+
+  font-size:13px;
+
+  font-weight:var(--font-bold);
+
+}
+
+
+/* =========================================================
+   PAGES
+========================================================= */
+
+.page{
+
+  max-width:900px;
+
+  margin:auto;
+
+  padding:18px 16px;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue),
+      var(--blue-dark)
+    );
+
+  border-radius:24px;
+
+  padding:25px 20px;
+
+  color:white;
+
+  margin-bottom:20px;
+
+  overflow:hidden;
+
+  position:relative;
+
+}
+
+.hero:after{
+
+  content:"";
+
+  position:absolute;
+
+  width:190px;
+  height:190px;
+
+  right:-60px;
+  top:-70px;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.10);
+
+}
+
+.hero h1{
+
+  position:relative;
+  z-index:1;
+
+  font-family:var(--font-display);
+
+  font-size:30px;
+  line-height:34px;
+
+  letter-spacing:-.035em;
+
+  font-weight:var(--font-heavy);
+
+  margin:0 0 8px;
+
+}
+
+.hero p{
+
+  position:relative;
+  z-index:1;
+
+  margin:0 0 18px;
+
+  opacity:.92;
+
+  font-size:14px;
+  line-height:21px;
+
+  font-weight:var(--font-normal);
+
+  letter-spacing:-.005em;
+
+  max-width:560px;
+
+}
+
+.search{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:9px;
+
+  background:#fff;
+
+  border-radius:13px;
+
+  padding:3px 12px;
+
+  position:relative;
+
+  z-index:2;
+
+}
+
+.search span{
+
+  color:var(--text-secondary);
+
+  font-size:18px;
+
+}
+
+.search input{
+
+  border:0;
+  outline:0;
+
+  width:100%;
+
+  padding:11px 0;
+
+  background:transparent;
+
+  color:var(--text);
+
+  font-size:15px;
+  line-height:20px;
+
+  font-weight:var(--font-normal);
+
+}
+
+.search input::placeholder{
+  color:#98a2b3;
+}
+
+
+/* =========================================================
+   SECTION HEADINGS
+========================================================= */
+
+.section-heading{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin:22px 0 12px;
+
+}
+
+.section-heading h2{
+
+  font-family:var(--font-display);
+
+  font-size:20px;
+  line-height:25px;
+
+  letter-spacing:-.025em;
+
+  font-weight:var(--font-bold);
+
+  margin:0;
+
+}
+
+.section-heading button{
+
+  border:0;
+  background:none;
+
+  color:var(--blue);
+
+  font-size:14px;
+  line-height:20px;
+
+  font-weight:var(--font-semibold);
+
+  letter-spacing:-.01em;
+
+}
+
+
+/* =========================================================
+   EVENT CARDS
+========================================================= */
+
+.event-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:13px;
+
+}
+
+.event-card{
+
+  background:#fff;
+
+  border-radius:17px;
+
+  overflow:hidden;
+
+  border:1px solid var(--border);
+
+  box-shadow:
+    0 4px 16px rgba(16,24,40,.04);
+
+}
+
+.event-image-wrap{
+
+  height:145px;
+
+  position:relative;
+
+  background:#e5e7eb;
+
+}
+
+.event-image{
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  display:block;
+
+}
+
+.favorite-btn{
+
+  position:absolute;
+
+  top:9px;
+  right:9px;
+
+  width:34px;
+  height:34px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.92);
+
+  color:#344054;
+
+  font-size:18px;
+
+}
+
+.favorite-btn.active{
+  color:#e11d48;
+}
+
+.event-info{
+  padding:12px;
+}
+
+.event-category{
+
+  display:inline-block;
+
+  color:var(--blue);
+
+  font-size:10px;
+  line-height:13px;
+
+  font-weight:var(--font-bold);
+
+  text-transform:uppercase;
+
+  letter-spacing:.055em;
+
+  margin-bottom:5px;
+
+}
+
+.event-title{
+
+  font-family:var(--font-display);
+
+  font-size:15px;
+  line-height:19px;
+
+  letter-spacing:-.015em;
+
+  font-weight:var(--font-bold);
+
+  margin-bottom:6px;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+}
+
+.event-meta{
+
+  color:var(--text-secondary);
+
+  font-size:11px;
+  line-height:16px;
+
+  font-weight:var(--font-normal);
+
+}
+
+.event-price{
+
+  margin-top:9px;
+
+  font-size:14px;
+  line-height:18px;
+
+  font-weight:var(--font-bold);
+
+  letter-spacing:-.01em;
+
+}
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.filter-row{
+
+  display:flex;
+
+  gap:8px;
+
+  overflow-x:auto;
+
+  padding-bottom:5px;
+
+}
+
+.filter-row::-webkit-scrollbar{
+  display:none;
+}
+
+.filter-btn{
+
+  flex:0 0 auto;
+
+  border:1px solid #d0d5dd;
+
+  background:#fff;
+
+  color:#475467;
+
+  border-radius:30px;
+
+  padding:9px 14px;
+
+  font-size:13px;
+  line-height:18px;
+
+  font-weight:var(--font-semibold);
+
+  letter-spacing:-.005em;
+
+}
+
+.filter-btn.active{
+
+  background:var(--blue);
+
+  color:#fff;
+
+  border-color:var(--blue);
+
+}
+
+
+/* =========================================================
+   DETAIL PAGE
+========================================================= */
+
+.back-btn{
+
+  border:0;
+  background:none;
+
+  padding:0;
+
+  color:var(--blue);
+
+  font-size:14px;
+  line-height:20px;
+
+  font-weight:var(--font-semibold);
+
+  letter-spacing:-.01em;
+
+  margin-bottom:14px;
+
+}
+
+.detail-hero{
+
+  border-radius:22px;
+
+  overflow:hidden;
+
+  height:240px;
+
+  background:#ddd;
+
+  margin-bottom:18px;
+
+}
+
+.detail-hero img{
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+}
+
+.detail-title{
+
+  font-family:var(--font-display);
+
+  font-size:28px;
+  line-height:32px;
+
+  letter-spacing:-.035em;
+
+  font-weight:var(--font-heavy);
+
+  margin:0 0 7px;
+
+}
+
+.detail-meta{
+
+  color:var(--text-secondary);
+
+  line-height:22px;
+
+  font-size:14px;
+
+  font-weight:var(--font-normal);
+
+}
+
+.info-card{
+
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:16px;
+
+  margin-top:16px;
+
+}
+
+.info-card h3{
+
+  margin:0 0 12px;
+
+  font-family:var(--font-display);
+
+  font-size:17px;
+  line-height:22px;
+
+  letter-spacing:-.02em;
+
+  font-weight:var(--font-bold);
+
+}
+
+
+/* =========================================================
+   SEATS
+========================================================= */
+
+.stage{
+
+  background:#111827;
+
+  color:#fff;
+
+  border-radius:8px 8px 40px 40px;
+
+  text-align:center;
+
+  padding:10px;
+
+  font-size:11px;
+  line-height:14px;
+
+  font-weight:var(--font-bold);
+
+  letter-spacing:.04em;
+
+  margin:15px auto 22px;
+
+  max-width:250px;
+
+}
+
+.seat-section{
+  margin-bottom:22px;
+}
+
+.seat-section-title{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:8px;
+
+}
+
+.seat-section-title strong{
+
+  font-size:14px;
+  line-height:19px;
+
+  font-weight:var(--font-bold);
+
+  letter-spacing:-.01em;
+
+}
+
+.seat-section-title span{
+
+  color:var(--text-secondary);
+
+  font-size:12px;
+  line-height:16px;
+
+  font-weight:var(--font-medium);
+
+}
+
+.seat-row{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:5px;
+
+  margin:5px 0;
+
+  overflow-x:auto;
+
+  padding-bottom:2px;
+
+}
+
+.row-label{
+
+  width:25px;
+  flex:0 0 25px;
+
+  text-align:center;
+
+  color:var(--text-secondary);
+
+  font-size:10px;
+  line-height:13px;
+
+  font-weight:var(--font-bold);
+
+}
+
+.seat{
+
+  flex:0 0 25px;
+
+  width:25px;
+  height:25px;
+
+  border-radius:7px 7px 5px 5px;
+
+  border:0;
+
+  font-size:8px;
+  line-height:10px;
+
+  font-weight:var(--font-bold);
+
+  background:#dbeafe;
+
+  color:#075bb8;
+
+}
+
+.seat.available:hover{
+  background:#93c5fd;
+}
+
+.seat.sold{
+
+  background:#e4e7ec;
+
+  color:#98a2b3;
+
+}
+
+.seat.selected{
+
+  background:var(--blue);
+
+  color:#fff;
+
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 0 4px var(--blue);
+
+}
+
+.seat-owned{
+
+  background:#f04438!important;
+
+  color:#fff!important;
+
+}
+
+.seat-legend{
+
+  display:flex;
+
+  justify-content:center;
+
+  flex-wrap:wrap;
+
+  gap:13px;
+
+  margin:18px 0;
+
+  font-size:11px;
+  line-height:15px;
+
+  font-weight:var(--font-normal);
+
+  color:var(--text-secondary);
+
+}
+
+.legend-item{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:5px;
+
+}
+
+.legend-dot{
+
+  width:12px;
+  height:12px;
+
+  border-radius:4px;
+
+  background:#dbeafe;
+
+}
+
+.legend-dot.selected{
+  background:var(--blue);
+}
+
+.legend-dot.sold{
+  background:#e4e7ec;
+}
+
+.legend-dot.owned{
+  background:#f04438;
+}
+
+
+/* =========================================================
+   BUY BAR
+========================================================= */
+
+.buy-bar{
+
+  position:fixed;
+
+  bottom:70px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  width:min(900px,100%);
+
+  background:#fff;
+
+  border-top:1px solid var(--border);
+
+  padding:10px 15px;
+
+  z-index:15;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+}
+
+.buy-summary strong{
+
+  display:block;
+
+  font-size:16px;
+  line-height:21px;
+
+  font-weight:var(--font-bold);
+
+  letter-spacing:-.015em;
+
+}
+
+.buy-summary span{
+
+  color:var(--text-secondary);
+
+  font-size:11px;
+  line-height:15px;
+
+  font-weight:var(--font-normal);
+
+}
+
+.buy-btn{
+
+  border:0;
+
+  background:var(--blue);
+
+  color:#fff;
+
+  padding:12px 18px;
+
+  border-radius:12px;
+
+  font-size:14px;
+  line-height:18px;
+
+  font-weight:var(--font-bold);
+
+  letter-spacing:-.01em;
+
+}
+
+
+/* =========================================================
+   EMPTY STATES
+========================================================= */
+
+.empty{
+
+  text-align:center;
+
+  padding:55px 20px;
+
+  color:var(--text-secondary);
+
+  font-size:14px;
+  line-height:21px;
+
+}
+
+.empty strong{
+
+  color:var(--text);
+
+  font-size:15px;
+  line-height:20px;
+
+  font-weight:var(--font-bold);
+
+}
+
+.empty p{
+
+  font-size:13px;
+  line-height:19px;
+
+}
+
+.empty-icon{
+
+  font-size:42px;
+
+  margin-bottom:10px;
+
+}
+
+
+/* =========================================================
+   TICKETS / ORDERS
+========================================================= */
+
+.ticket-card,
+.order-card{
+
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:15px;
+
+  margin-bottom:12px;
+
+}
+
+.ticket-top{
+
+  display:flex;
+
+  gap:12px;
+
+}
+
+.ticket-image{
+
+  width:75px;
+  height:75px;
+
+  border-radius:12px;
+
+  object-fit:cover;
+
+}
+
+.ticket-content{
+  flex:1;
+}
+
+.ticket-content h3{
+
+  margin:0 0 5px;
+
+  font-family:var(--font-display);
+
+  font-size:16px;
+  line-height:20px;
+
+  letter-spacing:-.02em;
+
+  font-weight:var(--font-bold);
+
+}
+
+.ticket-content p{
+
+  margin:2px 0;
+
+  color:var(--text-secondary);
+
+  font-size:12px;
+  line-height:17px;
+
+  font-weight:var(--font-normal);
+
+}
+
+.ticket-code{
+
+  background:#f2f4f7;
+
+  border-radius:9px;
+
+  padding:9px;
+
+  margin-top:12px;
+
+  font-family:var(--font-mono);
+
+  font-size:12px;
+  line-height:16px;
+
+  font-weight:700;
+
+  letter-spacing:.05em;
+
+}
+
+.ticket-actions{
+
+  display:flex;
+
+  gap:8px;
+
+  margin-top:12px;
+
+}
+
+.secondary-btn{
+
+  flex:1;
+
+  border:1px solid #d0d5dd;
+
+  background:#fff;
+
+  color:#344054;
+
+  padding:10px;
+
+  border-radius:10px;
+
+  font-size:13px;
+  line-height:18px;
+
+  font-weight:var(--font-semibold);
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-card{
+
+  background:#fff;
+
+  border-radius:22px;
+
+  border:1px solid var(--border);
+
+  padding:20px;
+
+  text-align:center;
+
+}
+
+.avatar{
+
+  width:75px;
+  height:75px;
+
+  border-radius:50%;
+
+  background:var(--blue);
+
+  color:#fff;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  margin:auto;
+
+  font-size:27px;
+  line-height:32px;
+
+  font-weight:var(--font-heavy);
+
+  letter-spacing:-.025em;
+
+}
+
+.profile-card h2{
+
+  font-family:var(--font-display);
+
+  margin:12px 0 4px;
+
+  font-size:21px;
+  line-height:26px;
+
+  letter-spacing:-.025em;
+
+  font-weight:var(--font-bold);
+
+}
+
+.profile-card p{
+
+  margin:0;
+
+  color:var(--text-secondary);
+
+  font-size:13px;
+  line-height:18px;
+
+  font-weight:var(--font-normal);
+
+}
+
+.profile-actions{
+
+  margin-top:20px;
+
+}
+
+.profile-action{
+
+  width:100%;
+
+  border:0;
+
+  background:#fff;
+
+  border-bottom:1px solid var(--border);
+
+  padding:16px 5px;
+
+  text-align:left;
+
+  font-size:14px;
+  line-height:20px;
+
+  font-weight:var(--font-semibold);
+
+  letter-spacing:-.005em;
+
+  color:#344054;
+
+}
+
+.profile-action:last-child{
+  color:#d92d20;
+}
+
+
+/* =========================================================
+   BOTTOM NAVIGATION
+========================================================= */
+
+.bottom-nav{
+
+  position:fixed;
+
+  bottom:0;
+
+  left:0;
+  right:0;
+
+  height:70px;
+
+  background:rgba(255,255,255,.96);
+
+  backdrop-filter:blur(15px);
+
+  -webkit-backdrop-filter:blur(15px);
+
+  border-top:1px solid var(--border);
+
+  display:flex;
+
+  justify-content:center;
+
+  z-index:30;
+
+}
+
+.bottom-nav-inner{
+
+  width:min(900px,100%);
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(5,1fr);
+
+}
+
+.nav-btn{
+
+  border:0;
+
+  background:none;
+
+  color:#98a2b3;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:3px;
+
+  font-size:10px;
+  line-height:13px;
+
+  font-weight:var(--font-semibold);
+
+  letter-spacing:-.005em;
+
+}
+
+.nav-icon{
+
+  font-size:20px;
+  line-height:22px;
+
+  font-weight:var(--font-normal);
+
+}
+
+.nav-btn.active{
+  color:var(--blue);
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:100;
+
+  background:rgba(16,24,40,.58);
+
+  display:flex;
+
+  align-items:flex-end;
+
+  justify-content:center;
+
+}
+
+.modal-box{
+
+  width:min(600px,100%);
+
+  max-height:92vh;
+
+  overflow:auto;
+
+  background:#fff;
+
+  border-radius:24px 24px 0 0;
+
+  padding:20px;
+
+}
+
+.modal-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:17px;
+
+}
+
+.modal-header h2{
+
+  margin:0;
+
+  font-family:var(--font-display);
+
+  font-size:20px;
+  line-height:25px;
+
+  letter-spacing:-.025em;
+
+  font-weight:var(--font-bold);
+
+}
+
+.close-btn{
+
+  width:35px;
+  height:35px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:#f2f4f7;
+
+  font-size:20px;
+  line-height:20px;
+
+}
+
+.payment-note{
+
+  background:#eff8ff;
+
+  color:#175cd3;
+
+  border-radius:12px;
+
+  padding:12px;
+
+  font-size:11px;
+  line-height:17px;
+
+  font-weight:var(--font-normal);
+
+  margin:12px 0;
+
+}
+
+.total-row{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  padding:14px 0;
+
+  border-top:1px solid var(--border);
+
+  font-size:15px;
+  line-height:20px;
+
+  font-weight:var(--font-bold);
+
+}
+
+
+/* =========================================================
+   TOAST / LOADING
+========================================================= */
+
+.toast{
+
+  position:fixed;
+
+  left:50%;
+
+  bottom:90px;
+
+  transform:translate(-50%,20px);
+
+  background:#101828;
+
+  color:#fff;
+
+  padding:11px 16px;
+
+  border-radius:12px;
+
+  font-size:12px;
+  line-height:17px;
+
+  font-weight:var(--font-medium);
+
+  z-index:200;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.25s;
+
+  max-width:90%;
+
+  text-align:center;
+
+}
+
+.toast.show{
+
+  opacity:1;
+
+  transform:translate(-50%,0);
+
+}
+
+.loading{
+
+  padding:50px 20px;
+
+  text-align:center;
+
+  color:var(--text-secondary);
+
+  font-size:13px;
+  line-height:18px;
+
+}
+
+.spinner{
+
+  width:32px;
+  height:32px;
+
+  border:3px solid #dbeafe;
+
+  border-top-color:var(--blue);
+
+  border-radius:50%;
+
+  animation:spin .8s linear infinite;
+
+  margin:0 auto 12px;
+
+}
+
+@keyframes spin{
+
+  to{
+    transform:rotate(360deg)
+  }
+
+}
+
+
+/* =========================================================
+   TRANSFER
+========================================================= */
+
+.transfer-summary{
+
+  background:#f5f7fb;
+
+  border:1px solid var(--border);
+
+  border-radius:14px;
+
+  padding:14px;
+
+  margin-bottom:18px;
+
+}
+
+.transfer-summary-title{
+
+  font-family:var(--font-display);
+
+  font-size:15px;
+  line-height:20px;
+
+  letter-spacing:-.015em;
+
+  font-weight:var(--font-bold);
+
+  margin-bottom:6px;
+
+}
+
+.transfer-summary-detail{
+
+  color:var(--text-secondary);
+
+  font-size:12px;
+  line-height:19px;
+
+  font-weight:var(--font-normal);
+
+}
+
+.transfer-form-group{
+
+  margin-bottom:15px;
+
+}
+
+.transfer-form-group label{
+
+  display:block;
+
+  font-size:13px;
+  line-height:18px;
+
+  font-weight:var(--font-semibold);
+
+  color:#344054;
+
+  margin-bottom:7px;
+
+}
+
+.transfer-form-group input,
+.transfer-form-group textarea{
+
+  width:100%;
+
+  border:1px solid #d0d5dd;
+
+  border-radius:12px;
+
+  padding:13px 14px;
+
+  outline:none;
+
+  background:#fff;
+
+  color:var(--text);
+
+  font-size:15px;
+  line-height:21px;
+
+}
+
+.transfer-form-group input:focus,
+.transfer-form-group textarea:focus{
+
+  border-color:var(--blue);
+
+  box-shadow:
+    0 0 0 3px rgba(8,124,255,.12);
+
+}
+
+.transfer-form-group textarea{
+
+  min-height:90px;
+
+  resize:vertical;
+
+  line-height:1.5;
+
+}
+
+.transfer-note-count{
+
+  text-align:right;
+
+  color:var(--text-tertiary);
+
+  font-size:11px;
+  line-height:15px;
+
+  margin-top:5px;
+
+}
+
+.transfer-review{
+
+  background:#f8fafc;
+
+  border:1px solid var(--border);
+
+  border-radius:14px;
+
+  padding:14px;
+
+  margin-bottom:12px;
+
+}
+
+.transfer-review-label{
+
+  color:var(--text-secondary);
+
+  font-size:11px;
+  line-height:15px;
+
+  font-weight:var(--font-bold);
+
+  text-transform:uppercase;
+
+  letter-spacing:.055em;
+
+  margin-bottom:7px;
+
+}
+
+.transfer-review-value{
+
+  color:var(--text);
+
+  font-size:13px;
+  line-height:20px;
+
+  font-weight:var(--font-normal);
+
+}
+
+.transfer-recipient{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:11px;
+
+}
+
+.transfer-recipient-avatar{
+
+  width:42px;
+  height:42px;
+
+  border-radius:50%;
+
+  background:#e8f2ff;
+
+  color:var(--blue);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:13px;
+  line-height:17px;
+
+  font-weight:var(--font-bold);
+
+}
+
+.transfer-edit-btn{
+
+  width:100%;
+
+  border:1px solid #d0d5dd;
+
+  background:#fff;
+
+  color:#344054;
+
+  border-radius:13px;
+
+  padding:13px;
+
+  margin-top:9px;
+
+  font-size:14px;
+  line-height:19px;
+
+  font-weight:var(--font-bold);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:520px){
+
+  .event-grid{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
+
+  .event-image-wrap{
+    height:125px;
+  }
+
+  .detail-hero{
+    height:210px;
+  }
+
+}
+
+@media(min-width:700px){
+
+  .event-grid{
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     AUTH SCREEN
+===================================================== -->
+
+<div id="authScreen" class="auth-screen">
+
+  <div class="auth-box">
+
+    <img
+      class="auth-logo"
+      src="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png"
+      alt="Ticket Master">
+
+    <h1 class="auth-title">
+      Ticket Master
+    </h1>
+
+    <p class="auth-subtitle">
+      Independent event tickets
+    </p>
+
+    <div class="auth-tabs">
+
+      <button
+        id="loginTab"
+        class="auth-tab active"
+        onclick="switchAuth('login')">
+        Login
+      </button>
+
+      <button
+        id="signupTab"
+        class="auth-tab"
+        onclick="switchAuth('signup')">
+        Create account
+      </button>
+
+    </div>
+
+    <form id="loginForm" onsubmit="handleLogin(event)">
+
+      <div class="form-group">
+
+        <label>Email</label>
+
+        <input
+          id="loginEmail"
+          type="email"
+          autocomplete="email"
+          required>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Password</label>
+
+        <input
+          id="loginPassword"
+          type="password"
+          autocomplete="current-password"
+          required>
+
+      </div>
+
+      <button
+        class="primary-btn"
+        type="submit">
+
+        Log in
+
+      </button>
+
+    </form>
+
+    <form
+      id="signupForm"
+      class="hidden"
+      onsubmit="handleSignup(event)">
+
+      <div class="form-group">
+
+        <label>Full name</label>
+
+        <input
+          id="signupName"
+          type="text"
+          autocomplete="name"
+          required>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Email</label>
+
+        <input
+          id="signupEmail"
+          type="email"
+          autocomplete="email"
+          required>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Password</label>
+
+        <input
+          id="signupPassword"
+          type="password"
+          autocomplete="new-password"
+          minlength="6"
+          required>
+
+      </div>
+
+      <button
+        id="signupButton"
+        class="primary-btn"
+        type="submit">
+
+        Create account
+
+      </button>
+
+    </form>
+
+    <div
+      id="authMessage"
+      class="auth-message">
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     APP
+===================================================== -->
+
+<div id="app" class="app hidden">
+
+  <header class="header">
+
+    <div class="header-inner">
+
+      <div class="brand">
+
+        <img
+          src="7953ADA7-1E8B-445A-BDF1-6A531ADE37A0.png"
+          alt="Logo">
+
+        <span>Ticket Master</span>
+
+      </div>
+
+      <button
+        class="header-user"
+        onclick="showPage('profile')"
+        id="headerAvatar">
+
+        U
+
+      </button>
+
+    </div>
+
+  </header>
+
+  <main id="mainContent"></main>
+
+  <nav class="bottom-nav">
+
+    <div class="bottom-nav-inner">
+
+      <button
+        id="nav-home"
+        class="nav-btn active"
+        onclick="showPage('home')">
+
+        <span class="nav-icon">⌂</span>
+
+        Home
+
+      </button>
+
+      <button
+        id="nav-events"
+        class="nav-btn"
+        onclick="showPage('events')">
+
+        <span class="nav-icon">◫</span>
+
+        Events
+
+      </button>
+
+      <button
+        id="nav-favorites"
+        class="nav-btn"
+        onclick="showPage('favorites')">
+
+        <span class="nav-icon">♡</span>
+
+        Favorites
+
+      </button>
+
+      <button
+        id="nav-tickets"
+        class="nav-btn"
+        onclick="showPage('tickets')">
+
+        <span class="nav-icon">▣</span>
+
+        Tickets
+
+      </button>
+
+      <button
+        id="nav-profile"
+        class="nav-btn"
+        onclick="showPage('profile')">
+
+        <span class="nav-icon">●</span>
+
+        Profile
+
+      </button>
+
+    </div>
+
+  </nav>
+
+</div>
+
+
+<!-- =====================================================
+     CHECKOUT
+===================================================== -->
+
+<div id="checkoutModal" class="modal hidden">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2>Complete purchase</h2>
+
+      <button
+        class="close-btn"
+        onclick="closeCheckout()">
+
+        ×
+
+      </button>
+
+    </div>
+
+    <div id="checkoutSummary"></div>
+
+    <div class="form-group">
+
+      <label>Cardholder name</label>
+
+      <input
+        id="cardName"
+        type="text"
+        autocomplete="cc-name"
+        placeholder="Name on card">
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Card number</label>
+
+      <input
+        id="cardNumber"
+        inputmode="numeric"
+        autocomplete="cc-number"
+        maxlength="19"
+        placeholder="1234 5678 9012 3456">
+
+    </div>
+
+    <div
+      style="
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px
+      ">
+
+      <div class="form-group">
+
+        <label>Expiry</label>
+
+        <input
+          id="cardExpiry"
+          inputmode="numeric"
+          autocomplete="cc-exp"
+          maxlength="5"
+          placeholder="MM/YY">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>CVC</label>
+
+        <input
+          id="cardCvc"
+          inputmode="numeric"
+          autocomplete="cc-csc"
+          maxlength="4"
+          placeholder="123">
+
+      </div>
+
+    </div>
+
+    <div class="payment-note">
+
+      This independent demo does not save your card number,
+      expiry date or CVC. For real payments, connect a PCI-compliant
+      payment provider such as a hosted checkout/tokenized payment system.
+
+    </div>
+
+    <div class="total-row">
+
+      <span>Total</span>
+
+      <span id="checkoutTotal">
+        $0.00
+      </span>
+
+    </div>
+
+    <button
+      id="completePurchaseBtn"
+      class="primary-btn"
+      onclick="completePurchase()">
+
+      Complete purchase
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     TRANSFER FORM
+===================================================== -->
+
+<div id="transferModal" class="modal hidden">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2>Transfer Ticket</h2>
+
+      <button
+        class="close-btn"
+        onclick="closeTransferModal()">
+
+        ×
+
+      </button>
+
+    </div>
+
+    <div id="transferTicketSummary"></div>
+
+    <div class="transfer-form-group">
+
+      <label for="transferFirstName">
+        Recipient first name
+      </label>
+
+      <input
+        id="transferFirstName"
+        type="text"
+        autocomplete="given-name"
+        placeholder="First name">
+
+    </div>
+
+    <div class="transfer-form-group">
+
+      <label for="transferLastName">
+        Recipient last name
+      </label>
+
+      <input
+        id="transferLastName"
+        type="text"
+        autocomplete="family-name"
+        placeholder="Last name">
+
+    </div>
+
+    <div class="transfer-form-group">
+
+      <label for="transferContact">
+        Recipient email address
+      </label>
+
+      <input
+        id="transferContact"
+        type="email"
+        autocomplete="email"
+        placeholder="recipient@example.com">
+
+    </div>
+
+    <div class="transfer-form-group">
+
+      <label for="transferNote">
+
+        Note
+
+        <span
+          style="
+            font-weight:400;
+            color:#98a2b3
+          ">
+
+          (optional)
+
+        </span>
+
+      </label>
+
+      <textarea
+        id="transferNote"
+        maxlength="250"
+        placeholder="Add a message for the recipient..."></textarea>
+
+      <div class="transfer-note-count">
+
+        <span id="transferNoteCount">
+          0
+        </span>/250
+
+      </div>
+
+    </div>
+
+    <button
+      class="primary-btn"
+      onclick="reviewTicketTransfer()">
+
+      Review Transfer
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     TRANSFER REVIEW
+===================================================== -->
+
+<div id="transferReviewModal" class="modal hidden">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2>Review Transfer</h2>
+
+      <button
+        class="close-btn"
+        onclick="closeTransferReview()">
+
+        ×
+
+      </button>
+
+    </div>
+
+    <div class="transfer-review">
+
+      <div class="transfer-review-label">
+        Recipient
+      </div>
+
+      <div class="transfer-recipient">
+
+        <div
+          id="transferReviewInitials"
+          class="transfer-recipient-avatar">
+
+          --
+
+        </div>
+
+        <div>
+
+          <div
+            id="transferReviewName"
+            class="transfer-review-value"
+            style="font-weight:800">
+
+            —
+
+          </div>
+
+          <div
+            id="transferReviewContact"
+            class="transfer-review-value"
+            style="
+              color:#667085;
+              font-size:12px
+            ">
+
+            —
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="transfer-review">
+
+      <div class="transfer-review-label">
+        Ticket
+      </div>
+
+      <div
+        id="transferReviewTicket"
+        class="transfer-review-value">
+
+        —
+
+      </div>
+
+    </div>
+
+    <div
+      id="transferReviewNoteBox"
+      class="transfer-review">
+
+      <div class="transfer-review-label">
+        Note
+      </div>
+
+      <div
+        id="transferReviewNote"
+        class="transfer-review-value">
+
+        —
+
+      </div>
+
+    </div>
+
+    <button
+      class="primary-btn"
+      onclick="confirmTicketTransfer()">
+
+      Confirm Transfer
+
+    </button>
+
+    <button
+      class="transfer-edit-btn"
+      onclick="backToTransferForm()">
+
+      Edit Details
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     TICKET MODAL
+===================================================== -->
+
+<div id="ticketModal" class="modal hidden">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2>Your ticket</h2>
+
+      <button
+        class="close-btn"
+        onclick="closeTicketModal()">
+
+        ×
+
+      </button>
+
+    </div>
+
+    <div id="ticketModalContent"></div>
+
+  </div>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+  "https://xaxvikgtivolxhwhyhvw.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_3CH58RzUC3Vu1y08B_5T3Q_vXk3Uyv_";
+
+
+/* =========================================================
+   SUPABASE CLIENT
+   UPDATED FOR EMAIL CONFIRMATION
+========================================================= */
+
+const db =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY,
+    {
+      auth:{
+        persistSession:true,
+        autoRefreshToken:true,
+        detectSessionInUrl:true
+      }
+    }
+  );
+
+
+/* =========================================================
+   AUTH REDIRECT URL
+========================================================= */
+
+function getAuthRedirectUrl(){
+
+  const url =
+    new URL(
+      window.location.href
+    );
+
+  /*
+    Remove query parameters and hash.
+
+    This keeps the exact GitHub Pages path,
+    including repository paths such as:
+
+    https://username.github.io/repository/
+
+    instead of accidentally redirecting to
+    the wrong page.
+  */
+
+  url.search = "";
+  url.hash = "";
+
+  return url.toString();
+
+}
+
+
+let currentUser = null;
+let currentPage = "home";
+let currentEvent = null;
+let selectedSeats = [];
+let favorites = [];
+let tickets = [];
+let orders = [];
+
+let transfers =
+  JSON.parse(
+    localStorage.getItem("tm_transfers") || "[]"
+  );
+
+let resale =
+  JSON.parse(
+    localStorage.getItem("tm_resale") || "[]"
+  );
+
+let currentEventDbData = null;
+let transferTicketData = null;
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+const events = [
+
+  {
+    id:1,
+    title:"Bruno Mars",
+    artist:"Bruno Mars",
+    date:"Friday, February 19, 2027",
+    time:"5:00 PM",
+    venue:"Marvel Stadium",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:105,
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Bruno_Mars.jpg"
+  },
+
+  {
+    id:2,
+    title:"BIGBANG",
+    artist:"BIGBANG",
+    date:"Saturday, October 24, 2026",
+    time:"7:30 PM",
+    venue:"Rod Laver Arena",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:120,
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/BIGBANG.jpg"
+  },
+
+  {
+    id:3,
+    title:"The Weeknd",
+    artist:"The Weeknd",
+    date:"Saturday, November 7, 2026",
+    time:"7:30 PM",
+    venue:"Accor Stadium",
+    city:"Sydney NSW",
+    category:"Concerts",
+    price:99,
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/The_Weeknd.jpg"
+  },
+
+  {
+    id:4,
+    title:"Coldplay",
+    artist:"Coldplay",
+    date:"Sunday, November 15, 2026",
+    time:"7:00 PM",
+    venue:"Marvel Stadium",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:105,
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/ColdPlay.jpg"
+  },
+
+  {
+    id:5,
+    title:"Beyoncé",
+    artist:"Beyoncé",
+    date:"Saturday, December 5, 2026",
+    time:"8:00 PM",
+    venue:"Accor Stadium",
+    city:"Sydney NSW",
+    category:"Concerts",
+    price:145,
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Beyonce.jpg"
+  },
+
+  {
+    id:6,
+    title:"Taylor Swift",
+    artist:"Taylor Swift",
+    date:"Friday, January 15, 2027",
+    time:"7:30 PM",
+    venue:"MCG",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:160,
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Taylor_Swift_(6820734474).jpg"
+  },
+
+  {
+    id:7,
+    title:"Drake",
+    artist:"Drake",
+    date:"Saturday, February 13, 2027",
+    time:"8:00 PM",
+    venue:"Qudos Bank Arena",
+    city:"Sydney NSW",
+    category:"Concerts",
+    price:110,
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Drake_(45184).jpg"
+  },
+
+  {
+    id:8,
+    title:"BLACKPINK",
+    artist:"BLACKPINK",
+    date:"Sunday, March 7, 2027",
+    time:"7:30 PM",
+    venue:"Rod Laver Arena",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:125,
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Blackpink.jpg"
+  },
+
+  {
+    id:9,
+    title:"Adele",
+    artist:"Adele",
+    date:"Saturday, April 10, 2027",
+    time:"8:00 PM",
+    venue:"Rod Laver Arena",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:135,
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Adele.jpg"
+  },
+
+  {
+    id:10,
+    title:"Ed Sheeran",
+    artist:"Ed Sheeran",
+    date:"Saturday, May 1, 2027",
+    time:"7:30 PM",
+    venue:"MCG",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:95,
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Ed_Sheeran.jpg"
+  },
+
+  {
+    id:11,
+    title:"Lady Gaga",
+    artist:"Lady Gaga",
+    date:"Friday, May 21, 2027",
+    time:"8:00 PM",
+    venue:"Qudos Bank Arena",
+    city:"Sydney NSW",
+    category:"Concerts",
+    price:130,
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Lady_Gaga.jpg"
+  },
+
+  {
+    id:12,
+    title:"Rihanna",
+    artist:"Rihanna",
+    date:"Saturday, June 12, 2027",
+    time:"8:00 PM",
+    venue:"Marvel Stadium",
+    city:"Melbourne VIC",
+    category:"Concerts",
+    price:150,
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Rihanna_(6777125510).jpg"
+  },
+
+  {
+    id:13,
+    title:"Melbourne United",
+    artist:"Melbourne United",
+    date:"Sunday, July 4, 2027",
+    time:"5:00 PM",
+    venue:"John Cain Arena",
+    city:"Melbourne VIC",
+    category:"Sports",
+    price:45,
+    image:"https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1000&q=80"
+  },
+
+  {
+    id:14,
+    title:"Comedy Night",
+    artist:"Comedy Night",
+    date:"Friday, July 16, 2027",
+    time:"7:30 PM",
+    venue:"Forum Melbourne",
+    city:"Melbourne VIC",
+    category:"Comedy",
+    price:39,
+    image:"https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&w=1000&q=80"
+  }
+
+];
+
+
+function money(value){
+
+  return "$" +
+    Number(value || 0)
+      .toFixed(2);
+
+}
+
+
+function getEvent(id){
+
+  return events.find(
+    event =>
+      Number(event.id) === Number(id)
+  );
+
+}
+
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer =
+    setTimeout(
+      () => toast.classList.remove("show"),
+      2800
+    );
+
+}
+
+
+function getUserDisplayName(user){
+
+  if(!user)
+    return "User";
+
+  return (
+    user.user_metadata?.full_name ||
+    user.user_metadata?.name ||
+    user.email?.split("@")[0] ||
+    "User"
+  );
+
+}
+
+
+function userInitials(user){
+
+  const name =
+    getUserDisplayName(user)
+      .trim()
+      .split(/\s+/);
+
+  if(name.length >= 2){
+
+    return (
+      name[0][0] +
+      name[1][0]
+    ).toUpperCase();
+
+  }
+
+  return name[0]?.slice(0,2).toUpperCase() || "U";
+
+}
+
+
+function saveData(){
+
+  localStorage.removeItem("tm_tickets");
+  localStorage.removeItem("tm_orders");
+
+  localStorage.setItem(
+    "tm_transfers",
+    JSON.stringify(transfers)
+  );
+
+  localStorage.setItem(
+    "tm_resale",
+    JSON.stringify(resale)
+  );
+
+}
+
+
+function switchAuth(type){
+
+  const login =
+    document.getElementById("loginForm");
+
+  const signup =
+    document.getElementById("signupForm");
+
+  const loginTab =
+    document.getElementById("loginTab");
+
+  const signupTab =
+    document.getElementById("signupTab");
+
+  const message =
+    document.getElementById("authMessage");
+
+  message.textContent = "";
+
+  if(type === "login"){
+
+    login.classList.remove("hidden");
+    signup.classList.add("hidden");
+
+    loginTab.classList.add("active");
+    signupTab.classList.remove("active");
+
+  }else{
+
+    login.classList.add("hidden");
+    signup.classList.remove("hidden");
+
+    loginTab.classList.remove("active");
+    signupTab.classList.add("active");
+
+  }
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+async function handleLogin(event){
+
+  event.preventDefault();
+
+  const email =
+    document
+      .getElementById("loginEmail")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const password =
+    document.getElementById(
+      "loginPassword"
+    ).value;
+
+  const message =
+    document.getElementById(
+      "authMessage"
+    );
+
+  message.style.color =
+    "#d92d20";
+
+  message.textContent =
+    "Signing in...";
+
+  try{
+
+    const result =
+      await db.auth.signInWithPassword({
+        email,
+        password
+      });
+
+    if(result.error){
+
+      message.textContent =
+        result.error.message;
+
+      return;
+
+    }
+
+    currentUser =
+      result.data.user;
+
+    message.textContent = "";
+
+    await launchApp();
+
+  }catch(error){
+
+    console.error(
+      "Login error:",
+      error
+    );
+
+    message.textContent =
+      error.message ||
+      "Unable to sign in.";
+
+  }
+
+}
+
+
+/* =========================================================
+   SIGNUP — UPDATED EMAIL CONFIRMATION
+========================================================= */
+
+async function handleSignup(event){
+
+  event.preventDefault();
+
+  const name =
+    document
+      .getElementById("signupName")
+      .value
+      .trim();
+
+  const email =
+    document
+      .getElementById("signupEmail")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const password =
+    document.getElementById(
+      "signupPassword"
+    ).value;
+
+  const message =
+    document.getElementById(
+      "authMessage"
+    );
+
+  const button =
+    document.getElementById(
+      "signupButton"
+    );
+
+  message.style.color =
+    "#d92d20";
+
+  if(name.length < 2){
+
+    message.textContent =
+      "Please enter your full name.";
+
+    return;
+
+  }
+
+  if(password.length < 6){
+
+    message.textContent =
+      "Password must be at least 6 characters.";
+
+    return;
+
+  }
+
+  const redirectUrl =
+    getAuthRedirectUrl();
+
+  message.textContent =
+    "Creating account...";
+
+  button.disabled = true;
+
+  button.textContent =
+    "Creating account...";
+
+  try{
+
+    const result =
+      await db.auth.signUp({
+
+        email,
+
+        password,
+
+        options:{
+
+          /*
+            IMPORTANT:
+            Supabase will place this URL inside
+            the confirmation flow.
+
+            The URL is automatically taken from
+            the page where the user is currently
+            using the app.
+          */
+
+          emailRedirectTo:
+            redirectUrl,
+
+          data:{
+
+            full_name:
+              name,
+
+            name:
+              name
+
+          }
+
+        }
+
+      });
+
+
+    if(result.error){
+
+      console.error(
+        "Signup error:",
+        result.error
+      );
+
+      message.style.color =
+        "#d92d20";
+
+      message.textContent =
+        result.error.message;
+
+      return;
+
+    }
+
+
+    /*
+      Supabase normally returns:
+
+      user + null session
+
+      when email confirmation is required.
+    */
+
+    if(
+      result.data?.user &&
+      !result.data?.session
+    ){
+
+      message.style.color =
+        "#027a48";
+
+      message.textContent =
+        "Account created! We sent a confirmation email to " +
+        email +
+        ". Open that email and tap the confirmation link.";
+
+      return;
+
+    }
+
+
+    /*
+      If email confirmation is disabled
+      and Supabase gives us a session
+      immediately, open the application.
+    */
+
+    if(result.data?.session){
+
+      currentUser =
+        result.data.user;
+
+      message.textContent = "";
+
+      await launchApp();
+
+      return;
+
+    }
+
+
+    message.style.color =
+      "#027a48";
+
+    message.textContent =
+      "Account created. Please check your email to continue.";
+
+  }catch(error){
+
+    console.error(
+      "Unexpected signup error:",
+      error
+    );
+
+    message.style.color =
+      "#d92d20";
+
+    message.textContent =
+      error.message ||
+      "Unable to create your account.";
+
+  }finally{
+
+    button.disabled = false;
+
+    button.textContent =
+      "Create account";
+
+  }
+
+}
+
+
+/* =========================================================
+   CURRENT USER
+========================================================= */
+
+async function loadCurrentUser(){
+
+  try{
+
+    const result =
+      await db.auth.getSession();
+
+    if(result.error){
+
+      console.error(
+        "Session error:",
+        result.error
+      );
+
+      currentUser = null;
+
+      return;
+
+    }
+
+    currentUser =
+      result.data.session?.user ||
+      null;
+
+  }catch(error){
+
+    console.error(
+      "Session loading error:",
+      error
+    );
+
+    currentUser = null;
+
+  }
+
+}
+
+
+async function logout(){
+
+  await db.auth.signOut();
+
+  currentUser = null;
+
+  tickets = [];
+  orders = [];
+  favorites = [];
+
+  currentEvent = null;
+  selectedSeats = [];
+
+  transferTicketData = null;
+
+  document
+    .getElementById("app")
+    .classList.add("hidden");
+
+  document
+    .getElementById("authScreen")
+    .classList.remove("hidden");
+
+  switchAuth("login");
+
+}
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+async function loadFavorites(){
+
+  if(!currentUser){
+
+    favorites=[];
+
+    return;
+
+  }
+
+  const result =
+    await db
+      .from("favorites")
+      .select("event_id")
+      .eq("user_id",currentUser.id);
+
+  if(result.error){
+
+    console.error(
+      "Favorites load error:",
+      result.error
+    );
+
+    favorites=[];
+
+    showToast(
+      "Could not load favorites"
+    );
+
+    return;
+
+  }
+
+  favorites =
+    (result.data || [])
+      .map(
+        row => Number(row.event_id)
+      );
+
+}
+
+
+async function addFavorite(id){
+
+  if(!currentUser){
+
+    showToast(
+      "Please log in to save favorites"
+    );
+
+    return false;
+
+  }
+
+  const result =
+    await db
+      .from("favorites")
+      .insert({
+        user_id:currentUser.id,
+        event_id:String(id)
+      });
+
+  if(result.error){
+
+    if(result.error.code !== "23505"){
+
+      console.error(
+        "Favorite insert error:",
+        result.error
+      );
+
+      showToast(
+        "Could not save favorite"
+      );
+
+      return false;
+
+    }
+
+  }
+
+  return true;
+
+}
+
+
+async function removeFavorite(id){
+
+  if(!currentUser)
+    return false;
+
+  const result =
+    await db
+      .from("favorites")
+      .delete()
+      .eq("user_id",currentUser.id)
+      .eq("event_id",String(id));
+
+  if(result.error){
+
+    console.error(
+      "Favorite delete error:",
+      result.error
+    );
+
+    showToast(
+      "Could not remove favorite"
+    );
+
+    return false;
+
+  }
+
+  return true;
+
+}
+
+
+async function toggleFavorite(id){
+
+  if(favorites.includes(Number(id))){
+
+    const ok =
+      await removeFavorite(id);
+
+    if(!ok)
+      return;
+
+    favorites =
+      favorites.filter(
+        x =>
+          Number(x) !== Number(id)
+      );
+
+    showToast(
+      "Removed from favorites"
+    );
+
+  }else{
+
+    const ok =
+      await addFavorite(id);
+
+    if(!ok)
+      return;
+
+    favorites.push(Number(id));
+
+    showToast(
+      "Added to favorites"
+    );
+
+  }
+
+  renderCurrentPage();
+
+}
+
+
+/* =========================================================
+   ORDERS
+========================================================= */
+
+async function loadOrders(){
+
+  if(!currentUser){
+
+    orders=[];
+
+    return;
+
+  }
+
+  const result =
+    await db
+      .from("orders")
+      .select("*")
+      .eq("user_id",currentUser.id)
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+  if(result.error){
+
+    console.error(
+      "Orders load error:",
+      result.error
+    );
+
+    orders=[];
+
+    return;
+
+  }
+
+  orders =
+    (result.data || [])
+      .map(row => ({
+
+        id:row.id,
+
+        orderNumber:
+          row.order_number,
+
+        userId:
+          row.user_id,
+
+        eventId:
+          row.event_id,
+
+        event:
+          row.event_name ||
+          "Event",
+
+        date:
+          row.event_date ||
+          "",
+
+        venue:
+          row.venue ||
+          "",
+
+        tickets:
+          Number(row.quantity || 0),
+
+        total:
+          Number(
+            row.total_amount ??
+            row.total ??
+            0
+          ),
+
+        status:
+          row.status === "confirmed"
+            ? "Confirmed"
+            : (
+                row.status ||
+                "Confirmed"
+              ),
+
+        created:
+          row.created_at
+            ? new Date(
+                row.created_at
+              ).toLocaleString()
+            : ""
+
+      }));
+
+}
+
+
+/* =========================================================
+   TICKETS
+========================================================= */
+
+async function loadTickets(){
+
+  if(!currentUser){
+
+    tickets=[];
+
+    return;
+
+  }
+
+  const result =
+    await db
+      .from("tickets")
+      .select("*")
+      .eq("owner_id",currentUser.id)
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+  if(result.error){
+
+    console.error(
+      "Tickets load error:",
+      result.error
+    );
+
+    tickets=[];
+
+    return;
+
+  }
+
+  tickets =
+    (result.data || [])
+      .map(row => {
+
+        let event = null;
+
+        if(row.event_ref){
+
+          event =
+            getEvent(
+              Number(row.event_ref)
+            );
+
+        }
+
+        if(!event){
+
+          event =
+            events.find(
+              e =>
+                e.title ===
+                row.event_name
+            );
+
+        }
+
+        return {
+
+          id:
+            row.ticket_code,
+
+          databaseId:
+            row.id,
+
+          seatId:
+            row.seat_id || "",
+
+          orderId:
+            row.order_id || "",
+
+          userId:
+            row.owner_id,
+
+          eventId:
+            row.event_ref
+              ? Number(row.event_ref)
+              : null,
+
+          event:
+            row.event_name ||
+            event?.title ||
+            "Event",
+
+          artist:
+            event?.artist ||
+            row.event_name ||
+            "",
+
+          image:
+            event?.image ||
+            "",
+
+          date:
+            row.event_date ||
+            event?.date ||
+            "",
+
+          time:
+            event?.time ||
+            "",
+
+          venue:
+            row.venue ||
+            event?.venue ||
+            "",
+
+          city:
+            event?.city ||
+            "",
+
+          section:
+            row.section ||
+            "",
+
+          row:
+            row.row_name ||
+            "",
+
+          seat:
+            row.seat_number ||
+            "",
+
+          price:
+            Number(row.price || 0),
+
+          statusDb:
+            row.status,
+
+          status:
+            row.status === "sold"
+              ? "active"
+              : row.status,
+
+          owner:
+            getUserDisplayName(
+              currentUser
+            )
+
+        };
+
+      });
+
+}
+
+
+/* =========================================================
+   EVENT SEATS
+========================================================= */
+
+async function loadEventSeatData(event){
+
+  if(!event)
+    return null;
+
+  const eventResult =
+    await db
+      .from("events")
+      .select("id,title")
+      .eq("title",event.title)
+      .limit(1)
+      .maybeSingle();
+
+  if(eventResult.error){
+
+    console.error(
+      "Event lookup error:",
+      eventResult.error
+    );
+
+    throw eventResult.error;
+
+  }
+
+  if(!eventResult.data){
+
+    throw new Error(
+      "This event does not exist in the Supabase events table."
+    );
+
+  }
+
+  const dbEvent =
+    eventResult.data;
+
+  const sectionResult =
+    await db
+      .from("ticket_sections")
+      .select(
+        "id,event_id,name,section_type"
+      )
+      .eq(
+        "event_id",
+        dbEvent.id
+      );
+
+  if(sectionResult.error){
+
+    console.error(
+      "Section lookup error:",
+      sectionResult.error
+    );
+
+    throw sectionResult.error;
+
+  }
+
+  const sections =
+    sectionResult.data || [];
+
+  if(!sections.length){
+
+    throw new Error(
+      "No ticket sections were found for this event."
+    );
+
+  }
+
+  const sectionIds =
+    sections.map(
+      section => section.id
+    );
+
+  const seatResult =
+    await db
+      .from("seats")
+      .select(
+        "id,section_id,row_name,seat_number"
+      )
+      .in(
+        "section_id",
+        sectionIds
+      )
+      .order(
+        "seat_number",
+        {
+          ascending:true
+        }
+      );
+
+  if(seatResult.error){
+
+    console.error(
+      "Seat lookup error:",
+      seatResult.error
+    );
+
+    throw seatResult.error;
+
+  }
+
+  const seats =
+    seatResult.data || [];
+
+  const ownedSeatIds =
+    new Set(
+      tickets
+        .filter(
+          ticket =>
+            Number(ticket.eventId) ===
+            Number(event.id)
+        )
+        .map(
+          ticket =>
+            ticket.seatId
+        )
+        .filter(Boolean)
+    );
+
+  currentEventDbData = {
+
+    eventId:
+      dbEvent.id,
+
+    sections,
+
+    seats,
+
+    ownedSeatIds
+
+  };
+
+  return currentEventDbData;
+
+}
+
+
+function isSeatSold(
+  eventId,
+  section,
+  row,
+  number
+){
+
+  const value =
+    Number(eventId)*17 +
+    section.length*7 +
+    row*11 +
+    number*5;
+
+  return (
+    value % 13 === 0 ||
+    value % 17 === 0
+  );
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function showPage(page){
+
+  currentPage = page;
+
+  currentEvent = null;
+
+  selectedSeats = [];
+
+  document
+    .querySelector(".buy-bar")
+    ?.remove();
+
+  updateNav(page);
+
+  renderCurrentPage();
+
+}
+
+
+function updateNav(page){
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(
+      button =>
+        button.classList.remove("active")
+    );
+
+  const active =
+    document.getElementById(
+      "nav-" + page
+    );
+
+  if(active)
+    active.classList.add("active");
+
+}
+
+
+function renderCurrentPage(){
+
+  if(currentPage === "home")
+    renderHome();
+
+  else if(currentPage === "events")
+    renderEvents();
+
+  else if(currentPage === "favorites")
+    renderFavorites();
+
+  else if(currentPage === "tickets")
+    renderTickets();
+
+  else if(currentPage === "profile")
+    renderProfile();
+
+}
+
+
+/* =========================================================
+   EVENT CARD
+========================================================= */
+
+function eventCard(event){
+
+  const favorite =
+    favorites.includes(
+      Number(event.id)
+    );
+
+  return `
+
+    <article class="event-card">
+
+      <div
+        class="event-image-wrap"
+        onclick="openEvent(${event.id})">
+
+        <img
+          class="event-image"
+          src="${event.image}"
+          alt="${escapeHTML(event.title)}"
+          loading="lazy">
+
+        <button
+          class="favorite-btn ${favorite ? "active" : ""}"
+          onclick="event.stopPropagation();toggleFavorite(${event.id})">
+
+          ${favorite ? "♥" : "♡"}
+
+        </button>
+
+      </div>
+
+      <div
+        class="event-info"
+        onclick="openEvent(${event.id})">
+
+        <div class="event-category">
+          ${escapeHTML(event.category)}
+        </div>
+
+        <div class="event-title">
+          ${escapeHTML(event.title)}
+        </div>
+
+        <div class="event-meta">
+          ${escapeHTML(event.date)}
+        </div>
+
+        <div class="event-meta">
+          ${escapeHTML(event.venue)}
+        </div>
+
+        <div class="event-price">
+          From ${money(event.price)}
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+function renderHome(){
+
+  const main =
+    document.getElementById(
+      "mainContent"
+    );
+
+  const featured =
+    events.slice(0,6);
+
+  main.innerHTML = `
+
+    <div class="page">
+
+      <section class="hero">
+
+        <h1>
+          Find your next event.
+        </h1>
+
+        <p>
+          Discover concerts, sports and live entertainment
+          from independent event listings.
+        </p>
+
+        <div class="search">
+
+          <span>⌕</span>
+
+          <input
+            id="homeSearch"
+            placeholder="Search events, artists or venues"
+            oninput="homeSearch(this.value)">
+
+        </div>
+
+      </section>
+
+      <div class="section-heading">
+
+        <h2>
+          Popular events
+        </h2>
+
+        <button onclick="showPage('events')">
+          See all
+        </button>
+
+      </div>
+
+      <div
+        id="homeEventGrid"
+        class="event-grid">
+
+        ${featured
+          .map(eventCard)
+          .join("")}
+
+      </div>
+
+      <div class="section-heading">
+
+        <h2>
+          Browse categories
+        </h2>
+
+      </div>
+
+      <div class="filter-row">
+
+        <button
+          class="filter-btn"
+          onclick="showCategory('Concerts')">
+
+          Concerts
+
+        </button>
+
+        <button
+          class="filter-btn"
+          onclick="showCategory('Sports')">
+
+          Sports
+
+        </button>
+
+        <button
+          class="filter-btn"
+          onclick="showCategory('Comedy')">
+
+          Comedy
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function homeSearch(value){
+
+  const term =
+    value.trim().toLowerCase();
+
+  const filtered =
+    events.filter(event =>
+      (
+        event.title +
+        " " +
+        event.artist +
+        " " +
+        event.venue +
+        " " +
+        event.city
+      )
+      .toLowerCase()
+      .includes(term)
+    );
+
+  const grid =
+    document.getElementById(
+      "homeEventGrid"
+    );
+
+  if(!grid)
+    return;
+
+  grid.innerHTML =
+    filtered.length
+      ? filtered.map(eventCard).join("")
+      : `
+        <div
+          class="empty"
+          style="grid-column:1/-1">
+
+          No matching events found.
+
+        </div>
+      `;
+
+}
+
+
+let activeCategory = "All";
+
+
+function renderEvents(){
+
+  const main =
+    document.getElementById(
+      "mainContent"
+    );
+
+  const filtered =
+    activeCategory === "All"
+      ? events
+      : events.filter(
+          event =>
+            event.category ===
+            activeCategory
+        );
+
+  main.innerHTML = `
+
+    <div class="page">
+
+      <div class="section-heading">
+
+        <h2>
+          Events
+        </h2>
+
+      </div>
+
+      <div
+        class="search"
+        style="margin-bottom:14px">
+
+        <span>⌕</span>
+
+        <input
+          id="eventSearch"
+          placeholder="Search events"
+          oninput="filterEventPage(this.value)">
+
+      </div>
+
+      <div class="filter-row">
+
+        ${["All","Concerts","Sports","Comedy"]
+          .map(category => `
+
+            <button
+              class="filter-btn ${
+                activeCategory === category
+                  ? "active"
+                  : ""
+              }"
+              onclick="setCategory('${category}')">
+
+              ${category}
+
+            </button>
+
+          `)
+          .join("")}
+
+      </div>
+
+      <div
+        id="eventsGrid"
+        class="event-grid"
+        style="margin-top:15px">
+
+        ${filtered
+          .map(eventCard)
+          .join("")}
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function setCategory(category){
+
+  activeCategory = category;
+
+  renderEvents();
+
+}
+
+
+function showCategory(category){
+
+  activeCategory = category;
+
+  currentPage = "events";
+
+  updateNav("events");
+
+  renderEvents();
+
+}
+
+
+function filterEventPage(value){
+
+  const term =
+    value.trim().toLowerCase();
+
+  const filtered =
+    events.filter(event => {
+
+      const categoryMatch =
+        activeCategory === "All" ||
+        event.category ===
+        activeCategory;
+
+      const text =
+        (
+          event.title +
+          " " +
+          event.artist +
+          " " +
+          event.venue +
+          " " +
+          event.city
+        ).toLowerCase();
+
+      return (
+        categoryMatch &&
+        text.includes(term)
+      );
+
+    });
+
+  const grid =
+    document.getElementById(
+      "eventsGrid"
+    );
+
+  if(!grid)
+    return;
+
+  grid.innerHTML =
+    filtered.length
+      ? filtered.map(eventCard).join("")
+      : `
+        <div
+          class="empty"
+          style="grid-column:1/-1">
+
+          No matching events found.
+
+        </div>
+      `;
+
+}
+
+
+/* =========================================================
+   FAVORITES PAGE
+========================================================= */
+
+function renderFavorites(){
+
+  const main =
+    document.getElementById(
+      "mainContent"
+    );
+
+  const favoriteEvents =
+    events.filter(
+      event =>
+        favorites.includes(
+          Number(event.id)
+        )
+    );
+
+  main.innerHTML = `
+
+    <div class="page">
+
+      <div class="section-heading">
+
+        <h2>
+          Favorites
+        </h2>
+
+      </div>
+
+      ${
+        favoriteEvents.length
+
+        ? `
+          <div class="event-grid">
+
+            ${favoriteEvents
+              .map(eventCard)
+              .join("")}
+
+          </div>
+        `
+
+        : `
+          <div class="empty">
+
+            <div class="empty-icon">
+              ♡
+            </div>
+
+            <strong>
+              No favorites yet
+            </strong>
+
+            <p>
+              Save events you want to keep an eye on.
+            </p>
+
+            <button
+              class="primary-btn"
+              style="max-width:220px"
+              onclick="showPage('events')">
+
+              Browse events
+
+            </button>
+
+          </div>
+        `
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   EVENT DETAIL
+========================================================= */
+
+async function openEvent(id){
+
+  const event =
+    getEvent(id);
+
+  if(!event)
+    return;
+
+  currentEvent = event;
+
+  selectedSeats = [];
+
+  currentPage = "detail";
+
+  updateNav("");
+
+  const main =
+    document.getElementById(
+      "mainContent"
+    );
+
+  main.innerHTML = `
+
+    <div class="page">
+
+      <button
+        class="back-btn"
+        onclick="showPage('events')">
+
+        ← Back to events
+
+      </button>
+
+      <div class="detail-hero">
+
+        <img
+          src="${event.image}"
+          alt="${escapeHTML(event.title)}">
+
+      </div>
+
+      <h1 class="detail-title">
+        ${escapeHTML(event.title)}
+      </h1>
+
+      <div class="detail-meta">
+
+        ${escapeHTML(event.date)} ·
+        ${escapeHTML(event.time)}
+
+        <br>
+
+        ${escapeHTML(event.venue)} ·
+        ${escapeHTML(event.city)}
+
+      </div>
+
+      <div class="info-card">
+
+        <h3>
+          Select your seats
+        </h3>
+
+        <div class="loading">
+
+          <div class="spinner"></div>
+
+          Loading available seats...
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+  try{
+
+    await loadEventSeatData(event);
+
+    renderEventSeatMap();
+
+  }catch(error){
+
+    console.error(error);
+
+    main.innerHTML += `
+
+      <div class="info-card">
+
+        <strong>
+          Seat map could not be loaded.
+        </strong>
+
+        <p
+          style="
+            color:#667085;
+            font-size:13px
+          ">
+
+          ${escapeHTML(
+            error.message ||
+            "Please try again."
+          )}
+
+        </p>
+
+        <button
+          class="primary-btn"
+          onclick="openEvent(${event.id})">
+
+          Try again
+
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+function renderEventSeatMap(){
+
+  const main =
+    document.getElementById(
+      "mainContent"
+    );
+
+  if(!main || !currentEvent)
+    return;
+
+  const dbData =
+    currentEventDbData;
+
+  const sectionOrder = [
+    "VIP",
+    "PREMIUM",
+    "STANDARD"
+  ];
+
+  const sections =
+    sectionOrder
+      .map(name =>
+        dbData.sections.find(
+          section =>
+            section.name === name
+        )
+      )
+      .filter(Boolean);
+
+  main.innerHTML = `
+
+    <div class="page">
+
+      <button
+        class="back-btn"
+        onclick="showPage('events')">
+
+        ← Back to events
+
+      </button>
+
+      <div class="detail-hero">
+
+        <img
+          src="${currentEvent.image}"
+          alt="${escapeHTML(currentEvent.title)}">
+
+      </div>
+
+      <h1 class="detail-title">
+        ${escapeHTML(currentEvent.title)}
+      </h1>
+
+      <div class="detail-meta">
+
+        ${escapeHTML(currentEvent.date)} ·
+        ${escapeHTML(currentEvent.time)}
+
+        <br>
+
+        ${escapeHTML(currentEvent.venue)} ·
+        ${escapeHTML(currentEvent.city)}
+
+      </div>
+
+      <div class="info-card">
+
+        <h3>
+          Select your seats
+        </h3>
+
+        <div class="stage">
+          STAGE
+        </div>
+
+        ${sections
+          .map(
+            section =>
+              renderSectionSeats(section)
+          )
+          .join("")}
+
+        <div class="seat-legend">
+
+          <div class="legend-item">
+            <span class="legend-dot"></span>
+            Available
+          </div>
+
+          <div class="legend-item">
+            <span class="legend-dot selected"></span>
+            Selected
+          </div>
+
+          <div class="legend-item">
+            <span class="legend-dot sold"></span>
+            Unavailable
+          </div>
+
+          <div class="legend-item">
+            <span class="legend-dot owned"></span>
+            Your ticket
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+  renderBuyBar();
+
+}
+
+
+function renderSectionSeats(section){
+
+  const seats =
+    currentEventDbData.seats
+      .filter(
+        seat =>
+          seat.section_id ===
+          section.id
+      );
+
+  const grouped = {};
+
+  seats.forEach(seat => {
+
+    const row =
+      seat.row_name;
+
+    if(!grouped[row])
+      grouped[row] = [];
+
+    grouped[row].push(seat);
+
+  });
+
+  const sectionBasePrice =
+    currentEvent.price;
+
+  let price =
+    sectionBasePrice;
+
+  if(section.name === "VIP")
+    price += 90;
+
+  if(section.name === "PREMIUM")
+    price += 45;
+
+  return `
+
+    <div class="seat-section">
+
+      <div class="seat-section-title">
+
+        <strong>
+          ${escapeHTML(section.name)}
+        </strong>
+
+        <span>
+          ${money(price)}
+        </span>
+
+      </div>
+
+      ${Object.keys(grouped)
+        .sort()
+        .map(rowName => {
+
+          const rowSeats =
+            grouped[rowName];
+
+          const rowNumber =
+            Number(
+              rowName.replace(
+                /\D/g,
+                ""
+              )
+            );
+
+          return `
+
+            <div class="seat-row">
+
+              <div class="row-label">
+                ${escapeHTML(rowName)}
+              </div>
+
+              ${rowSeats
+                .map(seat => {
+
+                  const sold =
+                    isSeatSold(
+                      currentEvent.id,
+                      section.name,
+                      rowNumber,
+                      seat.seat_number
+                    );
+
+                  const owned =
+                    currentEventDbData
+                      .ownedSeatIds
+                      .has(seat.id);
+
+                  const selected =
+                    selectedSeats.some(
+                      selectedSeat =>
+                        selectedSeat.seatId ===
+                        seat.id
+                    );
+
+                  let className =
+                    "seat ";
+
+                  if(owned)
+                    className +=
+                      "seat-owned";
+
+                  else if(sold)
+                    className +=
+                      "sold";
+
+                  else if(selected)
+                    className +=
+                      "selected";
+
+                  else
+                    className +=
+                      "available";
+
+                  return `
+
+                    <button
+                      class="${className}"
+                      ${
+                        sold || owned
+                          ? "disabled"
+                          : ""
+                      }
+                      onclick="selectSeat(
+                        '${seat.id}',
+                        '${escapeHTML(section.name)}',
+                        '${escapeHTML(rowName)}',
+                        ${rowNumber},
+                        ${seat.seat_number},
+                        ${price}
+                      )">
+
+                      ${seat.seat_number}
+
+                    </button>
+
+                  `;
+
+                })
+                .join("")}
+
+            </div>
+
+          `;
+
+        })
+        .join("")}
+
+    </div>
+
+  `;
+
+}
+
+
+function selectSeat(
+  seatId,
+  section,
+  rowName,
+  rowNumber,
+  number,
+  price
+){
+
+  if(
+    selectedSeats.some(
+      seat =>
+        seat.seatId === seatId
+    )
+  ){
+
+    selectedSeats =
+      selectedSeats.filter(
+        seat =>
+          seat.seatId !== seatId
+      );
+
+  }else{
+
+    if(selectedSeats.length >= 8){
+
+      showToast(
+        "You can select up to 8 seats."
+      );
+
+      return;
+
+    }
+
+    selectedSeats.push({
+
+      seatId,
+
+      eventDbId:
+        currentEventDbData.eventId,
+
+      section,
+
+      rowName,
+
+      row:rowNumber,
+
+      number,
+
+      price:Number(price)
+
+    });
+
+  }
+
+  renderEventSeatMap();
+
+}
+
+
+function renderBuyBar(){
+
+  document
+    .querySelector(".buy-bar")
+    ?.remove();
+
+  if(!currentEvent)
+    return;
+
+  const total =
+    selectedSeats.reduce(
+      (sum, seat) =>
+        sum + Number(seat.price),
+      0
+    );
+
+  const bar =
+    document.createElement("div");
+
+  bar.className =
+    "buy-bar";
+
+  bar.innerHTML = `
+
+    <div class="buy-summary">
+
+      <strong>
+        ${money(total)}
+      </strong>
+
+      <span>
+
+        ${selectedSeats.length}
+        seat${
+          selectedSeats.length === 1
+            ? ""
+            : "s"
+        }
+        selected
+
+      </span>
+
+    </div>
+
+    <button
+      class="buy-btn"
+      onclick="openCheckout()"
+      ${
+        selectedSeats.length === 0
+          ? "disabled style='opacity:.45'"
+          : ""
+      }>
+
+      Continue
+
+    </button>
+
+  `;
+
+  document.body.appendChild(bar);
+
+}
+
+
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+function openCheckout(){
+
+  if(!currentUser){
+
+    showToast(
+      "Please log in."
+    );
+
+    return;
+
+  }
+
+  if(!currentEvent){
+
+    showToast(
+      "Select an event first."
+    );
+
+    return;
+
+  }
+
+  if(!selectedSeats.length){
+
+    showToast(
+      "Select at least one seat."
+    );
+
+    return;
+
+  }
+
+  const total =
+    selectedSeats.reduce(
+      (sum, seat) =>
+        sum + Number(seat.price),
+      0
+    );
+
+  document.getElementById(
+    "checkoutSummary"
+  ).innerHTML = `
+
+    <div
+      class="info-card"
+      style="margin:0 0 15px">
+
+      <strong>
+        ${escapeHTML(currentEvent.title)}
+      </strong>
+
+      <p
+        style="
+          color:#667085;
+          font-size:12px;
+          margin:6px 0
+        ">
+
+        ${selectedSeats
+          .map(
+            seat =>
+              `${escapeHTML(seat.section)}
+               · Row ${escapeHTML(seat.rowName)}
+               · Seat ${seat.number}`
+          )
+          .join("<br>")}
+
+      </p>
+
+    </div>
+
+  `;
+
+  document.getElementById(
+    "checkoutTotal"
+  ).textContent =
+    money(total);
+
+  document
+    .getElementById(
+      "checkoutModal"
+    )
+    .classList.remove("hidden");
+
+}
+
+
+function closeCheckout(){
+
+  document
+    .getElementById(
+      "checkoutModal"
+    )
+    .classList.add("hidden");
+
+}
+
+
+function setupPaymentFormatting(){
+
+  const card =
+    document.getElementById(
+      "cardNumber"
+    );
+
+  const expiry =
+    document.getElementById(
+      "cardExpiry"
+    );
+
+  if(card){
+
+    card.addEventListener(
+      "input",
+      function(){
+
+        let value =
+          this.value
+            .replace(/\D/g,"")
+            .slice(0,16);
+
+        let groups =
+          value.match(/.{1,4}/g);
+
+        this.value =
+          groups
+            ? groups.join(" ")
+            : "";
+
+      }
+    );
+
+  }
+
+  if(expiry){
+
+    expiry.addEventListener(
+      "input",
+      function(){
+
+        let value =
+          this.value
+            .replace(/\D/g,"")
+            .slice(0,4);
+
+        if(value.length > 2){
+
+          value =
+            value.slice(0,2) +
+            "/" +
+            value.slice(2);
+
+        }
+
+        this.value = value;
+
+      }
+    );
+
+  }
+
+}
+
+
+function generateTicketCode(){
+
+  if(
+    window.crypto &&
+    typeof crypto.randomUUID ===
+      "function"
+  ){
+
+    return (
+      "TM-" +
+      crypto
+        .randomUUID()
+        .replaceAll("-","")
+        .slice(0,12)
+        .toUpperCase()
+    );
+
+  }
+
+  return (
+    "TM-" +
+    Date.now()
+      .toString(36)
+      .toUpperCase() +
+    Math.random()
+      .toString(36)
+      .slice(2,7)
+      .toUpperCase()
+  );
+
+}
+
+
+async function completePurchase(){
+
+  if(!currentUser){
+
+    showToast(
+      "Please log in."
+    );
+
+    return;
+
+  }
+
+  if(!currentEvent){
+
+    showToast(
+      "No event selected."
+    );
+
+    return;
+
+  }
+
+  if(!selectedSeats.length){
+
+    showToast(
+      "Please select seats."
+    );
+
+    return;
+
+  }
+
+  const cardName =
+    document.getElementById(
+      "cardName"
+    ).value.trim();
+
+  const cardNumber =
+    document.getElementById(
+      "cardNumber"
+    ).value
+      .replace(/\s/g,"");
+
+  const expiry =
+    document.getElementById(
+      "cardExpiry"
+    ).value.trim();
+
+  const cvc =
+    document.getElementById(
+      "cardCvc"
+    ).value.trim();
+
+  if(!cardName){
+
+    showToast(
+      "Enter the cardholder name."
+    );
+
+    return;
+
+  }
+
+  if(
+    !/^\d{16}$/.test(
+      cardNumber
+    )
+  ){
+
+    showToast(
+      "Enter a valid 16-digit demo card number."
+    );
+
+    return;
+
+  }
+
+  if(
+    !/^\d{2}\/\d{2}$/.test(
+      expiry
+    )
+  ){
+
+    showToast(
+      "Enter expiry as MM/YY."
+    );
+
+    return;
+
+  }
+
+  if(
+    !/^\d{3,4}$/.test(cvc)
+  ){
+
+    showToast(
+      "Enter a valid CVC."
+    );
+
+    return;
+
+  }
+
+  const button =
+    document.getElementById(
+      "completePurchaseBtn"
+    );
+
+  button.disabled = true;
+
+  button.textContent =
+    "Processing...";
+
+  const total =
+    selectedSeats.reduce(
+      (sum, seat) =>
+        sum + Number(seat.price),
+      0
+    );
+
+  if(!currentEventDbData){
+
+    try{
+
+      await loadEventSeatData(
+        currentEvent
+      );
+
+    }catch(error){
+
+      button.disabled = false;
+
+      button.textContent =
+        "Complete purchase";
+
+      showToast(
+        "Could not load event data."
+      );
+
+      return;
+
+    }
+
+  }
+
+  const orderNumber =
+    "TM-" +
+    Date.now()
+      .toString(36)
+      .toUpperCase() +
+    "-" +
+    Math.random()
+      .toString(36)
+      .substring(2,7)
+      .toUpperCase();
+
+  const orderResult =
+    await db
+      .from("orders")
+      .insert({
+
+        order_number:
+          orderNumber,
+
+        user_id:
+          currentUser.id,
+
+        event_id:
+          String(currentEvent.id),
+
+        event_name:
+          currentEvent.title,
+
+        event_date:
+          currentEvent.date,
+
+        venue:
+          currentEvent.venue,
+
+        total_amount:
+          total,
+
+        quantity:
+          selectedSeats.length,
+
+        status:
+          "confirmed"
+
+      })
+      .select()
+      .single();
+
+  if(orderResult.error){
+
+    console.error(
+      "Order creation error:",
+      orderResult.error
+    );
+
+    button.disabled = false;
+
+    button.textContent =
+      "Complete purchase";
+
+    showToast(
+      "Could not create your order."
+    );
+
+    return;
+
+  }
+
+  const ticketRows =
+    selectedSeats.map(
+      seat => ({
+
+        ticket_code:
+          generateTicketCode(),
+
+        event_id:
+          currentEventDbData.eventId,
+
+        seat_id:
+          seat.seatId,
+
+        owner_id:
+          currentUser.id,
+
+        status:
+          "sold",
+
+        price:
+          Number(seat.price),
+
+        is_demo_ticket:
+          true,
+
+        event_ref:
+          String(currentEvent.id),
+
+        event_name:
+          currentEvent.title,
+
+        event_date:
+          currentEvent.date,
+
+        venue:
+          currentEvent.venue,
+
+        section:
+          seat.section,
+
+        row_name:
+          seat.rowName,
+
+        seat_number:
+          String(seat.number),
+
+        order_id:
+          orderResult.data.id
+
+      })
+    );
+
+  const ticketResult =
+    await db
+      .from("tickets")
+      .insert(ticketRows)
+      .select();
+
+  if(ticketResult.error){
+
+    console.error(
+      "Ticket creation error:",
+      ticketResult.error
+    );
+
+    await db
+      .from("orders")
+      .delete()
+      .eq(
+        "id",
+        orderResult.data.id
+      )
+      .eq(
+        "user_id",
+        currentUser.id
+      );
+
+    button.disabled = false;
+
+    button.textContent =
+      "Complete purchase";
+
+    showToast(
+      "Tickets could not be created. No payment was stored."
+    );
+
+    return;
+
+  }
+
+  document.getElementById(
+    "cardName"
+  ).value = "";
+
+  document.getElementById(
+    "cardNumber"
+  ).value = "";
+
+  document.getElementById(
+    "cardExpiry"
+  ).value = "";
+
+  document.getElementById(
+    "cardCvc"
+  ).value = "";
+
+  await loadTickets();
+
+  await loadOrders();
+
+  closeCheckout();
+
+  selectedSeats = [];
+
+  currentEventDbData = null;
+
+  button.disabled = false;
+
+  button.textContent =
+    "Complete purchase";
+
+  showToast(
+    "Purchase completed successfully."
+  );
+
+  setTimeout(
+    () => showPage("tickets"),
+    700
+  );
+
+}
+
+
+/* =========================================================
+   TICKETS
+========================================================= */
+
+function renderTickets(){
+
+  const main =
+    document.getElementById(
+      "mainContent"
+    );
+
+  const userTickets =
+    tickets.filter(
+      ticket =>
+        ticket.userId ===
+        currentUser?.id
+    );
+
+  main.innerHTML = `
+
+    <div class="page">
+
+      <div class="section-heading">
+
+        <h2>
+          My Tickets
+        </h2>
+
+      </div>
+
+      ${
+        userTickets.length
+
+        ? userTickets
+            .map(ticketCard)
+            .join("")
+
+        : `
+          <div class="empty">
+
+            <div class="empty-icon">
+              🎟️
+            </div>
+
+            <strong>
+              No tickets yet
+            </strong>
+
+            <p>
+              Tickets you purchase will appear here.
+            </p>
+
+            <button
+              class="primary-btn"
+              style="max-width:220px"
+              onclick="showPage('events')">
+
+              Find an event
+
+            </button>
+
+          </div>
+        `
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+function ticketCard(ticket){
+
+  return `
+
+    <div class="ticket-card">
+
+      <div class="ticket-top">
+
+        ${
+          ticket.image
+
+          ? `
+            <img
+              class="ticket-image"
+              src="${ticket.image}"
+              alt="">
+          `
+
+          : `
+            <div
+              class="ticket-image"
+              style="
+                background:#087cff;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                color:#fff;
+                font-size:25px;
+              ">
+
+              🎟
+
+            </div>
+          `
+        }
+
+        <div class="ticket-content">
+
+          <h3>
+            ${escapeHTML(ticket.event)}
+          </h3>
+
+          <p>
+            ${escapeHTML(ticket.date)}
+          </p>
+
+          <p>
+            ${escapeHTML(ticket.venue)}
+          </p>
+
+          <p>
+            ${escapeHTML(ticket.section)}
+            · Row ${escapeHTML(ticket.row)}
+            · Seat ${escapeHTML(ticket.seat)}
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="ticket-code">
+
+        Ticket:
+        ${escapeHTML(ticket.id)}
+
+      </div>
+
+      <div class="ticket-actions">
+
+        <button
+          class="secondary-btn"
+          onclick="showTicket('${escapeHTML(ticket.id)}')">
+
+          View ticket
+
+        </button>
+
+        <button
+          class="secondary-btn"
+          onclick="transferTicket('${escapeHTML(ticket.id)}')">
+
+          Transfer
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function showTicket(ticketId){
+
+  const ticket =
+    tickets.find(
+      item =>
+        item.id === ticketId
+    );
+
+  if(!ticket){
+
+    showToast(
+      "Ticket could not be found."
+    );
+
+    return;
+
+  }
+
+  document.getElementById(
+    "ticketModalContent"
+  ).innerHTML = `
+
+    <div
+      style="
+        background:#087cff;
+        color:white;
+        border-radius:20px;
+        padding:25px 18px;
+        text-align:center;
+      ">
+
+      ${
+        ticket.image
+          ? `
+            <img
+              src="${ticket.image}"
+              alt="${escapeHTML(ticket.event)}"
+              style="
+                width:100%;
+                height:180px;
+                object-fit:cover;
+                border-radius:15px;
+                margin-bottom:15px;
+              ">
+          `
+          : `
+            <div
+              style="
+                font-size:48px;
+                margin-bottom:12px;
+              ">
+
+              🎟️
+
+            </div>
+          `
+      }
+
+      <h2
+        style="
+          margin:0 0 7px;
+          font-family:var(--font-display);
+          font-weight:800;
+          letter-spacing:-.03em;
+        ">
+
+        ${escapeHTML(ticket.event)}
+
+      </h2>
+
+      <p
+        style="
+          margin:0;
+          opacity:.9;
+          font-size:13px;
+          line-height:18px;
+        ">
+
+        ${escapeHTML(ticket.date)}
+
+      </p>
+
+    </div>
+
+    <div class="info-card">
+
+      <strong>
+        ${escapeHTML(ticket.section)}
+      </strong>
+
+      <p
+        style="
+          color:#667085;
+          font-size:13px;
+        ">
+
+        Row ${escapeHTML(ticket.row)}
+        · Seat ${escapeHTML(ticket.seat)}
+
+      </p>
+
+      <p
+        style="
+          color:#667085;
+          font-size:13px;
+        ">
+
+        ${escapeHTML(ticket.venue)}
+
+      </p>
+
+      <div
+        class="ticket-code"
+        style="text-align:center">
+
+        ${escapeHTML(ticket.id)}
+
+      </div>
+
+    </div>
+
+  `;
+
+  document
+    .getElementById(
+      "ticketModal"
+    )
+    .classList.remove("hidden");
+
+}
+
+
+function closeTicketModal(){
+
+  document
+    .getElementById(
+      "ticketModal"
+    )
+    .classList.add("hidden");
+
+}
+
+
+/* =========================================================
+   TRANSFER
+========================================================= */
+
+function transferTicket(ticketId){
+
+  const ticket =
+    tickets.find(
+      item =>
+        item.id === ticketId
+    );
+
+  if(!ticket){
+
+    showToast(
+      "Ticket not found."
+    );
+
+    return;
+
+  }
+
+  if(ticket.status !== "active"){
+
+    showToast(
+      "This ticket cannot be transferred."
+    );
+
+    return;
+
+  }
+
+  transferTicketData =
+    ticket;
+
+  document.getElementById(
+    "transferFirstName"
+  ).value = "";
+
+  document.getElementById(
+    "transferLastName"
+  ).value = "";
+
+  document.getElementById(
+    "transferContact"
+  ).value = "";
+
+  document.getElementById(
+    "transferNote"
+  ).value = "";
+
+  document.getElementById(
+    "transferNoteCount"
+  ).textContent = "0";
+
+  document.getElementById(
+    "transferTicketSummary"
+  ).innerHTML = `
+
+    <div class="transfer-summary">
+
+      <div class="transfer-summary-title">
+
+        ${escapeHTML(ticket.event)}
+
+      </div>
+
+      <div class="transfer-summary-detail">
+
+        ${escapeHTML(ticket.date)}
+
+        <br>
+
+        ${escapeHTML(ticket.venue)}
+
+        <br>
+
+        ${escapeHTML(ticket.section)}
+        · Row ${escapeHTML(ticket.row)}
+        · Seat ${escapeHTML(ticket.seat)}
+
+      </div>
+
+    </div>
+
+  `;
+
+  document
+    .getElementById(
+      "transferModal"
+    )
+    .classList.remove("hidden");
+
+}
+
+
+function closeTransferModal(){
+
+  document
+    .getElementById(
+      "transferModal"
+    )
+    .classList.add("hidden");
+
+}
+
+
+function closeTransferReview(){
+
+  document
+    .getElementById(
+      "transferReviewModal"
+    )
+    .classList.add("hidden");
+
+  transferTicketData = null;
+
+}
+
+
+function backToTransferForm(){
+
+  document
+    .getElementById(
+      "transferReviewModal"
+    )
+    .classList.add("hidden");
+
+  document
+    .getElementById(
+      "transferModal"
+    )
+    .classList.remove("hidden");
+
+}
+
+
+function reviewTicketTransfer(){
+
+  if(!transferTicketData){
+
+    showToast(
+      "Ticket not found."
+    );
+
+    return;
+
+  }
+
+  const firstName =
+    document.getElementById(
+      "transferFirstName"
+    ).value.trim();
+
+  const lastName =
+    document.getElementById(
+      "transferLastName"
+    ).value.trim();
+
+  const contact =
+    document.getElementById(
+      "transferContact"
+    ).value.trim();
+
+  const note =
+    document.getElementById(
+      "transferNote"
+    ).value.trim();
+
+  if(!firstName){
+
+    showToast(
+      "Enter the recipient's first name."
+    );
+
+    return;
+
+  }
+
+  if(!lastName){
+
+    showToast(
+      "Enter the recipient's last name."
+    );
+
+    return;
+
+  }
+
+  if(!contact){
+
+    showToast(
+      "Enter the recipient's email or phone."
+    );
+
+    return;
+
+  }
+
+  const fullName =
+    `${firstName} ${lastName}`;
+
+  const initials =
+    (
+      firstName.charAt(0) +
+      lastName.charAt(0)
+    ).toUpperCase();
+
+  document.getElementById(
+    "transferReviewInitials"
+  ).textContent =
+    initials;
+
+  document.getElementById(
+    "transferReviewName"
+  ).textContent =
+    fullName;
+
+  document.getElementById(
+    "transferReviewContact"
+  ).textContent =
+    contact;
+
+  document.getElementById(
+    "transferReviewTicket"
+  ).innerHTML = `
+
+    <strong>
+      ${escapeHTML(
+        transferTicketData.event
+      )}
+    </strong>
+
+    <br>
+
+    <span
+      style="
+        color:#667085;
+        font-size:12px;
+      ">
+
+      ${escapeHTML(
+        transferTicketData.date
+      )}
+
+      <br>
+
+      ${escapeHTML(
+        transferTicketData.venue
+      )}
+
+      <br>
+
+      ${escapeHTML(
+        transferTicketData.section
+      )}
+
+      · Row
+      ${escapeHTML(
+        transferTicketData.row
+      )}
+
+      · Seat
+      ${escapeHTML(
+        transferTicketData.seat
+      )}
+
+    </span>
+
+  `;
+
+  const noteBox =
+    document.getElementById(
+      "transferReviewNoteBox"
+    );
+
+  if(note){
+
+    noteBox.classList.remove(
+      "hidden"
+    );
+
+    document.getElementById(
+      "transferReviewNote"
+    ).textContent =
+      note;
+
+  }else{
+
+    noteBox.classList.add(
+      "hidden"
+    );
+
+  }
+
+  document
+    .getElementById(
+      "transferModal"
+    )
+    .classList.add("hidden");
+
+  document
+    .getElementById(
+      "transferReviewModal"
+    )
+    .classList.remove("hidden");
+
+}
+
+
+async function confirmTicketTransfer(){
+
+  if(!transferTicketData){
+
+    showToast(
+      "Ticket not found."
+    );
+
+    return;
+
+  }
+
+  const firstName =
+    document.getElementById(
+      "transferFirstName"
+    ).value.trim();
+
+  const lastName =
+    document.getElementById(
+      "transferLastName"
+    ).value.trim();
+
+  const contact =
+    document.getElementById(
+      "transferContact"
+    ).value.trim();
+
+  const note =
+    document.getElementById(
+      "transferNote"
+    ).value.trim();
+
+  if(!firstName){
+
+    showToast(
+      "Enter the recipient's first name."
+    );
+
+    return;
+
+  }
+
+  if(!lastName){
+
+    showToast(
+      "Enter the recipient's last name."
+    );
+
+    return;
+
+  }
+
+  if(!contact){
+
+    showToast(
+      "Enter the recipient's email address."
+    );
+
+    return;
+
+  }
+
+  if(!contact.includes("@")){
+
+    showToast(
+      "Please enter a valid recipient email address."
+    );
+
+    return;
+
+  }
+
+  if(!currentUser){
+
+    showToast(
+      "Please log in before transferring a ticket."
+    );
+
+    return;
+
+  }
+
+  const databaseTicketId =
+    transferTicketData.databaseId ||
+    "";
+
+  if(!databaseTicketId){
+
+    showToast(
+      "This ticket is not connected to the ticket database yet."
+    );
+
+    console.error(
+      "Missing databaseId for ticket:",
+      transferTicketData
+    );
+
+    return;
+
+  }
+
+  const recipientName =
+    `${firstName} ${lastName}`;
+
+  try{
+
+    showToast(
+      "Sending transfer email..."
+    );
+
+    const {
+      data,
+      error
+    } = await db.functions.invoke(
+      "send-ticket-transfer",
+      {
+        body: {
+
+          ticket_id:
+            databaseTicketId,
+
+          recipient_email:
+            contact.toLowerCase(),
+
+          message:
+            note
+
+        }
+      }
+    );
+
+    if(error){
+
+      console.error(
+        "Transfer function error:",
+        error
+      );
+
+      throw error;
+
+    }
+
+    if(!data || !data.success){
+
+      throw new Error(
+        data?.error ||
+        "The transfer could not be sent."
+      );
+
+    }
+
+    const transfer = {
+
+      id:
+        data.transfer_id ||
+        "TR-" + Date.now(),
+
+      ticketId:
+        transferTicketData.id,
+
+      ticketDatabaseId:
+        databaseTicketId,
+
+      ticketSeatId:
+        transferTicketData.seatId ||
+        "",
+
+      sender:
+        currentUser.email,
+
+      recipient:
+        contact.toLowerCase(),
+
+      recipientFirstName:
+        firstName,
+
+      recipientLastName:
+        lastName,
+
+      recipientName:
+        recipientName,
+
+      note:
+        note,
+
+      event:
+        transferTicketData.event,
+
+      date:
+        transferTicketData.date,
+
+      venue:
+        transferTicketData.venue,
+
+      section:
+        transferTicketData.section,
+
+      row:
+        transferTicketData.row,
+
+      seat:
+        transferTicketData.seat,
+
+      created:
+        new Date().toISOString(),
+
+      status:
+        "Pending"
+
+    };
+
+    transfers.push(
+      transfer
+    );
+
+    saveData();
+
+    /*
+      Refresh from Supabase so the transferred ticket's
+      database status is reflected immediately in the UI.
+    */
+    await loadTickets();
+
+    document
+      .getElementById(
+        "transferReviewModal"
+      )
+      .classList.add("hidden");
+
+    transferTicketData = null;
+
+    showToast(
+      "Transfer email sent successfully."
+    );
+
+    setTimeout(
+      () => showTransfers(),
+      500
+    );
+
+  }catch(error){
+
+    console.error(
+      "Ticket transfer failed:",
+      error
+    );
+
+    showToast(
+      error?.message ||
+      "Unable to send the transfer email."
+    );
+
+  }
+
+}
+
+
+document.addEventListener(
+  "input",
+  function(event){
+
+    if(
+      event.target &&
+      event.target.id ===
+        "transferNote"
+    ){
+
+      document.getElementById(
+        "transferNoteCount"
+      ).textContent =
+        event.target.value.length;
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function renderProfile(){
+
+  const main =
+    document.getElementById(
+      "mainContent"
+    );
+
+  const name =
+    getUserDisplayName(
+      currentUser
+    );
+
+  const initials =
+    userInitials(
+      currentUser
+    );
+
+  document.getElementById(
+    "headerAvatar"
+  ).textContent =
+    initials;
+
+  main.innerHTML = `
+
+    <div class="page">
+
+      <div class="profile-card">
+
+        <div class="avatar">
+          ${initials}
+        </div>
+
+        <h2>
+          ${escapeHTML(name)}
+        </h2>
+
+        <p>
+          ${escapeHTML(
+            currentUser?.email || ""
+          )}
+        </p>
+
+        <div class="profile-actions">
+
+          <button
+            class="profile-action"
+            onclick="showPage('tickets')">
+
+            🎟️ &nbsp;
+            My Tickets
+
+          </button>
+
+          <button
+            class="profile-action"
+            onclick="showPage('favorites')">
+
+            ♡ &nbsp;
+            My Favorites
+
+          </button>
+
+          <button
+            class="profile-action"
+            onclick="showOrders()">
+
+            🧾 &nbsp;
+            My Orders
+
+          </button>
+
+          <button
+            class="profile-action"
+            onclick="showTransfers()">
+
+            ↗ &nbsp;
+            Transfers
+
+          </button>
+
+          <button
+            class="profile-action"
+            onclick="logout()">
+
+            Log out
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function showOrders(){
+
+  currentPage = "orders";
+
+  updateNav("");
+
+  renderOrders();
+
+}
+
+
+function renderOrders(){
+
+  const main =
+    document.getElementById(
+      "mainContent"
+    );
+
+  main.innerHTML = `
+
+    <div class="page">
+
+      <button
+        class="back-btn"
+        onclick="showPage('profile')">
+
+        ← Profile
+
+      </button>
+
+      <div class="section-heading">
+
+        <h2>
+          My Orders
+        </h2>
+
+      </div>
+
+      ${
+        orders.length
+
+        ? orders
+            .map(order => `
+
+              <div class="order-card">
+
+                <div>
+
+                  <h3
+                    style="
+                      margin:0 0 5px;
+                      font-family:var(--font-display);
+                      font-size:16px;
+                      line-height:20px;
+                      letter-spacing:-.02em;
+                      font-weight:700;
+                    ">
+
+                    ${escapeHTML(
+                      order.event
+                    )}
+
+                  </h3>
+
+                  <p
+                    style="
+                      font-size:12px;
+                      line-height:17px;
+                      color:#667085;
+                    ">
+
+                    Order
+                    ${escapeHTML(
+                      order.orderNumber
+                    )}
+
+                  </p>
+
+                  <p
+                    style="
+                      font-size:12px;
+                      line-height:17px;
+                      color:#667085;
+                    ">
+
+                    ${escapeHTML(
+                      order.date
+                    )}
+
+                  </p>
+
+                  <p
+                    style="
+                      font-size:12px;
+                      line-height:17px;
+                      color:#667085;
+                    ">
+
+                    ${order.tickets}
+                    ticket${
+                      order.tickets === 1
+                        ? ""
+                        : "s"
+                    }
+
+                    ·
+
+                    ${money(order.total)}
+
+                  </p>
+
+                </div>
+
+                <span class="status">
+
+                  ${escapeHTML(
+                    order.status
+                  )}
+
+                </span>
+
+              </div>
+
+            `)
+            .join("")
+
+        : `
+          <div class="empty">
+
+            <div class="empty-icon">
+              🧾
+            </div>
+
+            <strong>
+              No orders yet
+            </strong>
+
+          </div>
+        `
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+function showTransfers(){
+
+  currentPage = "transfers";
+
+  updateNav("");
+
+  const mine =
+    transfers.filter(
+      transfer =>
+        transfer.sender ===
+        currentUser?.email
+    );
+
+  const main =
+    document.getElementById(
+      "mainContent"
+    );
+
+  main.innerHTML = `
+
+    <div class="page">
+
+      <button
+        class="back-btn"
+        onclick="showPage('profile')">
+
+        ← Profile
+
+      </button>
+
+      <div class="section-heading">
+
+        <h2>
+          Transfers
+        </h2>
+
+      </div>
+
+      ${
+        mine.length
+
+        ? mine
+            .map(
+              transfer => `
+
+                <div class="order-card">
+
+                  <div>
+
+                    <h3
+                      style="
+                        margin:0 0 5px;
+                        font-family:var(--font-display);
+                        font-size:16px;
+                        line-height:20px;
+                        letter-spacing:-.02em;
+                        font-weight:700;
+                      ">
+
+                      ${escapeHTML(
+                        transfer.event
+                      )}
+
+                    </h3>
+
+                    <p
+                      style="
+                        font-size:12px;
+                        line-height:17px;
+                        color:#667085;
+                      ">
+
+                      To:
+                      ${escapeHTML(
+                        transfer.recipientName ||
+                        transfer.recipient
+                      )}
+
+                    </p>
+
+                    <p
+                      style="
+                        font-size:12px;
+                        line-height:17px;
+                        color:#667085;
+                      ">
+
+                      Contact:
+                      ${escapeHTML(
+                        transfer.recipient
+                      )}
+
+                    </p>
+
+                    ${
+                      transfer.note
+                        ? `
+                          <div
+                            style="
+                              background:#f5f7fb;
+                              border-radius:10px;
+                              padding:10px;
+                              margin-top:8px;
+                              font-size:12px;
+                              line-height:17px;
+                              color:#475467;
+                            ">
+
+                            <strong>
+                              Note:
+                            </strong>
+
+                            ${escapeHTML(
+                              transfer.note
+                            )}
+
+                          </div>
+                        `
+                        : ""
+                    }
+
+                    <p
+                      style="
+                        font-size:12px;
+                        line-height:17px;
+                        color:#667085;
+                      ">
+
+                      ${new Date(
+                        transfer.created
+                      ).toLocaleString()}
+
+                    </p>
+
+                  </div>
+
+                  <span class="status">
+
+                    ${escapeHTML(
+                      transfer.status
+                    )}
+
+                  </span>
+
+                </div>
+
+              `
+            )
+            .join("")
+
+        : `
+          <div class="empty">
+
+            <div class="empty-icon">
+              ↗
+            </div>
+
+            <strong>
+              No transfers yet
+            </strong>
+
+          </div>
+        `
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   APP STARTUP
+========================================================= */
+
+async function launchApp(){
+
+  if(!currentUser)
+    return;
+
+  document
+    .getElementById(
+      "authScreen"
+    )
+    .classList.add("hidden");
+
+  document
+    .getElementById(
+      "app"
+    )
+    .classList.remove("hidden");
+
+  await loadFavorites();
+
+  await loadOrders();
+
+  await loadTickets();
+
+  updateNav("home");
+
+  renderHome();
+
+}
+
+
+/* =========================================================
+   AUTH STATE — UPDATED
+========================================================= */
+
+db.auth.onAuthStateChange(
+  (event, session) => {
+
+    currentUser =
+      session?.user || null;
+
+    /*
+      Do not perform the longer Supabase
+      loading operations directly inside
+      onAuthStateChange.
+
+      A zero-delay timeout lets the
+      auth callback finish first.
+    */
+
+    if(
+      event === "SIGNED_IN" &&
+      currentUser
+    ){
+
+      setTimeout(
+        async () => {
+
+          const app =
+            document.getElementById(
+              "app"
+            );
+
+          if(
+            app &&
+            app.classList.contains(
+              "hidden"
+            )
+          ){
+
+            await launchApp();
+
+          }
+
+        },
+        0
+      );
+
+    }
+
+
+    if(event === "SIGNED_OUT"){
+
+      currentUser = null;
+
+      tickets = [];
+
+      orders = [];
+
+      favorites = [];
+
+      transferTicketData = null;
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+async function init(){
+
+  setupPaymentFormatting();
+
+  /*
+    Only old local demo caches are removed.
+    Supabase authentication remains untouched.
+  */
+
+  localStorage.removeItem(
+    "tm_tickets"
+  );
+
+  localStorage.removeItem(
+    "tm_orders"
+  );
+
+  await loadCurrentUser();
+
+  if(currentUser){
+
+    await launchApp();
+
+  }else{
+
+    document
+      .getElementById(
+        "authScreen"
+      )
+      .classList.remove("hidden");
+
+    document
+      .getElementById(
+        "app"
+      )
+      .classList.add("hidden");
+
+  }
+
+}
+
+init();
+
+</script>
+
+</body>
+</html>
